@@ -1,2 +1,5 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Welcome to my store!");
+﻿using UI;
+using Models;
+
+MainMenu m = new MainMenu();
+m.Start();

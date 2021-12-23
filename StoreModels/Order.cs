@@ -9,6 +9,17 @@ public class Order
     public int StoreId { get; set; }
     public List<LineItem> LineItems { get; set; }
     public decimal Total { get; set; }
+
+    public Order(){}
+
+    public Order(int customerid, int ordernumber, int storeid){
+        this.OrderDate = new DateOnly();
+        this.CustomerId = customerid;
+        this.OrderNumber = ordernumber;
+        this.StoreId = storeid;
+        this.LineItems = new List<LineItem>();
+        this.CalculateTotal();
+    }
     public decimal CalculateTotal() {
         //a method that would go through each lineitem in LineItems property
         //and sets the total property of the particular order object
@@ -23,5 +34,16 @@ public class Order
         }
         this.Total = total;
         return total;
+    }
+
+    public void printLineItems(){
+        foreach(LineItem li in this.LineItems){
+            Console.WriteLine($"{li.ToString()}");
+        }
+    }
+
+    public override string ToString()
+    {
+        return $"Date: {this.OrderDate} \nCustomer ID: {this.CustomerId} \nOrder ID: {this.OrderNumber} \n Store ID: {this.StoreId} \nLine Items: \n{this.printLineItems()} \nTotal: {this.Total}";
     }
 }
