@@ -21,11 +21,12 @@ public class Customer
     public void printOrderHistory(){
         foreach(Order oh in this.Orders){
             Console.WriteLine(oh.ToString());
+            Console.WriteLine(oh.printLineItems());
         }
     }
 
     public override string ToString()
     {
-        return $"ID: {this.Id} \nUsername: {this.UserName} \nPassword: {this.Password} \nEmail: {this.Email} \nOrder History: \n{this.printOrderHistory()}";
+        return $"ID: {this.Id} \nUsername: {this.UserName} \nPassword: {this.Password} \nEmail: {this.Email}";
     }
 }

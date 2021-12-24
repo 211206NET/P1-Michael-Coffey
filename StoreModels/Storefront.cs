@@ -30,6 +30,6 @@ public class Storefront
 
     public override string ToString()
     {
-        return $"Name: {this.Name} \nAddress: {this.Address} \nInventories: \n{this.printInventories()} \nOrders: \n{this.printOrders()}";
+        return $"Name: {this.Name} \nAddress: {this.Address}";
     }
 }

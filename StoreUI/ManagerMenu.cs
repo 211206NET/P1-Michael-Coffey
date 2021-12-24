@@ -28,6 +28,8 @@ public class ManagerMenu{
                         Console.WriteLine("Here are the stores");
                         foreach(Storefront sto in _bl.GetAllStorefronts()){
                             Console.WriteLine(sto.ToString());
+                            sto.printInventories();
+                            sto.printOrders();
                         }
                     }
                 break;
@@ -40,6 +42,7 @@ public class ManagerMenu{
                         Console.WriteLine("Current Customers");
                         foreach(Customer cus in _bl.GetAllCustomers()){
                             Console.WriteLine(cus.ToString());
+                            cus.printOrderHistory();
                         }
                     }
                 break;

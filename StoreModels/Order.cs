@@ -44,6 +44,6 @@ public class Order
 
     public override string ToString()
     {
-        return $"Date: {this.OrderDate} \nCustomer ID: {this.CustomerId} \nOrder ID: {this.OrderNumber} \n Store ID: {this.StoreId} \nLine Items: \n{this.printLineItems()} \nTotal: {this.Total}";
+        return $"Date: {this.OrderDate} \nCustomer ID: {this.CustomerId} \nOrder ID: {this.OrderNumber} \n Store ID: {this.StoreId} \nTotal: {this.Total}";
     }
 }
