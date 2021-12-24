@@ -21,7 +21,8 @@ public class Customer
     public void printOrderHistory(){
         foreach(Order oh in this.Orders){
             Console.WriteLine(oh.ToString());
-            Console.WriteLine(oh.printLineItems());
+            oh.printLineItems();
+            Console.WriteLine(oh.CalculateTotal());
         }
     }
 
