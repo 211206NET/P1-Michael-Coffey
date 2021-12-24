@@ -11,7 +11,7 @@ public class MBL{
         return _fdl.GetAllStorefronts();
     }
 
-    public List<Customers> GetAllCustomers(){
+    public List<Customer> GetAllCustomers(){
         return _fdl.GetAllCustomers();
     }
 
