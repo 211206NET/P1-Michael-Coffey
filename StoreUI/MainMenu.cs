@@ -60,10 +60,10 @@ public class MainMenu{
                                 new ManagerMenu().Start();
                             }
                         }
-                    }
                     else{
                         Console.WriteLine("Unknown");
                     }
+                }
                 break;
                 case "x":
                     exit = true;
