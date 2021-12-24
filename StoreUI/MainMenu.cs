@@ -55,10 +55,10 @@ public class MainMenu{
                                 }
                             }
                         }
-                    }
-                    if(id == 0 && username == "storeManager"){
-                        if(password == "allCinema" && email == "michaelcoffey1999@gmail.com"){
-                            new ManagerMenu().Start();
+                        if(nid == 0 && nusername == "storeManager"){
+                            if(npassword == "allCinema" && nemail == "michaelcoffey1999@gmail.com"){
+                                new ManagerMenu().Start();
+                            }
                         }
                     }
                     else{
