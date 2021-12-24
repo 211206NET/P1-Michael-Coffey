@@ -37,14 +37,14 @@ public class MainMenu{
                 case "2":
                     List<Customer> theCustomers = _mbl.GetAllCustomers();
                     Console.WriteLine("Enter ID number:");
-                    int id = Convert.ToInt32(Console.ReadLine());
+                    int nid = Convert.ToInt32(Console.ReadLine());
                     Console.WriteLine("Enter username:");
-                    string username = Console.ReadLine();
+                    string nusername = Console.ReadLine();
                     Console.WriteLine("Enter password:");
-                    string password = Console.ReadLine();
+                    string npassword = Console.ReadLine();
                     Console.WriteLine("Enter email:");
-                    string email = Console.ReadLine();
-                    Customer ncustomer = new Customer(id, username, password, email);
+                    string nemail = Console.ReadLine();
+                    Customer ncustomer = new Customer(nid, nusername, npassword, nemail);
                     foreach(Customer cust in theCustomers){
                         if(ncustomer.Id == cust.Id){
                             if(ncustomer.UserName == cust.UserName){
