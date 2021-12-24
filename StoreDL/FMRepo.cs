@@ -4,8 +4,8 @@ using System.IO;
 using System.Text.Json;
 
 public class FMRepo : IMRepo {
-    private string filePath = "../DL/Storefronts.json";
-    private string filePath2 = "../DL/Customers.json";
+    private string filePath = "../StoreDL/Storefronts.json";
+    private string filePath2 = "../StoreDL/Customers.json";
 
     public List<Storefront> GetAllStorefronts(){
         string jsonString = File.ReadAllText(filePath);
