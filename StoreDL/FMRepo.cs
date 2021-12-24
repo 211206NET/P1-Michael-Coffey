@@ -1,4 +1,4 @@
-namespace dl;
+namespace DL;
 
 using System.IO;
 using System.Text.Json;
