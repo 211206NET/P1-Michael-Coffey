@@ -35,7 +35,7 @@ public class ManagerMenu{
                 break;
                 case "2":
                     List<Customer> allCustomers = _bl.GetAllCustomers();
-                    if(allCustomers == 0){
+                    if(allCustomers.Count == 0){
                         Console.WriteLine("No customers fround");
                     }
                     else{
@@ -51,7 +51,7 @@ public class ManagerMenu{
                     string name = Console.ReadLine();
                     Console.WriteLine("Address:");
                     string address = Console.ReadLine();
-                    allStorefronts newStore = new Storefront(address, name);
+                    Storefront newStore = new Storefront(address, name);
                     _bl.AddStorefront(newStore);
                 break;
                 case "4":
