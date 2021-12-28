@@ -44,7 +44,11 @@ public class CustomerMenu{
                     allStorefronts[storeSelection].Orders.Add(nOrder);
                     string jsonString = JsonSerializer.Serialize(allStorefronts);
                     File.WriteAllText(filePath2, jsonString);
-                    allCustomers.Orders.Add(nOrder);
+                    foreach(Customer cusItem in allCustomers){
+                        if(cusItem.Id = cid){
+                            cusItem.Oorders.Add(nOrder);
+                        }
+                    }
                     string jsonString2 = JsonSerializer.Serialize(allCustomers);
                     file.WriteAllText(filePath, jsonString2);
                 break;
