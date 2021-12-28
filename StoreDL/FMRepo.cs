@@ -38,5 +38,14 @@ public class FMRepo : IMRepo {
         File.WriteAllText(filePath, jsonString);
     }
 
-    public void PlaceAnOrder(int sInd, int sInv, int nBuy){}
+    public void PlaceAnOrder(int sInd, int sInv, int nBuy){
+        List<Storefront> allStorefronts = GetAllStorefronts();
+        Storefront selectedStore = allStorefronts[sInd];
+        Inventory selectedInventory = selectedStore.Inventories[sInv];
+        if(selectedInventory.Quantity > 0){
+            selectedInventory.Quantity -= nBuy;
+        }
+        string jsonString = JsonSerializer.Serialize(allStorefronts);
+        File.WriteAllText(filePath, jsonString);
+    }
 }
