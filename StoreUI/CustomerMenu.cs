@@ -6,6 +6,8 @@ public class CustomerMenu{
 
     private MBL _bl;
 
+    public int numberorder;
+
     private string filePath = "../StoreDL/Customers.json";
 
     private string filePath2 = "../StoreDL/Storefronts.json";
@@ -17,6 +19,7 @@ public class CustomerMenu{
     public void Start(){
         bool exit = false;
         while(!exit){
+            numberorder = 0;
             Console.WriteLine("Hello and Welcome!");
             Console.WriteLine("What would you like to do today?");
             Console.WriteLine("1. Place an order");
@@ -25,6 +28,25 @@ public class CustomerMenu{
             string input = Console.ReadLine();
             switch(input){
                 case "1":
+                    List<Storefront> allStorefronts = _bl.GetAllStorefronts();
+                    List<Customer> allCustomers = _bl.GetAllCustomers();
+                    for(int i = 0; i < allStorefronts.Count; i++){
+                        Console.WriteLine($"[{i}] {allStorefronts[i].ToString()}");
+                    }
+                    Console.WriteLine("Select a store:");
+                    int storeSelection = Int32.Parse(Console.ReadLine());
+                    Console.WriteLine("Select an item:");
+                    int inventorySelection = Int32.Parse(Console.ReadLine());
+                    Console.WriteLine("How many do you want to buy?");
+                    int buyAmount = Int32.Parse(Console.ReadLine());
+                    _bl.PlaceAnOrder(storeSelection, inventorySelection, buyAmount);
+                    Order nOrder = new Order(cid, numberorder++, storeSelection);
+                    allStorefronts[storeSelection].Orders.Add(nOrder);
+                    string jsonString = JsonSerializer.Serialize(allStorefronts);
+                    File.WriteAllText(filePath2, jsonString);
+                    allCustomers.Orders.Add(nOrder);
+                    string jsonString2 = JsonSerializer.Serialize(allCustomers);
+                    file.WriteAllText(filePath, jsonString2);
                 break;
                 case "2":
                   List<Customer> allCustomers = _bl.GetAllCustomers();
