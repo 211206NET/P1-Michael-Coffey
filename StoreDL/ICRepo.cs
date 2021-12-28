@@ -3,5 +3,5 @@ public interface ICRepo
 {
 
     void GetOrderHistory();
-    void PlaceAnOrder(Product p);
+    void PlaceAnOrder(Product p, int am);
 }

@@ -6,5 +6,5 @@ public class FCRepo : ICRepo {
 
     public void GetOrderHistory(){}
 
-    public void PlaceAnOrder(Product newP){}
+    public void PlaceAnOrder(Product newP, int nAmount){}
 }

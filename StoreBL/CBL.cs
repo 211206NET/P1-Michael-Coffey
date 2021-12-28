@@ -11,7 +11,7 @@ public class CBL {
         _cdl.GetOrderHistory();
     }
 
-    public void PlaceAnOrder(Product newPro){
+    public void PlaceAnOrder(Product newPro, int numOfBuys){
         _cdl.PlaceAnOrder();
     }
 }
