@@ -12,6 +12,6 @@ public class CBL {
     }
 
     public void PlaceAnOrder(Product newPro, int numOfBuys){
-        _cdl.PlaceAnOrder();
+        _cdl.PlaceAnOrder(newPro, numOfBuys);
     }
 }
