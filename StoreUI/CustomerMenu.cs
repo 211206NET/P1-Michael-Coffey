@@ -11,7 +11,7 @@ public class CustomerMenu{
             Console.WriteLine("1. Place an order");
             Console.WriteLine("2. See your order history");
             Console.WriteLine("x. Exit");
-            string input = Cnsole.ReadLine();
+            string input = Console.ReadLine();
             switch(input){
                 case "1":
                 break;
