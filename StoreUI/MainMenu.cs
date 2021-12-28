@@ -53,7 +53,7 @@ public class MainMenu{
                             if(ncustomer.UserName == cust.UserName){
                                 if(ncustomer.Password == cust.Password){
                                     if(ncustomer.Email == cust.Email){
-                                        new CustomerMenu().Start();
+                                        new CustomerMenu(nid).Start();
                                     }
                                 }
                             }

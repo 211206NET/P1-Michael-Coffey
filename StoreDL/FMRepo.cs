@@ -37,4 +37,6 @@ public class FMRepo : IMRepo {
         string jsonString = JsonSerializer.Serialize(allStorefronts);
         File.WriteAllText(filePath, jsonString);
     }
+
+    public void PlaceAnOrder(int sInd, int sInv, int nBuy){}
 }

@@ -1,7 +1,18 @@
 namespace UI;
 
 public class CustomerMenu{
-    public CustomerMenu(){}
+
+    public int cid;
+
+    private MBL _bl;
+
+    private string filePath = "../StoreDL/Customers.json";
+
+    private string filePath2 = "../StoreDL/Storefronts.json";
+    public CustomerMenu(int newId){
+        cid = newId;
+        _bl = new MBL();
+    }
 
     public void Start(){
         bool exit = false;
@@ -16,6 +27,12 @@ public class CustomerMenu{
                 case "1":
                 break;
                 case "2":
+                  List<Customer> allCustomers = _bl.GetAllCustomers();
+                  foreach(Customer cus in allCustomers){
+                      if(cus.Id == cid){
+                          cus.printOrderHistory();
+                      }
+                  }
                 break;
                 case "x":
                     Console.WriteLine("Have a nice day!");

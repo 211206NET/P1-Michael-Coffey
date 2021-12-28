@@ -22,4 +22,8 @@ public class MBL{
     public void ReplenishStock(int nInd, int nInv, int nAmo){
         _fdl.ReplenishStock(nInd, nInv, nAmo);
     }
+
+    public void PlaceAnOrder(int sInd, int sInv, int nBuy){
+        _fdl.PlaceAnOrder(sInd, sInv, nBuy);
+    }
 }
