@@ -2,6 +2,6 @@
 public interface ICRepo
 {
 
-    List<Order> GetOrderHistory();
+    void GetOrderHistory();
     void PlaceAnOrder(Product p);
 }
