@@ -43,16 +43,14 @@ public class DBRepo : IMRepo{
     }
 
     void AddStorefront(Storefront storefrontToAdd){
+        DataSet stoSet = new DataSet();
+        string selectCmd = "SELECT * FROM Storefront WHERE StoreId = -1";
         using(SqlConnection connection = new SqlConnection(_connectionString)){
-            connection.Open();
-            string sqlCmd = "INSERT INTO Storefront (Name, Address, InventoryID, SOrderHisotryID) VALUES (@sName, @sAddress, @sInventory, sOrderHistory)";
-            using(SqlCommand cmd = new SqlCommand(sqlCmd, connection)){
-                SqlParameter param = new SqlParameter("@sName", storefrontToAdd.Name);
-                cmd.Parameters.Add(param);
-                param = new SqlParameter("@sAddress", storefrontToAdd.Address);
-                cmd.Parameters.Add(param);
+            using(SqlDataAdapter dataAdapter = new SqlDataAdapter(selectCmd, connection)){
+                dataAdapter.Fill(stoSet, "Storefront");
+                DataTable stoTable = stoSet.Tables["Storefront"];
+                DataRow nRow = stoTable.NewRow();
             }
-            connection.Close();
         }
     }
 

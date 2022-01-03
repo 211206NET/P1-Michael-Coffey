@@ -3,25 +3,25 @@ namespace Models;
 public class Product
 {
     public string ProductName { get; set; }
-    public string Director { get; set; }
+    public int DirectorID { get; set; }
 
-    public string MPARating { get; set; }
+    public int MPARatingID { get; set; }
 
-    public int ReleaseYear { get; set; }
+    public int ReleaseYearID { get; set; }
     public decimal Price { get; set; }
 
     public Product(){}
 
-    public Product(string productname, string director, string mparating, int releaseyear, decimal price){
+    public Product(string productname, int directorid, int mparatingid, int releaseyearid, decimal price){
         this.ProductName = productname;
-        this.Director = director;
-        this.MPARating = mparating;
-        this.ReleaseYear = releaseyear;
+        this.Director = directorid;
+        this.MPARating = mparatingid;
+        this.ReleaseYear = releaseyearid;
         this.Price = price;
     }
 
     public override string ToString()
     {
-        return $"Title: {this.ProductName} \nDir.: {this.Director} \nRating: {this.MPARating} \n Year: {this.ReleaseYear} \nCost: {this.Price}";
+        return $"Title: {this.ProductName} \nDir.: {this.DirectorId} \nRating: {this.MPARatingID} \n Year: {this.ReleaseYearId} \nCost: {this.Price}";
     }
 }
