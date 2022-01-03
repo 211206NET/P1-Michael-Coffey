@@ -1,10 +1,11 @@
 namespace BL;
 
 public class MBL{
-    private FMRepo _fdl;
+    private DBRepo _fdl;
 
     public MBL(){
-        _fdl = new FMRepo();
+        string connectionString = "../StoreUI/ConnectionString";
+        _fdl = new DBRepo(connectionString);
     }
 
     public List<Storefront> GetAllStorefronts(){
@@ -19,11 +20,11 @@ public class MBL{
         _fdl.AddStorefront(storefrontToAdd);
     }
 
-    public void ReplenishStock(int nInd, int nInv, int nAmo){
-        _fdl.ReplenishStock(nInd, nInv, nAmo);
+    public void ReplenishStock(int nId, int nInv, int nAmo){
+        _fdl.ReplenishStock(nId, nInv, nAmo);
     }
 
-    public void PlaceAnOrder(int sInd, int sInv, int nBuy){
-        _fdl.PlaceAnOrder(sInd, sInv, nBuy);
+    public void PlaceAnOrder(int sId, int sInv, int nBuy){
+        _fdl.PlaceAnOrder(sId, sInv, nBuy);
     }
 }
