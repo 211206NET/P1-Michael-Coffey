@@ -50,12 +50,33 @@ public class DBRepo : IMRepo{
                 dataAdapter.Fill(stoSet, "Storefront");
                 DataTable stoTable = stoSet.Tables["Storefront"];
                 DataRow nRow = stoTable.NewRow();
+                newRow["Name"] = storefrontToAdd.Name;
+                newRow["Address"] = storefrontToAdd.Address ?? "";
+                newRow["InventoryID"] = storefrontToAdd.InventoryID;
+                newRow["SOrderHistoryID"] = storefrontToAdd.OrderID;
+                string insertCmd = $"INSERT INTO Storefront(Name, Address, InventoryID, SOrderHistoryID) VALUES ('{storefrontToAdd.Name}', '{storefrontToAdd.Address}', {storefrontToAdd.InventoryID}, {storefrontToAdd.OrderID})";
+                SqlCommandBuilder cmdBuilder = new SqlCommandBuilder(dataAdapter);
+                dataAdapter.InsertCommand = cmdBuilder.GetInsertCommand();
+                dataAdapter.Update(stoTable);
             }
         }
     }
 
     void ReplenishStock(int idOfItem, int idOfInventory, int numberToAdd){
-
+        using(SqlConnection connection = new SqlConnection(_connectionString)){
+            connection.Open();
+            string sqlCmd = "INSERT INTO Inventory (InventoryID, ProductID, Quantity) VALUES (@invID, @proID, @quan)";
+            using(SqlComand cmd = new SqlCommand(sqlCmd, connection)){
+                SqlParameter param = new SqlParameter("@invID", idOfInventory);
+                cmd.Parameters.Add(param);
+                param = new SqlParameter("@proID", idOfItem);
+                cmd.Parameters.Add(param);
+                param = new SqlParameter("@quan", numberToAdd);
+                cmd.Parameters.Add(param);
+                cmd.ExecuteNonQuery();
+            }
+            connection.Close();
+        }
     }
     void PlaceAnOrder(int idOfItem, int idOfInvnetory, int numberOfItems){
 
