@@ -43,13 +43,23 @@ public class DBRepo : IMRepo{
     }
 
     void AddStorefront(Storefront storefrontToAdd){
-
+        using(SqlConnection connection = new SqlConnection(_connectionString)){
+            connection.Open();
+            string sqlCmd = "INSERT INTO Storefront (Name, Address, InventoryID, SOrderHisotryID) VALUES (@sName, @sAddress, @sInventory, sOrderHistory)";
+            using(SqlCommand cmd = new SqlCommand(sqlCmd, connection)){
+                SqlParameter param = new SqlParameter("@sName", storefrontToAdd.Name);
+                cmd.Parameters.Add(param);
+                param = new SqlParameter("@sAddress", storefrontToAdd.Address);
+                cmd.Parameters.Add(param);
+            }
+            connection.Close();
+        }
     }
 
-    void ReplenishStock(int indexOfItem, int inexOfInventory, int numberToAdd){
+    void ReplenishStock(int idOfItem, int idOfInventory, int numberToAdd){
 
     }
-    void PlaceAnOrder(int indexOfItem, int indexOfInvnetory, int numberOfItems){
+    void PlaceAnOrder(int idOfItem, int idOfInvnetory, int numberOfItems){
 
     }
 }
