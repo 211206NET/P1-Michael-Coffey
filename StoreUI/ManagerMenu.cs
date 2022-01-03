@@ -82,11 +82,15 @@ public class ManagerMenu{
                     int nQuantity = Int32.Parse(Console.ReadLine());
                     Console.WriteLine("Enter the film's title");
                     string nTitle = Console.ReadLine();
-                    Console.WriteLine("Enter the film's synopsis");
-                    string nDescription = Console.ReadLine();
+                    Console.WriteLine("Enter the film's director");
+                    string nDirector = Console.ReadLine();
+                    Console.WriteLine("Enter a film's rating");
+                    string nRating = Console.ReadLine();
+                    Console.WriteLine("Enter a film's release year");
+                    int nYear = Int32.Parse(Console.ReadLine());
                     Console.WriteLine("Enter the price");
                     decimal nPrice = Decimal.Parse(Console.ReadLine());
-                    Product nProduct = new Product(nTitle, nDescription, nPrice);
+                    Product nProduct = new Product(nTitle, nDirector, nRating, nYear, nPrice);
                     Inventory nInventory = new Inventory(nStoreID, nQuantity, nProduct);
                     List<Storefront> allStorefrontItems = _bl.GetAllStorefronts();
                     allStorefrontItems[nStoreSelection].Inventories.Add(nInventory);
