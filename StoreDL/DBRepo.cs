@@ -11,22 +11,33 @@ public class DBRepo : IMRepo{
         Console.WriteLine(_connectionString);
     }
     List<Storefront> GetAllStorefronts(){
-        using(SqlConnection connection = new SqlConnection(_connectionString)){
-            connection.Open();
-            string queryTxt = "SELECT * FROM Storefront";
-            using(SqlCommand cmd = new SqlCommand(queryTxt, connection)){
-                using(SqlDataReader reader = cmd.ExecuteReader()){
-                    while(reader.Read()){
-                        Console.WriteLine(reader.GetInt32(0));
-                    }
-                }
+        List<Storefront> allStorefronts = new List<Storefront>();
+        using SqlConnection connection = new SqlConnection(_connectionString);
+        string stoSelect = "SELECT * FROM Storefront";
+        string invSelect = "SELECT * FROM Inventory";
+        DataSet FSSet = new DataSet();
+        using SqlDataAdapter stoAdapter = new SqlDataAdapter(stoSelect, _connectionString);
+        using SqlDataAdapter invAdapter = new SqlDataAdapter(invSelect, _connectionString);
+        stoAdapter.Fill(FSSet, "Storefront");
+        invAdapter.Fill(FSSet, "Inventory");
+        DataTable? StorefrontTable = FSSet.Tables["Storefront"];
+        DataTable? InventoryTable = FSSet.Table["Inventory"];
+        if(StorefrontTable != null && InventoryTable != null){
+            foreach(DataRow row in StorefrontTable.Rows){
+                Storefront nsto = new Storefront();
+                nsto.ID = (int) row["StoreID"];
+                nsto.Name = row["Name"];
+                nsto.Address = row["Address"];
+                nsto.InventoryID = (int) row["InventoryID"];
+                nsto.OrderID = (int) row["SOrderHistoryID"];
+                allStorefronts.Add(nsto);
             }
-            connection.Close();
-        }  
-        return new List<Storefront>();
+        }
+        return allStorefronts;
     }
 
     List<Customer> GetAllCustomers(){
+        List<Customer> allCustomers = new List<Customer>();
         using(SqlConnection connection = new SqlConnection(_connectionString)){
             connection.Open();
             string quereyTxt = "SELECT * FROM Customer";
