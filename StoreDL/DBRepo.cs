@@ -50,7 +50,7 @@ public class DBRepo : IMRepo{
             }
             connection.Close();
         }
-        return new List<Customer>();
+        return allCustomers;
     }
 
     public void AddStorefront(Storefront storefrontToAdd){
