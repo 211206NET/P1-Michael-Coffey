@@ -33,8 +33,8 @@ public class ManagerMenu{
                         Console.WriteLine("Here are the stores");
                         foreach(Storefront sto in _bl.GetAllStorefronts()){
                             Console.WriteLine(sto.ToString());
-                            sto.printInventories();
-                            sto.printOrders();
+                            //sto.printInventories();
+                            //sto.printOrders();
                         }
                     }
                 break;
@@ -47,7 +47,7 @@ public class ManagerMenu{
                         Console.WriteLine("Current Customers");
                         foreach(Customer cus in _bl.GetAllCustomers()){
                             Console.WriteLine(cus.ToString());
-                            cus.printOrderHistory();
+                            //cus.printOrderHistory();
                         }
                     }
                 break;
@@ -56,7 +56,11 @@ public class ManagerMenu{
                     string name = Console.ReadLine();
                     Console.WriteLine("Address:");
                     string address = Console.ReadLine();
-                    Storefront newStore = new Storefront(address, name);
+                    Console.WriteLine("Inventory:");
+                    int inventoryid = Int32.Parse(Console.ReadLine());
+                    Console.WriteLine("History:");
+                    int shid = Int32.Parse(Console.ReadLine());
+                    Storefront newStore = new Storefront(address, name, inventoryid, shid);
                     _bl.AddStorefront(newStore);
                 break;
                 case "4":
@@ -83,19 +87,19 @@ public class ManagerMenu{
                     Console.WriteLine("Enter the film's title");
                     string nTitle = Console.ReadLine();
                     Console.WriteLine("Enter the film's director");
-                    string nDirector = Console.ReadLine();
+                    int nDirector = Int32.Parse(Console.ReadLine());
                     Console.WriteLine("Enter a film's rating");
-                    string nRating = Console.ReadLine();
+                    int nRating = Int32.Parse(Console.ReadLine());
                     Console.WriteLine("Enter a film's release year");
                     int nYear = Int32.Parse(Console.ReadLine());
                     Console.WriteLine("Enter the price");
                     decimal nPrice = Decimal.Parse(Console.ReadLine());
                     Product nProduct = new Product(nTitle, nDirector, nRating, nYear, nPrice);
-                    Inventory nInventory = new Inventory(nStoreID, nQuantity, nProduct);
+                    //Inventory nInventory = new Inventory(nStoreID, nQuantity, nProduct);
                     List<Storefront> allStorefrontItems = _bl.GetAllStorefronts();
-                    allStorefrontItems[nStoreSelection].Inventories.Add(nInventory);
-                    string jsonString = JsonSerializer.Serialize(allStorefrontItems);
-                    File.WriteAllText(filePath, jsonString);
+                    // allStorefrontItems[nStoreSelection].Inventories.Add(nInventory);
+                    // string jsonString = JsonSerializer.Serialize(allStorefrontItems);
+                    // File.WriteAllText(filePath, jsonString);
                 break;
                 case "x":
                     Console.WriteLine("Seeya boss!");

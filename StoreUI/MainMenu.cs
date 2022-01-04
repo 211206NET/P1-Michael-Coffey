@@ -14,6 +14,7 @@ public class MainMenu{
 
     public void Start(){
         bool exit = false;
+        int lineItemID = 1;
         Console.WriteLine("Welcome to the Film Stores!");
 
         while(!exit){
@@ -31,7 +32,8 @@ public class MainMenu{
                    string password = Console.ReadLine();
                    Console.WriteLine("Enter an email address:");
                    string email = Console.ReadLine();
-                   Customer ncust = new Customer(id, username, password, email);
+                   Customer ncust = new Customer(id, username, password, email, lineItemID);
+                   lineItemID++;
                    List<Customer> allCustomers = _mbl.GetAllCustomers();
                    allCustomers.Add(ncust);
                    string jsonString = JsonSerializer.Serialize(allCustomers);
@@ -47,7 +49,7 @@ public class MainMenu{
                     string npassword = Console.ReadLine();
                     Console.WriteLine("Enter email:");
                     string nemail = Console.ReadLine();
-                    Customer ncustomer = new Customer(nid, nusername, npassword, nemail);
+                    Customer ncustomer = new Customer(nid, nusername, npassword, nemail, lineItemID);
                     foreach(Customer cust in theCustomers){
                         if(ncustomer.Id == cust.Id){
                             if(ncustomer.UserName == cust.UserName){

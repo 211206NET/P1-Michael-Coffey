@@ -8,6 +8,8 @@ public class CustomerMenu{
 
     public int numberorder;
 
+    public int linIte;
+
     private string filePath = "../StoreDL/Customers.json";
 
     private string filePath2 = "../StoreDL/Storefronts.json";
@@ -40,25 +42,25 @@ public class CustomerMenu{
                     Console.WriteLine("How many do you want to buy?");
                     int buyAmount = Int32.Parse(Console.ReadLine());
                     _bl.PlaceAnOrder(storeSelection, inventorySelection, buyAmount);
-                    Order nOrder = new Order(cid, numberorder++, storeSelection);
-                    allStorefronts[storeSelection].Orders.Add(nOrder);
-                    string jsonString = JsonSerializer.Serialize(allStorefronts);
-                    File.WriteAllText(filePath2, jsonString);
-                    foreach(Customer cusItem in allCustomers){
-                        if(cusItem.Id = cid){
-                            cusItem.Orders.Add(nOrder);
-                        }
-                    }
-                    string jsonString2 = JsonSerializer.Serialize(allCustomers);
-                    file.WriteAllText(filePath, jsonString2);
+                    Order nOrder = new Order(cid, numberorder++, storeSelection, linIte++);
+                    // allStorefronts[storeSelection].Orders.Add(nOrder);
+                    // string jsonString = JsonSerializer.Serialize(allStorefronts);
+                    // File.WriteAllText(filePath2, jsonString);
+                    // foreach(Customer cusItem in allCustomers){
+                    //     if(cusItem.Id = cid){
+                    //         cusItem.Orders.Add(nOrder);
+                    //     }
+                    // }
+                    // string jsonString2 = JsonSerializer.Serialize(allCustomers);
+                    // file.WriteAllText(filePath, jsonString2);
                 break;
                 case "2":
-                  List<Customer> allCustomers = _bl.GetAllCustomers();
-                  foreach(Customer cus in allCustomers){
-                      if(cus.Id == cid){
-                          cus.printOrderHistory();
-                      }
-                  }
+                  List<Customer> allStoreCustomers = _bl.GetAllCustomers();
+                //   foreach(Customer cus in allStoreCustomers){
+                //       if(cus.Id == cid){
+                //            cus.printOrderHistory();
+                //       }
+                //   }
                 break;
                 case "x":
                     Console.WriteLine("Have a nice day!");
