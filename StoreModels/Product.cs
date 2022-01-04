@@ -22,6 +22,6 @@ public class Product
 
     public override string ToString()
     {
-        return $"Title: {this.ProductName} \nDir.: {this.DirectorId} \nRating: {this.MPARatingID} \n Year: {this.ReleaseYearId} \nCost: {this.Price}";
+        return $"Title: {this.ProductName} \nDir.: {this.DirectorID} \nRating: {this.MPARatingID} \n Year: {this.ReleaseYearID} \nCost: {this.Price}";
     }
 }
