@@ -14,9 +14,9 @@ public class Product
 
     public Product(string productname, int directorid, int mparatingid, int releaseyearid, decimal price){
         this.ProductName = productname;
-        this.Director = directorid;
-        this.MPARating = mparatingid;
-        this.ReleaseYear = releaseyearid;
+        this.DirectorID = directorid;
+        this.MPARatingID = mparatingid;
+        this.ReleaseYearID = releaseyearid;
         this.Price = price;
     }
 
