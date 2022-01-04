@@ -1,6 +1,6 @@
 namespace DL;
 
-using Microsoft.Data.SqlClinet;
+using Microsoft.Data.SqlClient;
 
 public class DBRepo : IMRepo{ 
 
