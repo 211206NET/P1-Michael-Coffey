@@ -94,7 +94,7 @@ public class DBRepo : IMRepo{
         using(SqlConnection connection = new SqlConnection(_connectionString)){
             connection.Open();
             string sqlCmd = "INSERT INTO LineOrder (LineItemID, ProductID, Quantity) VALUES (@linID, @proID, @quan)";
-            using(SqlComand cmd = new SqlCommand(sqlCmd, connection)){
+            using(SqlCommand cmd = new SqlCommand(sqlCmd, connection)){
                 SqlParameter param = new SqlParameter("@linID", idOfLineOrder);
                 cmd.Parameters.Add(param);
                 param = new SqlParameter("@proID", idOfItem);
