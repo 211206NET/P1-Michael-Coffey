@@ -10,7 +10,7 @@ public class DBRepo : IMRepo{
         _connectionString = connectionString;
         Console.WriteLine(_connectionString);
     }
-    List<Storefront> GetAllStorefronts(){
+    public List<Storefront> GetAllStorefronts(){
         List<Storefront> allStorefronts = new List<Storefront>();
         using SqlConnection connection = new SqlConnection(_connectionString);
         string stoSelect = "SELECT * FROM Storefront";
@@ -36,7 +36,7 @@ public class DBRepo : IMRepo{
         return allStorefronts;
     }
 
-    List<Customer> GetAllCustomers(){
+    public List<Customer> GetAllCustomers(){
         List<Customer> allCustomers = new List<Customer>();
         using(SqlConnection connection = new SqlConnection(_connectionString)){
             connection.Open();
@@ -53,7 +53,7 @@ public class DBRepo : IMRepo{
         return new List<Customer>();
     }
 
-    void AddStorefront(Storefront storefrontToAdd){
+    public void AddStorefront(Storefront storefrontToAdd){
         DataSet stoSet = new DataSet();
         string selectCmd = "SELECT * FROM Storefront WHERE StoreId = -1";
         using(SqlConnection connection = new SqlConnection(_connectionString)){
@@ -73,7 +73,7 @@ public class DBRepo : IMRepo{
         }
     }
 
-    void ReplenishStock(int idOfItem, int idOfInventory, int numberToAdd){
+    public void ReplenishStock(int idOfItem, int idOfInventory, int numberToAdd){
         using(SqlConnection connection = new SqlConnection(_connectionString)){
             connection.Open();
             string sqlCmd = "INSERT INTO Inventory (InventoryID, ProductID, Quantity) VALUES (@invID, @proID, @quan)";
@@ -89,7 +89,7 @@ public class DBRepo : IMRepo{
             connection.Close();
         }
     }
-    void PlaceAnOrder(int idOfItem, int idOfLineOrder, int numberOfItems){
+    public void PlaceAnOrder(int idOfItem, int idOfLineOrder, int numberOfItems){
         using(SqlConnection connection = new SqlConnection(_connectionString)){
             connection.Open();
             string sqlCmd = "INSERT INTO LineOrder (LineItemID, ProductID, Quantity) VALUES (@linID, @proID, @quan)";
