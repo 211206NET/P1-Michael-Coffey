@@ -7,17 +7,17 @@ public class Order
     public int CustomerId { get; set; }
     public int OrderNumber { get; set; }
     public int StoreId { get; set; }
-    public List<LineItem> LineItems { get; set; }
+    public int LineItemID { get; set; }
     public decimal Total { get; set; }
 
     public Order(){}
 
-    public Order(int customerid, int ordernumber, int storeid){
+    public Order(int customerid, int ordernumber, int storeid, int lineitemid){
         this.OrderDate = new DateOnly();
         this.CustomerId = customerid;
         this.OrderNumber = ordernumber;
         this.StoreId = storeid;
-        this.LineItems = new List<LineItem>();
+        this.LineItemID = lineitemid;
         this.CalculateTotal();
     }
     // public decimal CalculateTotal() {
