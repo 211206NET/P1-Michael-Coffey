@@ -1,6 +1,7 @@
 namespace DL;
 
 using Microsoft.Data.SqlClient;
+using System.Data;
 
 public class DBRepo : IMRepo{ 
 
@@ -21,13 +22,13 @@ public class DBRepo : IMRepo{
         stoAdapter.Fill(FSSet, "Storefront");
         invAdapter.Fill(FSSet, "Inventory");
         DataTable? StorefrontTable = FSSet.Tables["Storefront"];
-        DataTable? InventoryTable = FSSet.Table["Inventory"];
+        DataTable? InventoryTable = FSSet.Tables["Inventory"];
         if(StorefrontTable != null && InventoryTable != null){
             foreach(DataRow row in StorefrontTable.Rows){
                 Storefront nsto = new Storefront();
                 nsto.ID = (int) row["StoreID"];
-                nsto.Name = row["Name"];
-                nsto.Address = row["Address"];
+                nsto.Name = (string) row["Name"];
+                nsto.Address = (string) row["Address"];
                 nsto.InventoryID = (int) row["InventoryID"];
                 nsto.OrderID = (int) row["SOrderHistoryID"];
                 allStorefronts.Add(nsto);
@@ -61,10 +62,10 @@ public class DBRepo : IMRepo{
                 dataAdapter.Fill(stoSet, "Storefront");
                 DataTable stoTable = stoSet.Tables["Storefront"];
                 DataRow nRow = stoTable.NewRow();
-                newRow["Name"] = storefrontToAdd.Name;
-                newRow["Address"] = storefrontToAdd.Address ?? "";
-                newRow["InventoryID"] = storefrontToAdd.InventoryID;
-                newRow["SOrderHistoryID"] = storefrontToAdd.OrderID;
+                nRow["Name"] = storefrontToAdd.Name;
+                nRow["Address"] = storefrontToAdd.Address ?? "";
+                nRow["InventoryID"] = storefrontToAdd.InventoryID;
+                nRow["SOrderHistoryID"] = storefrontToAdd.OrderID;
                 string insertCmd = $"INSERT INTO Storefront(Name, Address, InventoryID, SOrderHistoryID) VALUES ('{storefrontToAdd.Name}', '{storefrontToAdd.Address}', {storefrontToAdd.InventoryID}, {storefrontToAdd.OrderID})";
                 SqlCommandBuilder cmdBuilder = new SqlCommandBuilder(dataAdapter);
                 dataAdapter.InsertCommand = cmdBuilder.GetInsertCommand();
@@ -77,7 +78,7 @@ public class DBRepo : IMRepo{
         using(SqlConnection connection = new SqlConnection(_connectionString)){
             connection.Open();
             string sqlCmd = "INSERT INTO Inventory (InventoryID, ProductID, Quantity) VALUES (@invID, @proID, @quan)";
-            using(SqlComand cmd = new SqlCommand(sqlCmd, connection)){
+            using(SqlCommand cmd = new SqlCommand(sqlCmd, connection)){
                 SqlParameter param = new SqlParameter("@invID", idOfInventory);
                 cmd.Parameters.Add(param);
                 param = new SqlParameter("@proID", idOfItem);
@@ -98,7 +99,7 @@ public class DBRepo : IMRepo{
                 cmd.Parameters.Add(param);
                 param = new SqlParameter("@proID", idOfItem);
                 cmd.Parameters.Add(param);
-                param = new SqlParameter("@quan", numberToAdd);
+                param = new SqlParameter("@quan", numberOfItems);
                 cmd.Parameters.Add(param);
                 cmd.ExecuteNonQuery();
             }

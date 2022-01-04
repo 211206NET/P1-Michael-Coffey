@@ -25,27 +25,27 @@ public class FMRepo : IMRepo {
     }
 
     public void ReplenishStock(int nInd, int nInv, int nAmo){
-        List<Storefront> allStorefronts = GetAllStorefronts();
-        Storefront selectedStore = allStorefronts[nInd];
-        Inventory selectedInventory = selectedStore.Inventories[nInv];
-        if(selectedInventory.Quantity == 0){
-            selectedInventory.Quantity = nAmo;
-        }
-        else{
-            selectedInventory.Quantity += nAmo;
-        }
-        string jsonString = JsonSerializer.Serialize(allStorefronts);
-        File.WriteAllText(filePath, jsonString);
+        // List<Storefront> allStorefronts = GetAllStorefronts();
+        // Storefront selectedStore = allStorefronts[nInd];
+        // Inventory selectedInventory = selectedStore.Inventories[nInv];
+        // if(selectedInventory.Quantity == 0){
+        //     selectedInventory.Quantity = nAmo;
+        // }
+        // else{
+        //     selectedInventory.Quantity += nAmo;
+        // }
+        // string jsonString = JsonSerializer.Serialize(allStorefronts);
+        // File.WriteAllText(filePath, jsonString);
     }
 
     public void PlaceAnOrder(int sInd, int sInv, int nBuy){
-        List<Storefront> allStorefronts = GetAllStorefronts();
-        Storefront selectedStore = allStorefronts[sInd];
-        Inventory selectedInventory = selectedStore.Inventories[sInv];
-        if(selectedInventory.Quantity > 0){
-            selectedInventory.Quantity -= nBuy;
-        }
-        string jsonString = JsonSerializer.Serialize(allStorefronts);
-        File.WriteAllText(filePath, jsonString);
+        // List<Storefront> allStorefronts = GetAllStorefronts();
+        // Storefront selectedStore = allStorefronts[sInd];
+        // Inventory selectedInventory = selectedStore.Inventories[sInv];
+        // if(selectedInventory.Quantity > 0){
+        //     selectedInventory.Quantity -= nBuy;
+        // }
+        // string jsonString = JsonSerializer.Serialize(allStorefronts);
+        // File.WriteAllText(filePath, jsonString);
     }
 }
