@@ -18,7 +18,7 @@ public class Order
         this.OrderNumber = ordernumber;
         this.StoreId = storeid;
         this.LineItemID = lineitemid;
-        this.CalculateTotal();
+        //this.CalculateTotal();
     }
     // public decimal CalculateTotal() {
     //     a method that would go through each lineitem in LineItems property
@@ -36,11 +36,11 @@ public class Order
     //     return total;
     // }
 
-    public void printLineItems(){
-        foreach(LineItem li in this.LineItems){
-            Console.WriteLine($"{li.ToString()}");
-        }
-    }
+    // public void printLineItems(){
+    //     foreach(LineItem li in this.LineItems){
+    //         Console.WriteLine($"{li.ToString()}");
+    //     }
+    // }
 
     public override string ToString()
     {
