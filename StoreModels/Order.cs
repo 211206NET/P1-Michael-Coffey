@@ -20,21 +20,21 @@ public class Order
         this.LineItems = new List<LineItem>();
         this.CalculateTotal();
     }
-    public decimal CalculateTotal() {
-        //a method that would go through each lineitem in LineItems property
-        //and sets the total property of the particular order object
-        decimal total = 0;
-        if(this.LineItems?.Count > 0)
-        {
-            foreach(LineItem lineitem in this.LineItems)
-            {
-                //multiply the product's price by how many we're buying
-                total += lineitem.Item.Price * lineitem.Quantity;
-            }
-        }
-        this.Total = total;
-        return total;
-    }
+    // public decimal CalculateTotal() {
+    //     a method that would go through each lineitem in LineItems property
+    //     and sets the total property of the particular order object
+    //     decimal total = 0;
+    //     if(this.LineItems?.Count > 0)
+    //     {
+    //         foreach(LineItem lineitem in this.LineItems)
+    //         {
+    //             //multiply the product's price by how many we're buying
+    //             total += lineitem.Item.Price * lineitem.Quantity;
+    //         }
+    //     }
+    //     this.Total = total;
+    //     return total;
+    // }
 
     public void printLineItems(){
         foreach(LineItem li in this.LineItems){
