@@ -12,11 +12,11 @@ public class Customer
     public Customer(){}
 
     public Customer(int id, string username, string password, string email, int orders){
-        this.Id = (int) id;
-        this.UserName = (string) username;
-        this.Password = (string) password;
-        this.Email = (string) email;
-        this.Orders = (int) orders;
+        this.Id = id;
+        this.UserName = username;
+        this.Password = password;
+        this.Email = email;
+        this.Orders = orders;
     }
 
     // public void printOrderHistory(){
@@ -33,10 +33,10 @@ public class Customer
     }
 
     public void ToDataRow(ref DataRow row){
-        row["CustomerID"] = this.Id;
-        row["UserName"] = this.UserName;
-        row["Email"] = this.Email;
-        row["Password"] = this.Password;
-        row["COrderHistory"] = this.Orders;
+        row["CustomerID"] = (int) this.Id;
+        row["UserName"] = (string) this.UserName;
+        row["Email"] = (string) this.Email;
+        row["Password"] = (string) this.Password;
+        row["COrderHistoryID"] = (int) this.Orders;
     }
 }
