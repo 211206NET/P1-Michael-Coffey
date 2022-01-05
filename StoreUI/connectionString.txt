@@ -1,1 +1,1 @@
-Server=tcp:database-1.cbbzano9lq6p.us-east-2.rds.amazonaws.com.1433;Initial Catalog=FilmStoreApp;User ID=admin;Password=pa$$w0rd;Encrypt=False;
+Server=tcp:database-1.cbbzano9lq6p.us-east-2.rds.amazonaws.com.1433;Database=FilmStoreApp;User ID=admin;Password=pa$$w0rd;Encrypt=False;
