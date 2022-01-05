@@ -15,6 +15,7 @@ public class MainMenu{
     public void Start(){
         bool exit = false;
         int lineItemID = 3;
+        int cusID = 2;
         Console.WriteLine("Welcome to the Film Stores!");
 
         while(!exit){
@@ -24,15 +25,16 @@ public class MainMenu{
             string input = Console.ReadLine();
             switch(input){
                 case "1":
-                   Console.WriteLine("Enter an ID number:");
-                   int id = Convert.ToInt32(Console.ReadLine());
+                //    Console.WriteLine("Enter an ID number:");
+                //    int id = Convert.ToInt32(Console.ReadLine());
+                   cusID++;
                    Console.WriteLine("Enter a username:");
                    string username = Console.ReadLine();
                    Console.WriteLine("Enter a password:");
                    string password = Console.ReadLine();
                    Console.WriteLine("Enter an email address:");
                    string email = Console.ReadLine();
-                   Customer ncust = new Customer(id, username, password, email, lineItemID);
+                   Customer ncust = new Customer(cusID, username, password, email, lineItemID);
                    lineItemID++;
                    _mbl.AddCustomer(ncust);
                 break;
