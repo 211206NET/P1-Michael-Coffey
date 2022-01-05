@@ -30,4 +30,12 @@ public class Customer
     {
         return $"ID: {this.Id} \nUsername: {this.UserName} \nPassword: {this.Password} \nEmail: {this.Email}";
     }
+
+    public void ToDataRow(ref DataRow row){
+        row["CustomerID"] = this.Id;
+        row["UserName"] = this.UserName;
+        row["Email"] = this.Email;
+        row["Password"] = this.Password;
+        row["COrderHistory"] = this.Orders;
+    }
 }
