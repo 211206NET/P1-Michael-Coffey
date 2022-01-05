@@ -62,7 +62,7 @@ public class DBRepo : IMRepo{
                 dataAdapter.Fill(stoSet, "Storefront");
                 DataTable stoTable = stoSet.Tables["Storefront"];
                 DataRow nRow = stoTable.NewRow();
-                storefrontToAdd.ToDataRow(nRow);
+                storefrontToAdd.ToDataRow(ref nRow);
                 // nRow["Name"] = storefrontToAdd.Name;
                 // nRow["Address"] = storefrontToAdd.Address ?? "";
                 // nRow["InventoryID"] = storefrontToAdd.InventoryID;
