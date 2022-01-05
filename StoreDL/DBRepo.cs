@@ -126,35 +126,35 @@ public class DBRepo : IMRepo{
         }
     }
 
-    public List<Storefront> SearchStorefronts(string searchItem){
-        string searchStatement = $"SELECT * FROM Storefront WHERE Name LIKE '%{searchItem}%' OR Address LIKE '%{searchItem}%'";
-        using SqlConnection connection = new SqlConnection(_connectionString);
-        using SqlCommand cmd = new SqlCommand(searchStatement, connection);
-        using SqlDataAdapter adapter = new SqlDataAdapter(cmd);
-        DataSet StorefrontSets = new DataSet();
-        adapter.Fill(StorefrontSets, "Storefront");
-        DataTable storefrontTable = StorefrontSets.Tables["Storefront"];
-        List<Storefront> searchResults = new List<Storefront>();
-        foreach(DataRow row in storefrontTable.Row){
-            Storefront sto = new Storefront(row);
-            searchResults.Add(sto);
-        }
-        return searchResults;
-    }
+    // public List<Storefront> SearchStorefronts(string searchItem){
+    //     string searchStatement = $"SELECT * FROM Storefront WHERE Name LIKE '%{searchItem}%' OR Address LIKE '%{searchItem}%'";
+    //     using SqlConnection connection = new SqlConnection(_connectionString);
+    //     using SqlCommand cmd = new SqlCommand(searchStatement, connection);
+    //     using SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+    //     DataSet StorefrontSets = new DataSet();
+    //     adapter.Fill(StorefrontSets, "Storefront");
+    //     DataTable storefrontTable = StorefrontSets.Tables["Storefront"];
+    //     List<Storefront> searchResults = new List<Storefront>();
+    //     foreach(DataRow row in storefrontTable.Row){
+    //         Storefront sto = new Storefront(row);
+    //         searchResults.Add(sto);
+    //     }
+    //     return searchResults;
+    // }
 
-    public List<Product> SearchInventories(string searchItem){
-        string searchTerms = $"SELECT Inventory.InventoryID, Product.Title, Product.Price, Director.DirectorName, ReleaseYear.Year, MPARating.Rating FROM Invenotry INNER JOIN Product ON Inventory.ProductID=Product.ProductID INNER JOIN Director ON Product.DirectorID = Director.DirectorID INNER JOIN ReleaseYear ON Product.YearID = ReleaseYear.YearID INNER JOIN MPARating ON MPARating.RatingID = Product.RatingID WHERE Product.Title LIKE '%{searchItem}%' OR Director.DirectorName LIKE '%{searchItem}%'";
-        using SqlConnection connection = new SqlConnection(_connectionString);
-        using SqlCommand cmd = new SqlCommand(searchTerms, connection);
-        using SqlDataAdapter adapter = new SqlDataAdapter(cmd);
-        DataSet InventorySets = new DataSet();
-        adapter.Fill(InventorySets, "Inventory");
-        DataTable inventoryTable = InventorySets.Tables["Inventory"];
-        List<Product> searchResults = new List<Product>();
-        foreach(DataRow row in inventoryTable.Row){
-            Product pro = new Product(row);
-            searchResults.Add(pro);
-        }
-        return searchResults;
-    }
+    // public List<Product> SearchInventories(string searchItem){
+    //     string searchTerms = $"SELECT Inventory.InventoryID, Product.Title, Product.Price, Director.DirectorName, ReleaseYear.Year, MPARating.Rating FROM Invenotry INNER JOIN Product ON Inventory.ProductID=Product.ProductID INNER JOIN Director ON Product.DirectorID = Director.DirectorID INNER JOIN ReleaseYear ON Product.YearID = ReleaseYear.YearID INNER JOIN MPARating ON MPARating.RatingID = Product.RatingID WHERE Product.Title LIKE '%{searchItem}%' OR Director.DirectorName LIKE '%{searchItem}%'";
+    //     using SqlConnection connection = new SqlConnection(_connectionString);
+    //     using SqlCommand cmd = new SqlCommand(searchTerms, connection);
+    //     using SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+    //     DataSet InventorySets = new DataSet();
+    //     adapter.Fill(InventorySets, "Inventory");
+    //     DataTable inventoryTable = InventorySets.Tables["Inventory"];
+    //     List<Product> searchResults = new List<Product>();
+    //     foreach(DataRow row in inventoryTable.Row){
+    //         Product pro = new Product(row);
+    //         searchResults.Add(pro);
+    //     }
+    //     return searchResults;
+    // }
 }
