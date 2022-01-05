@@ -4,7 +4,7 @@ public class MBL{
     private DBRepo _fdl;
 
     public MBL(){
-        string connectionString = "../StoreUI/ConnectionString";
+        string connectionString = "../StoreUI/connectionString";
         _fdl = new DBRepo(connectionString);
     }
 
