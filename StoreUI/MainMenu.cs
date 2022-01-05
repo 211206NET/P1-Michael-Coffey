@@ -34,10 +34,7 @@ public class MainMenu{
                    string email = Console.ReadLine();
                    Customer ncust = new Customer(id, username, password, email, lineItemID);
                    lineItemID++;
-                   List<Customer> allCustomers = _mbl.GetAllCustomers();
-                   allCustomers.Add(ncust);
-                   string jsonString = JsonSerializer.Serialize(allCustomers);
-                   File.WriteAllText(filePath, jsonString);
+                   _mbl.AddCustomer(ncust);
                 break;
                 case "2":
                     List<Customer> theCustomers = _mbl.GetAllCustomers();
