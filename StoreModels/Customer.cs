@@ -19,6 +19,14 @@ public class Customer
         this.Orders = orders;
     }
 
+    public Customer(DataRow row){
+        this.Id = (int) row["CustomerID"];
+        this.UserName = row["UserName"].ToString() ?? "";
+        this.Password = row["Password"].ToString() ?? "";
+        this.Email = row["Email"].ToString() ?? "";
+        this.Orders = (int) row["COrderHistoryID"];
+    }
+
     // public void printOrderHistory(){
     //     foreach(Order oh in this.Orders){
     //         Console.WriteLine(oh.ToString());
