@@ -27,4 +27,8 @@ public class MBL{
     public void PlaceAnOrder(int sId, int sInv, int nBuy){
         _fdl.PlaceAnOrder(sId, sInv, nBuy);
     }
+
+    public void AddCustomer(Customer customerToAdd){
+        _fdl.AddCustomer(customerToAdd);
+    }
 }
