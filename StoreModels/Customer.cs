@@ -1,5 +1,6 @@
 namespace Models;
 
+using System.Data;
 public class Customer
 {
     public int Id { get; set; }
