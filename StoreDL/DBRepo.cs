@@ -62,10 +62,12 @@ public class DBRepo : IMRepo{
                 dataAdapter.Fill(stoSet, "Storefront");
                 DataTable stoTable = stoSet.Tables["Storefront"];
                 DataRow nRow = stoTable.NewRow();
+                storefrontToAdd.ToDataRow(nRow);
                 // nRow["Name"] = storefrontToAdd.Name;
                 // nRow["Address"] = storefrontToAdd.Address ?? "";
                 // nRow["InventoryID"] = storefrontToAdd.InventoryID;
                 // nRow["SOrderHistoryID"] = storefrontToAdd.OrderID;
+                stoTable.Rows.Add(nRow);
                 string insertCmd = $"INSERT INTO Storefront(Name, Address, InventoryID, SOrderHistoryID) VALUES ('{storefrontToAdd.Name}', '{storefrontToAdd.Address}', {storefrontToAdd.InventoryID}, {storefrontToAdd.OrderID})";
                 SqlCommandBuilder cmdBuilder = new SqlCommandBuilder(dataAdapter);
                 dataAdapter.InsertCommand = cmdBuilder.GetInsertCommand();
