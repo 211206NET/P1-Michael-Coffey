@@ -106,4 +106,21 @@ public class DBRepo : IMRepo{
             connection.Close();
         }
     }
+    public void AddCustomer(Customer customerToAdd){
+        DataSet cusSet = new DataSet();
+        string selectCmd = "SELECT * FROM Customer WHERE CustomerID = -1";
+        using(SqlConnection connection = new SqlConnection(_connectionString)){
+            using(SqlDataAdapter dataAdapter = new SqlDataAdapter(selectCmd, connection)){
+                dataAdapter.Fill(cusSet, "Customer");
+                DataTable cusTable = cusSet.Tables["Customer"];
+                DataRow nRow = cusTable.NewRow();
+                customerToAdd.ToDataRow(ref nRow);
+                cusTable.Rows.Add(nRow);
+                string insertCmd = $"INSERT INTO Customer (CustomerID, UserName, Email, Password) VALUES ('{customerToAdd.Id}', '{customerToAdd.UserName}', '{customerToAdd.Password}', '{customerToAdd.Email}', '{customerToAdd.Orders}')";
+                SqlCommandBuilder cmdBuilder = new SqlCommandBuilder(dataAdapter);
+                dataAdapter.InsertCommand = cmdBuilder.GetInsertCommand();
+                dataAdapter.Update(cusTable);
+            }
+        }
+    }
 }

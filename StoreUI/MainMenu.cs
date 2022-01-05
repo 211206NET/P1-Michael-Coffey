@@ -14,7 +14,7 @@ public class MainMenu{
 
     public void Start(){
         bool exit = false;
-        int lineItemID = 1;
+        int lineItemID = 3;
         Console.WriteLine("Welcome to the Film Stores!");
 
         while(!exit){
