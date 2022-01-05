@@ -32,11 +32,11 @@ public class MBL{
         _fdl.AddCustomer(customerToAdd);
     }
 
-    public List<Storefront> SearchStorefronts(string searchItem){
-        _fdl.SearchStorefronts(searchItem);
-    }
+    // public List<Storefront> SearchStorefronts(string searchItem){
+    //     _fdl.SearchStorefronts(searchItem);
+    // }
 
-    public List<Product> SearchInventories(string searchItem){
-        _fdl.SearchInventories(searchItem);
-    }
+    // public List<Product> SearchInventories(string searchItem){
+    //     _fdl.SearchInventories(searchItem);
+    // }
 }
