@@ -47,7 +47,7 @@ public class Storefront
     public void ToDataRow(ref DataRow row){
         row["StoreID"] = this.ID;
         row["Name"] = this.Name;
-        row["Address"] = this.Address;
+        row["Address"] = this.Address ?? "";
         row["InventoryID"] = this.InventoryID;
         row["SOrderHistoryID"] = this.OrderID;
     }
