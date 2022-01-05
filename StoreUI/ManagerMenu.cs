@@ -6,7 +6,7 @@ using System.Text.Json;
 public class ManagerMenu{
 
     private MBL _bl;
-    private string filePath = "../StoreDL/Storefronts.json";
+    //private string filePath = "../StoreDL/Storefronts.json";
 
     public ManagerMenu(){
         _bl = new MBL();

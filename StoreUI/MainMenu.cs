@@ -7,7 +7,7 @@ public class MainMenu{
 
     private MBL _mbl;
 
-    private string filePath = "../StoreDL/Customers.json";
+    //private string filePath = "../StoreDL/Customers.json";
     public MainMenu(){
         _mbl = new MBL();
     }

@@ -10,9 +10,9 @@ public class CustomerMenu{
 
     public int linIte;
 
-    private string filePath = "../StoreDL/Customers.json";
+    //private string filePath = "../StoreDL/Customers.json";
 
-    private string filePath2 = "../StoreDL/Storefronts.json";
+    //private string filePath2 = "../StoreDL/Storefronts.json";
     public CustomerMenu(int newId){
         cid = newId;
         _bl = new MBL();
