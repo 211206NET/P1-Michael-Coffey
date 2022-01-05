@@ -12,11 +12,11 @@ public class Customer
     public Customer(){}
 
     public Customer(int id, string username, string password, string email, int orders){
-        this.Id = id;
-        this.UserName = username;
-        this.Password = password;
-        this.Email = email;
-        this.Orders = orders;
+        this.Id = (int) id;
+        this.UserName = (string) username;
+        this.Password = (string) password;
+        this.Email = (string) email;
+        this.Orders = (int) orders;
     }
 
     // public void printOrderHistory(){
