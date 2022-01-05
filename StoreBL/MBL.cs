@@ -31,4 +31,12 @@ public class MBL{
     public void AddCustomer(Customer customerToAdd){
         _fdl.AddCustomer(customerToAdd);
     }
+
+    public List<Storefront> SearchStorefronts(string searchItem){
+        _fdl.SearchStorefronts(searchItem);
+    }
+
+    public List<Product> SearchInventories(string searchItem){
+        _fdl.SearchInventories(searchItem);
+    }
 }
