@@ -1,5 +1,7 @@
 namespace Models;
 
+using System.Data;
+
 public class Storefront
 {
     public int ID { get; set; }
@@ -15,6 +17,14 @@ public class Storefront
         this.Name = name;
         this.InventoryID = inventoryid;
         this.OrderID = orderid;
+    }
+
+    public Storefront(DataRow row){
+        this.ID = (int) row["StoreID"];
+        this.Name = row["Name"].ToString() ?? "";
+        this.Address = row["Address"].ToString() ?? "";
+        this.InventoryID = (int) row["InventoryID"];
+        this.OrderID = (int) row["SOrderHistoryID"];
     }
 
     // public void printInventories(){
