@@ -15,10 +15,17 @@ public class ManagerMenu : IMenu{
     public ManagerMenu(MBL mbl){
         _bl = mbl;
     }
-
     public void Start(){
         bool exit = false;
         while(!exit){
+            Console.WriteLine("Enter username:");
+            string managername = Console.ReadLine();
+            Console.WriteLine("Enter password:");
+            string managerpassword = Console.ReadLine();
+            if(managername != "storemanager" && managerpassword != "allCinema"){
+                exit = true;
+            }
+            else{
             Console.WriteLine("Hello boss!");
             Console.WriteLine("1. Get the stores");
             Console.WriteLine("2. Get the customers");
@@ -114,5 +121,6 @@ public class ManagerMenu : IMenu{
                 break;
             }
         }
+    }
     }
 }

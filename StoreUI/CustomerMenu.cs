@@ -18,8 +18,23 @@ public class CustomerMenu : IMenu{
     }
 
     public void Start(){
+        int validc = 0;
         bool exit = false;
         while(!exit){
+            List<Customer> theCustomers = _bl.GetAllCustomers();
+            Console.WriteLine("Enter a username:");
+            string nusername = Console.ReadLine();
+            Console.WriteLine("Enter a password:");
+            string npassword = Console.ReadLine();
+            foreach(Customer cust in theCustomers){
+                if(cust.UserName == nusername && cust.Password == npassword){
+                    validc = 1;
+                }
+            }
+            if(validc != 1){
+                exit = true;
+            }
+            else{
             numberorder = 0;
             Console.WriteLine("Hello and Welcome!");
             Console.WriteLine("What would you like to do today?");
@@ -70,5 +85,6 @@ public class CustomerMenu : IMenu{
                 break;
             }
         }
+    }
     }
 }

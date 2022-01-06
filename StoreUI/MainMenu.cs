@@ -24,7 +24,8 @@ public class MainMenu : IMenu{
 
         while(!exit){
             Console.WriteLine("1. Sign up");
-            Console.WriteLine("2. Log in");
+            Console.WriteLine("2. Customer Log in");
+            Console.WriteLine("3. Manager Log in");
             Console.WriteLine("x. Exit");
             string input = Console.ReadLine();
             switch(input){
@@ -63,16 +64,10 @@ public class MainMenu : IMenu{
                                 }
                             }
                         }
-                        if(nid == 0 && nusername == "storeManager"){
-                            if(npassword == "allCinema" && nemail == "michaelcoffey1999@gmail.com"){
-                                MenuFactory.GetMenu("manager").Start();
-                            }
-                        }
-                    else{
-                        Console.WriteLine("Unknown");
-                    }
                 }
                 break;
+                case "3":
+                    MenuFactory.GetMenu("manager").Start();
                 case "x":
                     exit = true;
                     Console.WriteLine("Goodbye!");
