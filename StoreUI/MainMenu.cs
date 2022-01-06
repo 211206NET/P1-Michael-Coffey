@@ -68,6 +68,7 @@ public class MainMenu : IMenu{
                 break;
                 case "3":
                     MenuFactory.GetMenu("manager").Start();
+                break;
                 case "x":
                     exit = true;
                     Console.WriteLine("Goodbye!");
