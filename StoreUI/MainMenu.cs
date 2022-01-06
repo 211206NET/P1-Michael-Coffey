@@ -18,7 +18,7 @@ public class MainMenu : IMenu{
 
     public void Start(){
         bool exit = false;
-        int lineItemID = 3;
+        int corders = 3;
         int cusID = 2;
         Console.WriteLine("Welcome to the Film Stores!");
 
@@ -38,9 +38,9 @@ public class MainMenu : IMenu{
                    string password = Console.ReadLine();
                    Console.WriteLine("Enter an email address:");
                    string email = Console.ReadLine();
-                   Customer ncust = new Customer(cusID, username, password, email, lineItemID);
-                   lineItemID++;
-                   _mbl.AddCustomer(ncust);
+                   Customer ncust = new Customer(cusID, username, password, email, corders);
+                   corders++;
+                   _mbl.AddCustomer(username, email, password, corders);
                 break;
                 case "2":
                     List<Customer> theCustomers = _mbl.GetAllCustomers();

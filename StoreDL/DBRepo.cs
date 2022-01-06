@@ -54,25 +54,24 @@ public class DBRepo : IMRepo{
         return allCustomers;
     }
 
-    public void AddStorefront(Storefront storefrontToAdd){
+    public void AddStorefront(string _name, string _address, int _inventoryid, int _sorderhistoryid){
         DataSet stoSet = new DataSet();
         string selectCmd = "SELECT * FROM Storefront WHERE StoreId = -1";
         using(SqlConnection connection = new SqlConnection(_connectionString)){
-            using(SqlDataAdapter dataAdapter = new SqlDataAdapter(selectCmd, connection)){
-                dataAdapter.Fill(stoSet, "Storefront");
-                DataTable stoTable = stoSet.Tables["Storefront"];
-                DataRow nRow = stoTable.NewRow();
-                storefrontToAdd.ToDataRow(ref nRow);
-                // nRow["Name"] = storefrontToAdd.Name;
-                // nRow["Address"] = storefrontToAdd.Address ?? "";
-                // nRow["InventoryID"] = storefrontToAdd.InventoryID;
-                // nRow["SOrderHistoryID"] = storefrontToAdd.OrderID;
-                stoTable.Rows.Add(nRow);
-                string insertCmd = $"INSERT INTO Storefront(Name, Address, InventoryID, SOrderHistoryID) VALUES ('{storefrontToAdd.Name}', '{storefrontToAdd.Address}', {storefrontToAdd.InventoryID}, {storefrontToAdd.OrderID})";
-                SqlCommandBuilder cmdBuilder = new SqlCommandBuilder(dataAdapter);
-                dataAdapter.InsertCommand = cmdBuilder.GetInsertCommand();
-                dataAdapter.Update(stoTable);
+            connection.Open();
+            string cmdForSql = "INSERT INTO Storefront (Name, Address, InventoryID, SOrderHistoryID) VALUES (@nam, @addr, @invid, @soh)";
+            using(SqlCommand cmd = new SqlCommand(cmdForSql, connection)){
+                SqlParameter param = new SqlParameter("@nam", _name);
+                cmd.Parameters.Add(param);
+                param = new SqlParameter("@addr", _address);
+                cmd.Parameters.Add(param);
+                param = new SqlParameter("@invid", _inventoryid);
+                cmd.Parameters.Add(param);
+                param = new SqlParameter("@soh", _sorderhistoryid);
+                cmd.Parameters.Add(param);
+                cmd.ExecuteNonQuery();
             }
+            connection.Close();
         }
     }
 
@@ -108,21 +107,24 @@ public class DBRepo : IMRepo{
             connection.Close();
         }
     }
-    public void AddCustomer(Customer customerToAdd){
+    public void AddCustomer(string _username, string _email, string _password, int _corderhistoryid){
         DataSet cusSet = new DataSet();
         string selectCmd = "SELECT * FROM Customer WHERE CustomerID = -1";
         using(SqlConnection connection = new SqlConnection(_connectionString)){
-            using(SqlDataAdapter dataAdapter = new SqlDataAdapter(selectCmd, connection)){
-                dataAdapter.Fill(cusSet, "Customer");
-                DataTable cusTable = cusSet.Tables["Customer"];
-                DataRow nRow = cusTable.NewRow();
-                customerToAdd.ToDataRow(ref nRow);
-                cusTable.Rows.Add(nRow);
-                string insertCmd = $"INSERT INTO Customer (UserName, Email, Password) VALUES ('{customerToAdd.UserName}', '{customerToAdd.Password}', '{customerToAdd.Email}', '{customerToAdd.Orders}')";
-                SqlCommandBuilder cmdBuilder = new SqlCommandBuilder(dataAdapter);
-                dataAdapter.InsertCommand = cmdBuilder.GetInsertCommand();
-                dataAdapter.Update(cusTable);
+            connection.Open();
+            string cmdSql = "INSERT INTO Customer (UserName, Email, Password, COrderHistoryID) VALUES (@usna, @emai, @ paswor, @coh)";
+            using(SqlCommand cmd = new SqlCommand(cmdSql, connection)){
+                SqlParameter param = new SqlParameter("@usna", _username);
+                cmd.Parameters.Add(param);
+                param = new SqlParameter("@emai", _email);
+                cmd.Parameters.Add(param);
+                param = new SqlParameter("@paswor", _password);
+                cmd.Parameters.Add(param);
+                param = new SqlParameter("@coh", _corderhistoryid);
+                cmd.Parameters.Add(param);
+                cmd.ExecuteNonQuery();
             }
+            connection.Close();
         }
     }
 

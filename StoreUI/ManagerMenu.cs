@@ -65,7 +65,7 @@ public class ManagerMenu : IMenu{
                     Console.WriteLine("History:");
                     int shid = Int32.Parse(Console.ReadLine());
                     Storefront newStore = new Storefront(address, name, inventoryid, shid);
-                    _bl.AddStorefront(newStore);
+                    _bl.AddStorefront(name, address, inventoryid, shid);
                 break;
                 case "4":
                     List<Storefront> allStores = _bl.GetAllStorefronts();
