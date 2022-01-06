@@ -8,9 +8,9 @@ public class MainMenu : IMenu{
     private MBL _mbl;
 
     //private string filePath = "../StoreDL/Customers.json";
-    public MainMenu(){
-        _mbl = new MBL();
-    }
+    // public MainMenu(){
+    //     _mbl = new MBL();
+    // }
 
     public MainMenu(MBL mbl){
         _mbl = mbl;
