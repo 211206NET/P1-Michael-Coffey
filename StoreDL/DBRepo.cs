@@ -16,21 +16,39 @@ public class DBRepo : IMRepo{
         using SqlConnection connection = new SqlConnection(_connectionString);
         string stoSelect = "SELECT * FROM Storefront";
         string invSelect = "SELECT * FROM Inventory";
+        string histSelect = "SELECT * FROM StoreOrderHistory";
         DataSet FSSet = new DataSet();
-        using SqlDataAdapter stoAdapter = new SqlDataAdapter(stoSelect, _connectionString);
-        using SqlDataAdapter invAdapter = new SqlDataAdapter(invSelect, _connectionString);
+        using SqlDataAdapter stoAdapter = new SqlDataAdapter(stoSelect, connection);
+        using SqlDataAdapter invAdapter = new SqlDataAdapter(invSelect, connection);
+        using SqlDataAdapter hisAdapter = new SqlDataAdapter(histSelect);
         stoAdapter.Fill(FSSet, "Storefront");
         invAdapter.Fill(FSSet, "Inventory");
+        hisAdapter.Fill(FSSet, "StoreOrderHistory");
         DataTable? StorefrontTable = FSSet.Tables["Storefront"];
         DataTable? InventoryTable = FSSet.Tables["Inventory"];
+        DataTable? HistoryTable = FSSet.Tables["StoreOrderHistory"];
         if(StorefrontTable != null && InventoryTable != null){
             foreach(DataRow row in StorefrontTable.Rows){
-                Storefront nsto = new Storefront();
-                nsto.ID = (int) row["StoreID"];
-                nsto.Name = (string) row["Name"];
-                nsto.Address = (string) row["Address"];
-                nsto.InventoryID = (int) row["InventoryID"];
-                nsto.OrderID = (int) row["SOrderHistoryID"];
+                Storefront nsto = new Storefront(row);
+                nsto.InventoryID = InventoryTable.AsEnumerable().Where(r => (int) r["InventoryID"] == nsto.InvnetoryID).Select(
+                    r => 
+                        new Inventory{
+                            InventoryID = (int) r["InventoryID"],
+                            ProductID = (int) r["ProductID"],
+                            Quantity = (int) r["Quantity"]
+                        }
+                ).ToList();
+                nsto.SOrderHistoryID = HistoryTable.AsEnumerable().Where(r => (int) r["SOrderHistoryID"] == nsto.SOrderHistoryID).Select(
+                    r => 
+                         new Order{
+                            OrderID = (int) r["OrderID"],
+                            DateOfOrder = (Date) r["DateOfOrder"],
+                            CustomerID = (int) r["CustomerID"],
+                            StoreID = (int) r["StoreID"],
+                            Total = (decimal) r["Total"],
+                            LineItemID = (int) r["LineItemID"]
+                         }
+                ).ToList();
                 allStorefronts.Add(nsto);
             }
         }
@@ -39,17 +57,33 @@ public class DBRepo : IMRepo{
 
     public List<Customer> GetAllCustomers(){
         List<Customer> allCustomers = new List<Customer>();
-        using(SqlConnection connection = new SqlConnection(_connectionString)){
-            connection.Open();
-            string quereyTxt = "SELECT * FROM Customer";
-            using(SqlCommand cmd = new SqlCommand(quereyTxt, connection)){
-                using(SqlDataReader reader = cmd.ExecuteReader()){
-                    while(reader.Read()){
-                        Console.WriteLine(reader.GetInt32(0));
-                    }
-                }
+        using SqlConnection connection = new SqlConnection(_connectionString);
+        string custCollect = "SELECT * FROM Customer";
+        string histCollect = "SELECT * FROM CustomerOrderHistory";
+        DataSet cusSet = new DataSet();
+        using SqlDataAdapter custAdapter = new SqlDataAdapter(custCollect, connection);
+        using SqlDataAdapter histCollector = new SqlDataAdapter(histCollect, connection);
+        custAdapter.Fill(cusSet, "Customer");
+        histCollector.Fill(cusSet, "CustomerOrderHistory");
+        DataTable? CustomerTable = cusSet.Tables["Customer"];
+        DataTable? HistoryTable = cusSet.Tables["CustomerOrderHistory"];
+        if(CustomerTable != null && HistoryTable != null){
+            foreach(DataRow row in CustomerTable.Rows){
+                Customer cus = new Customer(row);
+                cus.Orders = HistoryTable.AsEnumerable().Where(r => (int) r["COrderHistoryID"] = cus.Orders).Select(
+                    r => 
+                          new Order{
+                              OrderID = (int) row["OrderID"],
+                              DateOfOrder = (Date) row["DateOfOrder"],
+                              CustomerID = (int) row["CustomerID"],
+                              StoreID = (int) row["StoreID"],
+                              Total = (decimal) row["Total"],
+                              LineItemID = (int) row["LineItemID"]
+                          }
+                ).ToList();
+
+                allCustomers.Add(cus);
             }
-            connection.Close();
         }
         return allCustomers;
     }
