@@ -27,8 +27,8 @@ public class MBL{
         _fdl.PlaceAnOrder(sId, sInv, nBuy);
     }
 
-    public void AddCustomer(string _username, string _email, string _password, int _corderhistoryid){
-        _fdl.AddCustomer(_username, _email, _password, _corderhistoryid);
+    public void AddCustomer(string _username, string _email, string _password){
+        _fdl.AddCustomer(_username, _email, _password);
     }
 
     // public List<Storefront> SearchStorefronts(string searchItem){
