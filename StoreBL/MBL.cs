@@ -1,11 +1,10 @@
 namespace BL;
 
 public class MBL{
-    private DBRepo _fdl;
+    private IMRepo _fdl;
 
-    public MBL(){
-        string connectionString = File.ReadAllText("../StoreUI/connectionString.txt");
-        _fdl = new DBRepo(connectionString);
+    public MBL(IMRepo repo){
+        _fdl = repo;
     }
 
     public List<Storefront> GetAllStorefronts(){

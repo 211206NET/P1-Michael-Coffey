@@ -7,7 +7,7 @@ public static class MenuFactory{
         menuString = menuString.ToLower();
         string connectionString = File.ReadAllText("connectionString.txt");
         IMRepo repo = new DBRepo(connectionString);
-        MBL bl = new MBL();
+        MBL bl = new MBL(repo);
         switch(menuString){
             case "main":
                 return new MainMenu(bl);
