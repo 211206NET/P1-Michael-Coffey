@@ -71,7 +71,7 @@ public class ManagerMenu : IMenu{
                     // int inventoryid = Int32.Parse(Console.ReadLine());
                     // Console.WriteLine("History:");
                     // int shid = Int32.Parse(Console.ReadLine());
-                    Storefront newStore = new Storefront(address, name);
+                    Storefront newStore = new Storefront(address, name, 0, 0);
                     _bl.AddStorefront(name, address);
                 break;
                 case "4":
