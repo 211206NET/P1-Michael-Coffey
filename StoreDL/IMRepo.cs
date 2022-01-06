@@ -9,5 +9,5 @@ public interface IMRepo{
 
     void ReplenishStock(int idOfItem, int idOfInventory, int numberToAdd);
     void PlaceAnOrder(int idOfItem, int idOfInvnetory, int numberOfItems);
-    void AddCustomer(string _username, string _email, string _password, int _customerorderhistoryid);
+    void AddCustomer(string _username, string _email, string _password);
 }
