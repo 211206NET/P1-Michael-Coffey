@@ -5,7 +5,7 @@ public interface IMRepo{
 
     List<Customer> GetAllCustomers();
 
-    void AddStorefront(string _name, string _address, int _inventoryid, int _sorderhistoryid);
+    void AddStorefront(string _name, string _address);
 
     void ReplenishStock(int idOfItem, int idOfInventory, int numberToAdd);
     void PlaceAnOrder(int idOfItem, int idOfInvnetory, int numberOfItems);

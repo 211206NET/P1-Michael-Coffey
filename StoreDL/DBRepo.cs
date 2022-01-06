@@ -54,7 +54,7 @@ public class DBRepo : IMRepo{
         return allCustomers;
     }
 
-    public void AddStorefront(string _name, string _address, int _inventoryid, int _sorderhistoryid){
+    public void AddStorefront(string _name, string _address){
         using(SqlConnection connection = new SqlConnection(_connectionString)){
             connection.Open();
             string cmdForSql = "INSERT INTO Storefront (Name, Address) VALUES (@nam, @addr)";

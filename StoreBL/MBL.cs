@@ -15,8 +15,8 @@ public class MBL{
         return _fdl.GetAllCustomers();
     }
 
-    public void AddStorefront(string _name, string _address, int _inventoryid, int _sorderhistoryid){
-        _fdl.AddStorefront(_name, _address, _inventoryid, _sorderhistoryid);
+    public void AddStorefront(string _name, string _address){
+        _fdl.AddStorefront(_name, _address);
     }
 
     public void ReplenishStock(int nId, int nInv, int nAmo){
