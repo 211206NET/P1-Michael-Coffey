@@ -1,6 +1,6 @@
 namespace UI;
 
-public class CustomerMenu{
+public class CustomerMenu : IMenu{
 
     public int cid;
 

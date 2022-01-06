@@ -3,7 +3,7 @@ namespace UI;
 using System.IO;
 using System.Text.Json;
 
-public class ManagerMenu{
+public class ManagerMenu : IMenu{
 
     private MBL _bl;
     //private string filePath = "../StoreDL/Storefronts.json";
