@@ -1,5 +1,4 @@
 ﻿using UI;
 using Models;
 
-MainMenu m = new MainMenu();
-m.Start();
+MenuFactory.GetMenu("main").Start();

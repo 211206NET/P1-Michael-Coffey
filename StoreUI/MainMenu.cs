@@ -3,7 +3,7 @@ namespace UI;
 using System.IO;
 using System.Text.Json;
 
-public class MainMenu{
+public class MainMenu : IMenu{
 
     private MBL _mbl;
 
@@ -58,14 +58,14 @@ public class MainMenu{
                             if(ncustomer.UserName == cust.UserName){
                                 if(ncustomer.Password == cust.Password){
                                     if(ncustomer.Email == cust.Email){
-                                        new CustomerMenu(nid).Start();
+                                        MenuFactory.GetMenu("customer").Start();
                                     }
                                 }
                             }
                         }
                         if(nid == 0 && nusername == "storeManager"){
                             if(npassword == "allCinema" && nemail == "michaelcoffey1999@gmail.com"){
-                                new ManagerMenu().Start();
+                                MenuFactory.GetMenu("manager").Start();
                             }
                         }
                     else{
@@ -75,6 +75,7 @@ public class MainMenu{
                 break;
                 case "x":
                     exit = true;
+                    Console.WriteLine("Goodbye!");
                 break;
                 default:
                     Console.WriteLine("That's not an option!");
