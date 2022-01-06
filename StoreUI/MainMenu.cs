@@ -52,7 +52,7 @@ public class MainMenu : IMenu{
                     string npassword = Console.ReadLine();
                     Console.WriteLine("Enter email:");
                     string nemail = Console.ReadLine();
-                    Customer ncustomer = new Customer(nid, nusername, npassword, nemail, lineItemID);
+                    Customer ncustomer = new Customer(nid, nusername, npassword, nemail, corders);
                     foreach(Customer cust in theCustomers){
                         if(ncustomer.Id == cust.Id){
                             if(ncustomer.UserName == cust.UserName){
