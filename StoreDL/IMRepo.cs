@@ -9,4 +9,5 @@ public interface IMRepo{
 
     void ReplenishStock(int idOfItem, int idOfInventory, int numberToAdd);
     void PlaceAnOrder(int idOfItem, int idOfInvnetory, int numberOfItems);
+    void AddCustomer(Customer customerToAdd);
 }
