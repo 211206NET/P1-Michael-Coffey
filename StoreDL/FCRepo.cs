@@ -7,4 +7,6 @@ public class FCRepo : ICRepo {
     public void GetOrderHistory(){}
 
     public void PlaceAnOrder(Product newP, int nAmount){}
+
+    public void AddCustomer(Customer customerToAdd){}
 }
