@@ -9,7 +9,7 @@ public class DBRepo : IMRepo{
 
     public DBRepo(string connectionString){
         _connectionString = connectionString;
-        Console.WriteLine(_connectionString);
+        //Console.WriteLine(_connectionString);
     }
     public List<Storefront> GetAllStorefronts(){
         List<Storefront> allStorefronts = new List<Storefront>();
