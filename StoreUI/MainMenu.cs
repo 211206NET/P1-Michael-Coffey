@@ -45,15 +45,16 @@ public class MainMenu : IMenu{
                 break;
                 case "2":
                     List<Customer> theCustomers = _mbl.GetAllCustomers();
-                    Console.WriteLine("Enter ID number:");
-                    int nid = Convert.ToInt32(Console.ReadLine());
+                    // Console.WriteLine("Enter ID number:");
+                    // int nid = Convert.ToInt32(Console.ReadLine());
                     Console.WriteLine("Enter username:");
                     string nusername = Console.ReadLine();
                     Console.WriteLine("Enter password:");
                     string npassword = Console.ReadLine();
                     Console.WriteLine("Enter email:");
                     string nemail = Console.ReadLine();
-                    Customer ncustomer = new Customer(nid, nusername, npassword, nemail, corders);
+                    cusID++;
+                    Customer ncustomer = new Customer(cusID, nusername, npassword, nemail, corders);
                     foreach(Customer cust in theCustomers){
                         if(ncustomer.Id == cust.Id){
                             if(ncustomer.UserName == cust.UserName){
