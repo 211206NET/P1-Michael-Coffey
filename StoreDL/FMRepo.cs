@@ -17,11 +17,11 @@ public class FMRepo : IMRepo {
         return JsonSerializer.Deserialize<List<Customer>>(jsonString);
     }
 
-    public void AddStorefront(Storefront nSto){
-        List<Storefront> allStorefronts = GetAllStorefronts();
-        allStorefronts.Add(nSto);
-        string jsonString = JsonSerializer.Serialize(allStorefronts);
-        File.WriteAllText(filePath, jsonString);
+    public void AddStorefront(string name, string address, int inventoryid, int sorderhistoryid){
+        // List<Storefront> allStorefronts = GetAllStorefronts();
+        // allStorefronts.Add(nSto);
+        // string jsonString = JsonSerializer.Serialize(allStorefronts);
+        // File.WriteAllText(filePath, jsonString);
     }
 
     public void ReplenishStock(int nInd, int nInv, int nAmo){
@@ -49,6 +49,6 @@ public class FMRepo : IMRepo {
         // File.WriteAllText(filePath, jsonString);
     }
 
-    public void AddCustomer(Customer customerToAdd){
+    public void AddCustomer(string username, string email, string password, int corderhistoryid){
     }
 }
