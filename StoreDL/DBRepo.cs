@@ -118,7 +118,7 @@ public class DBRepo : IMRepo{
                 DataRow nRow = cusTable.NewRow();
                 customerToAdd.ToDataRow(ref nRow);
                 cusTable.Rows.Add(nRow);
-                string insertCmd = $"INSERT INTO Customer (CustomerID, UserName, Email, Password) VALUES ('{customerToAdd.Id}', '{customerToAdd.UserName}', '{customerToAdd.Password}', '{customerToAdd.Email}', '{customerToAdd.Orders}')";
+                string insertCmd = $"INSERT INTO Customer (UserName, Email, Password) VALUES ('{customerToAdd.UserName}', '{customerToAdd.Password}', '{customerToAdd.Email}', '{customerToAdd.Orders}')";
                 SqlCommandBuilder cmdBuilder = new SqlCommandBuilder(dataAdapter);
                 dataAdapter.InsertCommand = cmdBuilder.GetInsertCommand();
                 dataAdapter.Update(cusTable);

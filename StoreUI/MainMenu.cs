@@ -12,6 +12,10 @@ public class MainMenu{
         _mbl = new MBL();
     }
 
+    public MainMenu(MBL mbl){
+        _mbl = mbl;
+    }
+
     public void Start(){
         bool exit = false;
         int lineItemID = 3;

@@ -12,6 +12,10 @@ public class ManagerMenu{
         _bl = new MBL();
     }
 
+    public ManagerMenu(MBL mbl){
+        _bl = mbl;
+    }
+
     public void Start(){
         bool exit = false;
         while(!exit){

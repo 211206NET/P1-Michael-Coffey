@@ -13,9 +13,8 @@ public class CustomerMenu{
     //private string filePath = "../StoreDL/Customers.json";
 
     //private string filePath2 = "../StoreDL/Storefronts.json";
-    public CustomerMenu(int newId){
-        cid = newId;
-        _bl = new MBL();
+    public CustomerMenu(MBL mbl){
+        _bl = mbl;
     }
 
     public void Start(){
