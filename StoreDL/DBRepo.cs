@@ -107,10 +107,10 @@ public class DBRepo : IMRepo{
             connection.Close();
         }
     }
-    public void AddCustomer(string _username, string _email, string _password, int _corderhistoryid){
+    public void AddCustomer(string _username, string _email, string _password){
         using(SqlConnection connection = new SqlConnection(_connectionString)){
             connection.Open();
-            string cmdSql = "INSERT INTO Customer (UserName, Email, Password, COrderHistoryID) VALUES (@usna, @emai, @paswor, @coh)";
+            string cmdSql = "INSERT INTO Customer (UserName, Email, Password, COrderHistoryID) VALUES (@usna, @emai, @paswor)";
             using(SqlCommand cmd = new SqlCommand(cmdSql, connection)){
                 SqlParameter param = new SqlParameter("@usna", _username);
                 cmd.Parameters.Add(param);
@@ -118,8 +118,8 @@ public class DBRepo : IMRepo{
                 cmd.Parameters.Add(param);
                 param = new SqlParameter("@paswor", _password);
                 cmd.Parameters.Add(param);
-                param = new SqlParameter("@coh", _corderhistoryid);
-                cmd.Parameters.Add(param);
+                // param = new SqlParameter("@coh", _corderhistoryid);
+                // cmd.Parameters.Add(param);
                 cmd.ExecuteNonQuery();
             }
             connection.Close();

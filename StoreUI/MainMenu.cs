@@ -38,9 +38,9 @@ public class MainMenu : IMenu{
                    string password = Console.ReadLine();
                    Console.WriteLine("Enter an email address:");
                    string email = Console.ReadLine();
-                   Customer ncust = new Customer(cusID, username, password, email, corders);
+                   Customer ncust = new Customer(cusID, username, password, email);
                    corders++;
-                   _mbl.AddCustomer(username, email, password, corders);
+                   _mbl.AddCustomer(username, email, password);
                 break;
                 case "2":
                     List<Customer> theCustomers = _mbl.GetAllCustomers();

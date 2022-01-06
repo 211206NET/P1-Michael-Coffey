@@ -49,6 +49,6 @@ public class FMRepo : IMRepo {
         // File.WriteAllText(filePath, jsonString);
     }
 
-    public void AddCustomer(string username, string email, string password, int corderhistoryid){
+    public void AddCustomer(string username, string email, string password){
     }
 }
