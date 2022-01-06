@@ -20,12 +20,12 @@ public class CustomerMenu : IMenu{
     public void Start(){
         int validc = 0;
         bool exit = false;
+        Console.WriteLine("Enter a username:");
+        string nusername = Console.ReadLine();
+        Console.WriteLine("Enter a password:");
+        string npassword = Console.ReadLine();
         while(!exit){
             List<Customer> theCustomers = _bl.GetAllCustomers();
-            Console.WriteLine("Enter a username:");
-            string nusername = Console.ReadLine();
-            Console.WriteLine("Enter a password:");
-            string npassword = Console.ReadLine();
             foreach(Customer cust in theCustomers){
                 if(cust.UserName == nusername && cust.Password == npassword){
                     validc = 1;
