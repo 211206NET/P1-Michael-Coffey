@@ -44,28 +44,7 @@ public class MainMenu : IMenu{
                    _mbl.AddCustomer(username, email, password);
                 break;
                 case "2":
-                    List<Customer> theCustomers = _mbl.GetAllCustomers();
-                    // Console.WriteLine("Enter ID number:");
-                    // int nid = Convert.ToInt32(Console.ReadLine());
-                    Console.WriteLine("Enter username:");
-                    string nusername = Console.ReadLine();
-                    Console.WriteLine("Enter password:");
-                    string npassword = Console.ReadLine();
-                    Console.WriteLine("Enter email:");
-                    string nemail = Console.ReadLine();
-                    cusID++;
-                    Customer ncustomer = new Customer(cusID, nusername, npassword, nemail, corders);
-                    foreach(Customer cust in theCustomers){
-                        if(ncustomer.Id == cust.Id){
-                            if(ncustomer.UserName == cust.UserName){
-                                if(ncustomer.Password == cust.Password){
-                                    if(ncustomer.Email == cust.Email){
-                                        MenuFactory.GetMenu("customer").Start();
-                                    }
-                                }
-                            }
-                        }
-                }
+                    MenuFactory.GetMenu("customer").Start();
                 break;
                 case "3":
                     MenuFactory.GetMenu("manager").Start();
