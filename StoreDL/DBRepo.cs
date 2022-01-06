@@ -108,8 +108,6 @@ public class DBRepo : IMRepo{
         }
     }
     public void AddCustomer(string _username, string _email, string _password, int _corderhistoryid){
-        DataSet cusSet = new DataSet();
-        string selectCmd = "SELECT * FROM Customer WHERE CustomerID = -1";
         using(SqlConnection connection = new SqlConnection(_connectionString)){
             connection.Open();
             string cmdSql = "INSERT INTO Customer (UserName, Email, Password, COrderHistoryID) VALUES (@usna, @emai, @ paswor, @coh)";
