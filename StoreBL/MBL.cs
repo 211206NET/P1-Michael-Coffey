@@ -15,8 +15,8 @@ public class MBL{
         return _fdl.GetAllCustomers();
     }
 
-    public void AddStorefront(Storefront storefrontToAdd){
-        _fdl.AddStorefront(storefrontToAdd);
+    public void AddStorefront(string _name, string _address, int _inventoryid, int _sorderhistoryid){
+        _fdl.AddStorefront(_name, _address, _inventoryid, _sorderhistoryid);
     }
 
     public void ReplenishStock(int nId, int nInv, int nAmo){
@@ -27,8 +27,8 @@ public class MBL{
         _fdl.PlaceAnOrder(sId, sInv, nBuy);
     }
 
-    public void AddCustomer(Customer customerToAdd){
-        _fdl.AddCustomer(customerToAdd);
+    public void AddCustomer(string _username, string _email, string _password, int _corderhistoryid){
+        _fdl.AddCustomer(_username, _email, _password, _corderhistoryid);
     }
 
     // public List<Storefront> SearchStorefronts(string searchItem){
