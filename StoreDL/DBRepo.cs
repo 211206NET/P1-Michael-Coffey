@@ -177,6 +177,7 @@ public class DBRepo : IMRepo{
                 }
                 param3 = new SqlParameter("@stoID", nStore);
                 cmd3.Parameters.Add(param3);
+                cmd3.ExecuteNonQuery();
                 // param3 = new SqlParameter("@liorID", idOfLineOrder);
                 // cmd3.ExecuteNonQuery();
             }
