@@ -224,7 +224,7 @@ public class DBRepo : IMRepo{
         }
     }
 
-    public void DeleteProduct(string _userName){
+    public void DeleteCustomer(string _userName){
         using(SqlConnection connection = new SqlConnection(_connectionString)){
             connection.Open();
             string delCmd = "DELETE FROM Customer WHERE UserName = @usnam";
