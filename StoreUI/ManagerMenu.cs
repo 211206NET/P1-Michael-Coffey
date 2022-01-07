@@ -31,7 +31,8 @@ public class ManagerMenu : IMenu{
             Console.WriteLine("2. Get the customers");
             Console.WriteLine("3. Add a store");
             Console.WriteLine("4. Replenish stock");
-            Console.WriteLine("5. Add an inventory");
+            Console.WriteLine("5. Add a product");
+            Console.WriteLine("6. Add an inventory");
             Console.WriteLine("x. Exit");
             string input = Console.ReadLine();
             switch(input){
@@ -89,12 +90,14 @@ public class ManagerMenu : IMenu{
                     _bl.ReplenishStock(itemSelection, inventorySelection, newStock);
                 break;
                 case "5":
-                    Console.WriteLine("Enter a store");
-                    int nStoreSelection = Int32.Parse(Console.ReadLine());
-                    Console.WriteLine("Enter a store ID");
-                    int nStoreID = Int32.Parse(Console.ReadLine());
-                    Console.WriteLine("Enter a quantity");
-                    int nQuantity = Int32.Parse(Console.ReadLine());
+                    // Console.WriteLine("Enter a store");
+                    // int nStoreSelection = Int32.Parse(Console.ReadLine());
+                    // Console.WriteLine("Enter a store ID");
+                    // int nStoreID = Int32.Parse(Console.ReadLine());
+                    // Console.WriteLine("Enter a quantity");
+                    // int nQuantity = Int32.Parse(Console.ReadLine());
+                    Console.WriteLine("Enter the product ID");
+                    int nID = Int32.Parse(Console.ReadLine());
                     Console.WriteLine("Enter the film's title");
                     string nTitle = Console.ReadLine();
                     Console.WriteLine("Enter the film's director");
@@ -106,11 +109,21 @@ public class ManagerMenu : IMenu{
                     Console.WriteLine("Enter the price");
                     decimal nPrice = Decimal.Parse(Console.ReadLine());
                     Product nProduct = new Product(nTitle, nDirector, nRating, nYear, nPrice);
+                    _bl.AddProduct(nID, nTitle, nPrice, nYear, nDirector, nRating);
                     //Inventory nInventory = new Inventory(nStoreID, nQuantity, nProduct);
                     List<Storefront> allStorefrontItems = _bl.GetAllStorefronts();
                     // allStorefrontItems[nStoreSelection].Inventories.Add(nInventory);
                     // string jsonString = JsonSerializer.Serialize(allStorefrontItems);
                     // File.WriteAllText(filePath, jsonString);
+                break;
+                case "6":
+                    Console.WriteLine("Add a product");
+                    int nProduct = Int32.Parse(Console.ReadLine());
+                    Console.WriteLine("Add a inventory");
+                    int nInventory = Int32.Parse(Console.ReadLine());
+                    Console.WriteLine("How much of the item?");
+                    int nQuantity = Int32.Parse(Console.ReadLine());
+                    _bl.AddInventory(nProduct, nInventory, nQuantity);
                 break;
                 case "x":
                     Console.WriteLine("Seeya boss!");

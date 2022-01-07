@@ -54,4 +54,7 @@ public class FMRepo : IMRepo {
 
     public void AddCustomer(string username, string email, string password){
     }
+
+    public void AddProduct(int _ID, string _name, decimal _price, int _year, int _director, int _rating){
+    }
 }

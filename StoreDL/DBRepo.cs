@@ -186,6 +186,28 @@ public class DBRepo : IMRepo{
         }
     }
 
+    public void AddProduct(int _ID, string _name, decimal _price, int _year, int _director, int _rating){
+        using(SqlConnection connection = new SqlConnection(_connectionString)){
+            connection.Open();
+            string sqlPro = "INSERT INTO Product (ProductID, Title, Price, YearID, DirectorID, RatingID) VALUES (@proid, @tle, @pri, @yea, @dir, @rat)";
+            using(SqlCommand cmd = new SqlCommand(sqlPro, connection)){
+                SqlParameter param = new SqlParameter("@proid", _ID);
+                cmd.Parameters.Add(param);
+                param = new SqlParameter("@tle", _name);
+                cmd.Parameters.Add(param);
+                param = new SqlParameter("@pri", _price);
+                cmd.Parameters.Add(param);
+                param = new SqlParameter("@yea", _year);
+                cmd.Parameters.Add(param);
+                param = new SqlParameter("@dir", _director);
+                cmd.Parameters.Add(param);
+                param = new SqlParameter("@rat", _rating);
+                cmd.ExecuteNonQuery();
+            }
+            connection.Close();
+        }
+    }
+
     // public List<Storefront> SearchStorefronts(string searchItem){
     //     string searchStatement = $"SELECT * FROM Storefront WHERE Name LIKE '%{searchItem}%' OR Address LIKE '%{searchItem}%'";
     //     using SqlConnection connection = new SqlConnection(_connectionString);
