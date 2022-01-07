@@ -7,7 +7,7 @@ public class Customer
     public string UserName { get; set; }
     public string Password { get; set; }
     public string Email { get; set; }
-    public int Orders { get; set; }
+    //public int Orders { get; set; }
 
     public Customer(){}
 
@@ -16,7 +16,7 @@ public class Customer
         this.UserName = username;
         this.Password = password;
         this.Email = email;
-        this.Orders = orders;
+        //this.Orders = orders;
     }
 
     public Customer(DataRow row){
@@ -24,7 +24,7 @@ public class Customer
         this.UserName = row["UserName"].ToString() ?? "";
         this.Password = row["Password"].ToString() ?? "";
         this.Email = row["Email"].ToString() ?? "";
-        this.Orders = (int) row["COrderHistoryID"];
+        //this.Orders = (int) row["COrderHistoryID"];
     }
 
     // public void printOrderHistory(){
@@ -45,6 +45,6 @@ public class Customer
         row["UserName"] = (string) this.UserName;
         row["Email"] = (string) this.Email;
         row["Password"] = (string) this.Password;
-        row["COrderHistoryID"] = (int) this.Orders;
+        //row["COrderHistoryID"] = (int) this.Orders;
     }
 }
