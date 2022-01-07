@@ -91,7 +91,7 @@ public class DBRepo : IMRepo{
     public void AddStorefront(string _name, string _address, int _inventoryid){
         using(SqlConnection connection = new SqlConnection(_connectionString)){
             connection.Open();
-            string cmdForSql = "INSERT INTO Storefront (Name, Address) VALUES (@nam, @addr, @invid)";
+            string cmdForSql = "INSERT INTO Storefront (Name, Address, InventoryID) VALUES (@nam, @addr, @invid)";
             using(SqlCommand cmd = new SqlCommand(cmdForSql, connection)){
                 SqlParameter param = new SqlParameter("@nam", _name);
                 cmd.Parameters.Add(param);
