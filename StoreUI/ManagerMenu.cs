@@ -119,8 +119,8 @@ public class ManagerMenu : IMenu{
                 case "6":
                     Console.WriteLine("Add a product");
                     int newProduct = Int32.Parse(Console.ReadLine());
-                    Console.WriteLine("Add a inventory");
-                    int nInventory = Int32.Parse(Console.ReadLine());
+                    // Console.WriteLine("Add a inventory");
+                    // int nInventory = Int32.Parse(Console.ReadLine());
                     Console.WriteLine("How much of the item?");
                     int nQuantity = Int32.Parse(Console.ReadLine());
                     _bl.AddInventory(newProduct, nInventory, nQuantity);

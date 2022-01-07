@@ -107,14 +107,14 @@ public class DBRepo : IMRepo{
         }
     }
 
-    public void AddInventory(int idOfItem, int idOfInventory, int amount){
+    public void AddInventory(int idOfItem, int amount){
         using(SqlConnection connection = new SqlConnection(_connectionString)){
             connection.Open();
-            string sqlCmd = "INSERT INTO Inventory (InventoryID, ProductID, Quantity) VALUES (@invID, @proID, @quan)";
+            string sqlCmd = "INSERT INTO Inventory (InventoryID, ProductID, Quantity) VALUES (@proID, @quan)";
             using(SqlCommand cmd = new SqlCommand(sqlCmd, connection)){
-                SqlParameter param = new SqlParameter("@invID", idOfInventory);
-                cmd.Parameters.Add(param);
-                param = new SqlParameter("@proID", idOfItem);
+                // SqlParameter param = new SqlParameter("@invID", idOfInventory);
+                // cmd.Parameters.Add(param);
+                SqlParameter param = new SqlParameter("@proID", idOfItem);
                 cmd.Parameters.Add(param);
                 param = new SqlParameter("@quan", amount);
                 cmd.Parameters.Add(param);

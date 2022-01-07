@@ -7,7 +7,7 @@ public interface IMRepo{
 
     void AddStorefront(string _name, string _address);
 
-    void AddInventory(int idOfItem, int idOfInventory, int amount);
+    void AddInventory(int idOfItem, int amount);
 
     void ReplenishStock(int idOfItem, int idOfInventory, int numberToAdd);
     void PlaceAnOrder(int idOfItem, int idOfInvnetory, int numberOfItems, int stoId, string usNa);
