@@ -218,6 +218,7 @@ public class DBRepo : IMRepo{
                 param = new SqlParameter("@dir", _director);
                 cmd.Parameters.Add(param);
                 param = new SqlParameter("@rat", _rating);
+                cmd.Parameters.Add(param);
                 cmd.ExecuteNonQuery();
             }
             connection.Close();
