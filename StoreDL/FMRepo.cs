@@ -24,7 +24,7 @@ public class FMRepo : IMRepo {
         // File.WriteAllText(filePath, jsonString);
     }
 
-    public void AddInventory(int idOfItem, int idOfInventory, int amount){    
+    public void AddInventory(int idOfItem, int amount){    
     }
 
     public void ReplenishStock(int nInd, int nInv, int nAmo){
