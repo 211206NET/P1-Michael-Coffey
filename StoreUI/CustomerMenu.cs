@@ -58,7 +58,7 @@ public class CustomerMenu : IMenu{
                     // int inventorySelection = Int32.Parse(Console.ReadLine());
                     Console.WriteLine("How many do you want to buy?");
                     int buyAmount = Int32.Parse(Console.ReadLine());
-                    _bl.PlaceAnOrder(itemId, numberorder, buyAmount, storeSelection, nusername);
+                    _bl.PlaceAnOrder(itemId, buyAmount, storeSelection, nusername);
                     Order nOrder = new Order(cid, numberorder++, storeSelection, linIte++);
                     // allStorefronts[storeSelection].Orders.Add(nOrder);
                     // string jsonString = JsonSerializer.Serialize(allStorefronts);
