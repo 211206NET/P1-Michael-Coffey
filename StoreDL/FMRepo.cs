@@ -57,4 +57,6 @@ public class FMRepo : IMRepo {
 
     public void AddProduct(int _ID, string _name, decimal _price, int _year, int _director, int _rating){
     }
+
+    public void DeleteCustomer(string usname){}
 }

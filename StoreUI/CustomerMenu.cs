@@ -40,6 +40,7 @@ public class CustomerMenu : IMenu{
             Console.WriteLine("What would you like to do today?");
             Console.WriteLine("1. Place an order");
             Console.WriteLine("2. See your order history");
+            Console.WriteLine("3. Delete your account");
             Console.WriteLine("x. Exit");
             string input = Console.ReadLine();
             switch(input){
@@ -75,6 +76,11 @@ public class CustomerMenu : IMenu{
                 //            cus.printOrderHistory();
                 //       }
                 //   }
+                break;
+                case "3":
+                    _bl.DeleteCustomer(nusername);
+                    Console.WriteLine("Goodbye!");
+                    exit = true;
                 break;
                 case "x":
                     Console.WriteLine("Have a nice day!");

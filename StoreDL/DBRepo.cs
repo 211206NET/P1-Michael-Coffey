@@ -208,6 +208,21 @@ public class DBRepo : IMRepo{
         }
     }
 
+    public void DeleteProduct(string _userName){
+        using(SqlConnection connection = new SqlConnection(_connectionString)){
+            connection.Open();
+            string delCmd = "DELETE FROM Customer WHERE UserName = @usnam";
+            using(SqlCommand cmd = new SqlCommand(delCmd, connection)){
+                // SqlParameter param = new SqlParameter("@cusid", _cusID);
+                // cmd.Parameters.Add(param);
+                param = new SqlParameter("@usnam", _userName);
+                cmd.Parameters.Add(param);
+                cmd.ExecuteNonQuery();
+            }
+            connection.Close();
+        }
+    }
+
     // public List<Storefront> SearchStorefronts(string searchItem){
     //     string searchStatement = $"SELECT * FROM Storefront WHERE Name LIKE '%{searchItem}%' OR Address LIKE '%{searchItem}%'";
     //     using SqlConnection connection = new SqlConnection(_connectionString);

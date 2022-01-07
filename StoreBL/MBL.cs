@@ -39,6 +39,10 @@ public class MBL{
         _fdl.AddProduct(_ID, _name, _price, _year, _director, _rating);
     }
 
+    public void DeleteCustomer(string _username){
+        _fdl.DeleteCustomer(_username);
+    }
+
     // public List<Storefront> SearchStorefronts(string searchItem){
     //     _fdl.SearchStorefronts(searchItem);
     // }
