@@ -75,18 +75,18 @@ public class ManagerMenu : IMenu{
                     _bl.AddStorefront(name, address);
                 break;
                 case "4":
-                    List<Storefront> allStores = _bl.GetAllStorefronts();
-                    Console.WriteLine("Select a store");
-                    for(int i = 0; i < allStores.Count; i++){
-                        Console.WriteLine($"[{i}] {allStores[i].ToString()}");
-                    }
-                    Console.WriteLine("Select a store");
-                    int storeSelection = Int32.Parse(Console.ReadLine());
+                    // List<Storefront> allStores = _bl.GetAllStorefronts();
+                    // Console.WriteLine("Select a store");
+                    // for(int i = 0; i < allStores.Count; i++){
+                    //     Console.WriteLine($"[{i}] {allStores[i].ToString()}");
+                    // }
+                    Console.WriteLine("Select an item");
+                    int itemSelection = Int32.Parse(Console.ReadLine());
                     Console.WriteLine("Select an inventory");
                     int inventorySelection = Int32.Parse(Console.ReadLine());
                     Console.WriteLine("Select a new amount");
                     int newStock = Int32.Parse(Console.ReadLine());
-                    _bl.ReplenishStock(storeSelection, inventorySelection, newStock);
+                    _bl.ReplenishStock(itemSelection, inventorySelection, newStock);
                 break;
                 case "5":
                     Console.WriteLine("Enter a store");
