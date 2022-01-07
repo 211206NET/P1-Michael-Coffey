@@ -17,7 +17,7 @@ public class FMRepo : IMRepo {
         return JsonSerializer.Deserialize<List<Customer>>(jsonString);
     }
 
-    public void AddStorefront(string name, string address){
+    public void AddStorefront(string name, string address, int inventoryid){
         // List<Storefront> allStorefronts = GetAllStorefronts();
         // allStorefronts.Add(nSto);
         // string jsonString = JsonSerializer.Serialize(allStorefronts);
