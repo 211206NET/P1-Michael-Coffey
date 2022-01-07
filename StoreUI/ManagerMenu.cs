@@ -68,12 +68,12 @@ public class ManagerMenu : IMenu{
                     string name = Console.ReadLine();
                     Console.WriteLine("Address:");
                     string address = Console.ReadLine();
-                    // Console.WriteLine("Inventory:");
-                    // int inventoryid = Int32.Parse(Console.ReadLine());
+                    Console.WriteLine("Inventory:");
+                    int inventoryid = Int32.Parse(Console.ReadLine());
                     // Console.WriteLine("History:");
                     // int shid = Int32.Parse(Console.ReadLine());
-                    Storefront newStore = new Storefront(address, name, 0, 0);
-                    _bl.AddStorefront(name, address);
+                    Storefront newStore = new Storefront(address, name, inventoryid, 0);
+                    _bl.AddStorefront(name, address, inventoryid);
                 break;
                 case "4":
                     // List<Storefront> allStores = _bl.GetAllStorefronts();
