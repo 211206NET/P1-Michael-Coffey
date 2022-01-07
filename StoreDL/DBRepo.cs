@@ -139,11 +139,14 @@ public class DBRepo : IMRepo{
             connection.Close();
         }
     }
-    public void PlaceAnOrder(int idOfItem, int idOfLineOrder, int numberOfItems){
+    public void PlaceAnOrder(int idOfItem, int idOfLineOrder, int numberOfItems, int nStore, string nUserName){
+        List<Customer> allCustomers = GetAllCustomers();
         using(SqlConnection connection = new SqlConnection(_connectionString)){
             connection.Open();
             string sqlCmd = "INSERT INTO LineOrder (LineItemID, ProductID, Quantity) VALUES (@linID, @proID, @quan)";
             string sqlCmd2 = "UPDATE Inventory SET Quantity -= @quan WHERE ProductID = @proID";
+            string orderCmd = "INSERT INTO ItemOrder (DateOfOrder, CustomerID, StoreID, LineOrderID) VALUES (GETDATE(), @cusID, @stoID, @liorID)";
+            //string cusSelect = "SELECT * FROM Customer WHERE UserName = @cusNam";
             using(SqlCommand cmd = new SqlCommand(sqlCmd, connection)){
                 SqlParameter param = new SqlParameter("@linID", idOfLineOrder);
                 cmd.Parameters.Add(param);
@@ -159,6 +162,19 @@ public class DBRepo : IMRepo{
                 param2 = new SqlParameter("@proID", idOfItem);
                 cmd2.Parameters.Add(param2);
                 cmd2.ExecuteNonQuery();
+            }
+            using(SqlCommand cmd3 = new SqlCommand(orderCmd, connection)){
+                SqlParameter param3;
+                foreach(Customer cus in allCustomers){
+                    if(cus.UserName == nUserName){
+                        param3 = new SqlParameter("@cusID", cus.Id);
+                        cmd3.Parameters.Add(param3);
+                    }
+                }
+                param3 = new SqlParameter("@stoID", nStore);
+                cmd3.Parameters.Add(param3);
+                param3 = new SqlParameter("@liorID", idOfLineOrder);
+                cmd3.ExecuteNonQuery();
             }
             connection.Close();
         }
