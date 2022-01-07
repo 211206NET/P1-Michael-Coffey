@@ -123,7 +123,7 @@ public class ManagerMenu : IMenu{
                     // int nInventory = Int32.Parse(Console.ReadLine());
                     Console.WriteLine("How much of the item?");
                     int nQuantity = Int32.Parse(Console.ReadLine());
-                    _bl.AddInventory(newProduct, nInventory, nQuantity);
+                    _bl.AddInventory(newProduct, nQuantity);
                 break;
                 case "x":
                     Console.WriteLine("Seeya boss!");
