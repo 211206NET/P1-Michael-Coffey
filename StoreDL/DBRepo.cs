@@ -92,6 +92,10 @@ public class DBRepo : IMRepo{
         using(SqlConnection connection = new SqlConnection(_connectionString)){
             connection.Open();
             string cmdForSql = "INSERT INTO Storefront (Name, Address, InventoryID) VALUES (@nam, @addr, @invid)";
+            string sOrderSql = "INSERT INTO StoreOrderHistory DEFAULT VALUES";
+            using(SqlCommand cmd0 = new SqlCommand(sOrderSql)){
+                cmd0.ExecuteNonQuery();
+            }
             using(SqlCommand cmd = new SqlCommand(cmdForSql, connection)){
                 SqlParameter param = new SqlParameter("@nam", _name);
                 cmd.Parameters.Add(param);
