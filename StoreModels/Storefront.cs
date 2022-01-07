@@ -23,8 +23,8 @@ public class Storefront
         this.ID = (int) row["StoreID"];
         this.Name = row["Name"].ToString() ?? "";
         this.Address = row["Address"].ToString() ?? "";
-        this.InventoryID = (int) row["InventoryID"];
-        this.OrderID = (int) row["SOrderHistoryID"];
+        this.InventoryID = (int) row["InventoryID"] ?? 0;
+        this.OrderID = (int) row["SOrderHistoryID"] ?? 0;
     }
 
     // public void printInventories(){
