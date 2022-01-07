@@ -50,13 +50,15 @@ public class CustomerMenu : IMenu{
                     for(int i = 0; i < allStorefronts.Count; i++){
                         Console.WriteLine($"[{i}] {allStorefronts[i].ToString()}");
                     }
+                    Console.WriteLine("Select an item's id:");
+                    int itemId = Int32.Parse(Console.ReadLine());
                     Console.WriteLine("Select a store:");
                     int storeSelection = Int32.Parse(Console.ReadLine());
-                    Console.WriteLine("Select an item:");
-                    int inventorySelection = Int32.Parse(Console.ReadLine());
+                    // Console.WriteLine("Select an inventory:");
+                    // int inventorySelection = Int32.Parse(Console.ReadLine());
                     Console.WriteLine("How many do you want to buy?");
                     int buyAmount = Int32.Parse(Console.ReadLine());
-                    _bl.PlaceAnOrder(storeSelection, inventorySelection, buyAmount);
+                    _bl.PlaceAnOrder(itemId, numberorder, buyAmount, storeSelection, nusername);
                     Order nOrder = new Order(cid, numberorder++, storeSelection, linIte++);
                     // allStorefronts[storeSelection].Orders.Add(nOrder);
                     // string jsonString = JsonSerializer.Serialize(allStorefronts);
