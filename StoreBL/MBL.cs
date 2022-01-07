@@ -27,8 +27,8 @@ public class MBL{
         _fdl.ReplenishStock(nId, nInv, nAmo);
     }
 
-    public void PlaceAnOrder(int sId, int sInv, int nBuy, int nSto, string nUser){
-        _fdl.PlaceAnOrder(sId, sInv, nBuy, nSto, nUser);
+    public void PlaceAnOrder(int sId, int nBuy, int nSto, string nUser){
+        _fdl.PlaceAnOrder(sId, nBuy, nSto, nUser);
     }
 
     public void AddCustomer(string _username, string _email, string _password){
