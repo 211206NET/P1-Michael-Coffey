@@ -93,7 +93,7 @@ public class DBRepo : IMRepo{
             connection.Open();
             string cmdForSql = "INSERT INTO Storefront (Name, Address, InventoryID) VALUES (@nam, @addr, @invid)";
             string sOrderSql = "INSERT INTO StoreOrderHistory DEFAULT VALUES";
-            using(SqlCommand cmd0 = new SqlCommand(sOrderSql)){
+            using(SqlCommand cmd0 = new SqlCommand(sOrderSql, connection)){
                 cmd0.ExecuteNonQuery();
             }
             using(SqlCommand cmd = new SqlCommand(cmdForSql, connection)){
