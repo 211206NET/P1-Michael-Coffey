@@ -24,6 +24,10 @@ public class FMRepo : IMRepo {
         // File.WriteAllText(filePath, jsonString);
     }
 
+    public void AddInventory(int idOfItem, int idOfInventory, int amount){
+        
+    }
+
     public void ReplenishStock(int nInd, int nInv, int nAmo){
         // List<Storefront> allStorefronts = GetAllStorefronts();
         // Storefront selectedStore = allStorefronts[nInd];

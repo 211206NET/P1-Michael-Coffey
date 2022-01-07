@@ -19,6 +19,10 @@ public class MBL{
         _fdl.AddStorefront(_name, _address);
     }
 
+    public void AddInventory(int idOfItem, int idOfInventory, int amount){
+        _fdl.AddInventory(idOfItem, idOfInventory, amount); 
+    }
+
     public void ReplenishStock(int nId, int nInv, int nAmo){
         _fdl.ReplenishStock(nId, nInv, nAmo);
     }

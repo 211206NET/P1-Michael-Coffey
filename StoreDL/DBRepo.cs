@@ -107,10 +107,26 @@ public class DBRepo : IMRepo{
         }
     }
 
-    public void ReplenishStock(int idOfItem, int idOfInventory, int numberToAdd){
+    public void AddInventory(int idOfItem, int idOfInventory, int amount){
         using(SqlConnection connection = new SqlConnection(_connectionString)){
             connection.Open();
             string sqlCmd = "INSERT INTO Inventory (InventoryID, ProductID, Quantity) VALUES (@invID, @proID, @quan)";
+            using(SqlCommand cmd = new SqlCommand(sqlCmd, connection)){
+                SqlParameter param = new SqlParameter("@invID", idOfInventory);
+                cmd.Parameters.Add(param);
+                param = new SqlParameter("@proID", idOfItem);
+                cmd.Parameters.Add(param);
+                param = new SqlParameter("@quan", numberToAdd);
+                cmd.Parameters.Add(param);
+                cmd.ExecuteNonQuery();
+            }
+            connection.Close();
+        }
+    }
+    public void ReplenishStock(int idOfItem, int idOfInventory, int numberToAdd){
+        using(SqlConnection connection = new SqlConnection(_connectionString)){
+            connection.Open();
+            string sqlCmd = "UPDATE Inventory SET Quantity += @quan WHERE InventoryID = @invID AND ProductID = @proID";
             using(SqlCommand cmd = new SqlCommand(sqlCmd, connection)){
                 SqlParameter param = new SqlParameter("@invID", idOfInventory);
                 cmd.Parameters.Add(param);
@@ -127,6 +143,7 @@ public class DBRepo : IMRepo{
         using(SqlConnection connection = new SqlConnection(_connectionString)){
             connection.Open();
             string sqlCmd = "INSERT INTO LineOrder (LineItemID, ProductID, Quantity) VALUES (@linID, @proID, @quan)";
+            string sqlCmd2 = "UPDATE Inventory SET Quantity -= @quan WHERE ProductID = @proID";
             using(SqlCommand cmd = new SqlCommand(sqlCmd, connection)){
                 SqlParameter param = new SqlParameter("@linID", idOfLineOrder);
                 cmd.Parameters.Add(param);
@@ -136,6 +153,13 @@ public class DBRepo : IMRepo{
                 cmd.Parameters.Add(param);
                 cmd.ExecuteNonQuery();
             }
+            using(SqlCommand cmd2 = new SqlCommand(sqlCmd2, connection)){
+                SqlParameter param2 = new SqlParameter("@quan", numberOfItems);
+                cmd2.Parameters.Add(param2);
+                param2 = new SqlParameter("@proID", idOfItem);
+                cmd2.Parameters.Add(param2);
+                cmd2.ExecuteNonQuery();
+            }
             connection.Close();
         }
     }
@@ -143,6 +167,10 @@ public class DBRepo : IMRepo{
         using(SqlConnection connection = new SqlConnection(_connectionString)){
             connection.Open();
             string cmdSql = "INSERT INTO Customer (UserName, Email, Password) VALUES (@usna, @emai, @paswor)";
+            string histCmd = "INSERT INTO CustomerOrderHistory DEFAULT VALUES";
+            using(SqlCommand cmd0 = new SqlCommand(histCmd, connection)){
+                cmd0.ExecuteNonQuery();
+            }
             using(SqlCommand cmd = new SqlCommand(cmdSql, connection)){
                 SqlParameter param = new SqlParameter("@usna", _username);
                 cmd.Parameters.Add(param);
