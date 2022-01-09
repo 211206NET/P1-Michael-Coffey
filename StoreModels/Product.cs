@@ -22,6 +22,14 @@ public class Product
         this.Price = price;
     }
 
+    public Product(DataRow row){
+        this.ProductName = row["Title"] ?? "";
+        this.Price = (decimal) row["Price"];
+        this.ReleaseYearID = (int) row["YearID"];
+        this.DirectorID = (int) row["DirectorID"];
+        this.MPARatingID = (int) row["MPARatingID"];
+    }
+
     public override string ToString()
     {
         return $"Title: {this.ProductName} \nDir.: {this.DirectorID} \nRating: {this.MPARatingID} \n Year: {this.ReleaseYearID} \nCost: {this.Price}";
@@ -29,7 +37,7 @@ public class Product
 
     public void ToDataRow(ref DataRow row){
         this.ProductName = row["Title"] ?? "";
-        this.Price = (int) row["Price"];
+        this.Price = (decimal) row["Price"];
         this.ReleaseYearID = (int) row["YearID"];
         this.DirectorID = (int) row["DirectorID"];
         this.MPARatingID = (int) row["MPARatingID"];
