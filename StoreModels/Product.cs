@@ -23,7 +23,7 @@ public class Product
     }
 
     public Product(DataRow row){
-        this.ProductName = row["Title"] ?? "";
+        this.ProductName = (string) row["Title"] ?? "";
         this.Price = (decimal) row["Price"];
         this.ReleaseYearID = (int) row["YearID"];
         this.DirectorID = (int) row["DirectorID"];
@@ -36,7 +36,7 @@ public class Product
     }
 
     public void ToDataRow(ref DataRow row){
-        this.ProductName = row["Title"] ?? "";
+        this.ProductName = (string) row["Title"] ?? "";
         this.Price = (decimal) row["Price"];
         this.ReleaseYearID = (int) row["YearID"];
         this.DirectorID = (int) row["DirectorID"];
