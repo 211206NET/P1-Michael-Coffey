@@ -26,6 +26,7 @@ public class DBRepo : IMRepo{
         stoAdapter.Fill(FSSet, "Storefront");
         invAdapter.Fill(FSSet, "Inventory");
         hisAdapter.Fill(FSSet, "StoreOrderHistory");
+        proAdapter.Fill(FSSet, "Product");
         DataTable? StorefrontTable = FSSet.Tables["Storefront"];
         DataTable? InventoryTable = FSSet.Tables["Inventory"];
         DataTable? HistoryTable = FSSet.Tables["StoreOrderHistory"];
@@ -74,6 +75,9 @@ public class DBRepo : IMRepo{
         using SqlDataAdapter proCollector = new SqlDataAdapter(proCollect, connection);
         custAdapter.Fill(cusSet, "Customer");
         histCollector.Fill(cusSet, "CustomerOrderHistory");
+        ordCollector.Fill(cusSet, "ItemOrder");
+        linorCollector.Fill(cusSet, "LineOrder");
+        proCollector.Fill(cusSet, "Product");
         DataTable? CustomerTable = cusSet.Tables["Customer"];
         DataTable? HistoryTable = cusSet.Tables["CustomerOrderHistory"];
         DataTable? OrderTable = cusSet.Tables["ItemOrder"];
@@ -93,7 +97,6 @@ public class DBRepo : IMRepo{
                 //               LineItemID = (int) row["LineItemID"]
                 //           }
                 // ).ToList();
-
                 allCustomers.Add(cus);
             }
         }
