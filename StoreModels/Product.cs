@@ -1,5 +1,7 @@
 namespace Models;
 
+using System.Data;
+
 public class Product
 {
     public string ProductName { get; set; }
@@ -23,5 +25,13 @@ public class Product
     public override string ToString()
     {
         return $"Title: {this.ProductName} \nDir.: {this.DirectorID} \nRating: {this.MPARatingID} \n Year: {this.ReleaseYearID} \nCost: {this.Price}";
+    }
+
+    public void ToDataRow(ref DataRow row){
+        this.ProductName = row["Title"] ?? "";
+        this.Price = (int) row["Price"];
+        this.ReleaseYearID = (int) row["YearID"];
+        this.DirectorID = (int) row["DirectorID"];
+        this.MPARatingID = (int) row["MPARatingID"];
     }
 }

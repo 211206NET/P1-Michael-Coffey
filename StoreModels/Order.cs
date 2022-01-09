@@ -1,5 +1,7 @@
 namespace Models;
 
+using System.Data;
+
 public class Order
 {
     //You can also use DateTime data type for this
@@ -45,5 +47,13 @@ public class Order
     public override string ToString()
     {
         return $"Date: {this.OrderDate} \nCustomer ID: {this.CustomerId} \nOrder ID: {this.OrderNumber} \n Store ID: {this.StoreId}";
+    }
+
+    public void ToDataRow(ref DataRow row){
+        this.OrderDate = (DateOnly) row["DateOfOrder"];
+        this.CustomerId = (int) row["CustomerID"];
+        this.StoreId = (int) row["StoreID"];
+        this.Total = (decimal) row["Total"];
+        this.LineItemID = (int) row["LineItemID"];
     }
 }
