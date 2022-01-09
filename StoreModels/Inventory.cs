@@ -11,6 +11,12 @@ public class Inventory
         this.Quantity = quantity;
         this.ItemID = itemid;
     }
+
+    public Inventory(DataRow row){
+        this.ItemID = (int) row["ProductID"];
+        this.Quantity = (int) row["Quantity"];
+
+    }
     public int StoreId { get; set; }
     public int Quantity { get; set; }
     public int ItemID { get; set; }
@@ -21,7 +27,6 @@ public class Inventory
     }
 
     public void ToDataRow(ref DataRow row){
-        this.StoreId = (int) row["InventoryID"];
         this.ItemID = (int) row["ProductID"];
         this.Quantity = (int) row["Quantity"];
     }
