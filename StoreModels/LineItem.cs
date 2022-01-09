@@ -8,6 +8,12 @@ public class LineItem
     public LineItem(){
     }
 
+    public LineItem(int itemid, int orderid, int quantity){
+        this.ItemID = itemid;
+        this.OrderId = orderid;
+        this.Quantity = quantity;
+    }
+
     public LineItem(DataRow row){
         this.ItemID = (int) row["ProductID"];
         this.Quantity = (int) row["Quantity"];
