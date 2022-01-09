@@ -16,4 +16,5 @@ public interface IMRepo{
     void AddProduct(int proID, string proTitle, decimal proPrice, int proYear, int proDirector, int proRating);
 
     void DeleteCustomer(string username);
+    void GetCustomerOrderHistory(string _username);
 }

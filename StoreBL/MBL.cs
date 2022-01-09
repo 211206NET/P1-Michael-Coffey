@@ -43,6 +43,10 @@ public class MBL{
         _fdl.DeleteCustomer(_username);
     }
 
+    public void GetCustomerOrderHistory(string _username){
+        _fdl.GetCustomerOrderHistory(_username);
+    }
+
     // public List<Storefront> SearchStorefronts(string searchItem){
     //     _fdl.SearchStorefronts(searchItem);
     // }

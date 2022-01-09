@@ -264,6 +264,9 @@ public class DBRepo : IMRepo{
         }
     }
 
+    public void GetCustomerOrderHistory(string _username){
+    }
+
     // public List<Storefront> SearchStorefronts(string searchItem){
     //     string searchStatement = $"SELECT * FROM Storefront WHERE Name LIKE '%{searchItem}%' OR Address LIKE '%{searchItem}%'";
     //     using SqlConnection connection = new SqlConnection(_connectionString);
