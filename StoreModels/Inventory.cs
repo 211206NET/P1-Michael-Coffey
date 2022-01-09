@@ -1,5 +1,7 @@
 namespace Models;
 
+using System.Data;
+
 public class Inventory 
 {
     public Inventory(){}
@@ -16,5 +18,11 @@ public class Inventory
     public override string ToString()
     {
         return $"Store ID: {this.StoreId} \nStock: {this.Quantity} \n {this.ItemID}";
+    }
+
+    public void ToDataRow(ref DataRow row){
+        this.StoreId = (int) row["InventoryID"];
+        this.ItemID = (int) row["ProductID"];
+        this.Quantity = (int) row["Quantity"];
     }
 }

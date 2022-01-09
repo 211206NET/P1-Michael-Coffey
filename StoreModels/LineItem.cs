@@ -1,5 +1,7 @@
 namespace Models;
 
+using System.Data;
+
 public class LineItem
 {
     public int ItemID { get; set; }
@@ -9,5 +11,11 @@ public class LineItem
     public override string ToString()
     {
         return $"Order ID: {this.OrderId} \nQuantity: {this.Quantity} \n{this.ItemID}";
+    }
+
+    public void ToDataRow(ref DataRow row){
+        this.OrderId = (int) row["LineItemID"];
+        this.ItemID = (int) row["ProductID"];
+        this.Quantity = (int) row["Quantity"];
     }
 }
