@@ -29,6 +29,7 @@ public class DBRepo : IMRepo{
         DataTable? StorefrontTable = FSSet.Tables["Storefront"];
         DataTable? InventoryTable = FSSet.Tables["Inventory"];
         DataTable? HistoryTable = FSSet.Tables["StoreOrderHistory"];
+        DataTable? ProductTable = FSSet.Tables["Product"];
         if(StorefrontTable != null && InventoryTable != null){
             foreach(DataRow row in StorefrontTable.Rows){
                 Storefront nsto = new Storefront(row);
@@ -75,6 +76,9 @@ public class DBRepo : IMRepo{
         histCollector.Fill(cusSet, "CustomerOrderHistory");
         DataTable? CustomerTable = cusSet.Tables["Customer"];
         DataTable? HistoryTable = cusSet.Tables["CustomerOrderHistory"];
+        DataTable? OrderTable = cusSet.Tables["ItemOrder"];
+        DataTable? LineOrderTable = cusSet.Tables["LineOrder"];
+        DataTable? ProductTable = cusSet.Tables["Product"];
         if(CustomerTable != null && HistoryTable != null){
             foreach(DataRow row in CustomerTable.Rows){
                 Customer cus = new Customer(row);
