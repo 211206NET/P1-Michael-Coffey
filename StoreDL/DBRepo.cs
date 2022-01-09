@@ -18,19 +18,23 @@ public class DBRepo : IMRepo{
         string invSelect = "SELECT * FROM Inventory";
         string histSelect = "SELECT * FROM StoreOrderHistory";
         string proSelect = "SELECT * FROM Product";
+        string ordSelect = "SELECT * FROM ItemOrder";
         DataSet FSSet = new DataSet();
         using SqlDataAdapter stoAdapter = new SqlDataAdapter(stoSelect, connection);
         using SqlDataAdapter invAdapter = new SqlDataAdapter(invSelect, connection);
         using SqlDataAdapter hisAdapter = new SqlDataAdapter(histSelect, connection);
         using SqlDataAdapter proAdapter = new SqlDataAdapter(proSelect, connection);
+        using SqlDataAdapter ordAdapter = new SqlDataAdapter(ordSelect, connection);
         stoAdapter.Fill(FSSet, "Storefront");
         invAdapter.Fill(FSSet, "Inventory");
         hisAdapter.Fill(FSSet, "StoreOrderHistory");
         proAdapter.Fill(FSSet, "Product");
+        ordAdapter.Fill(FSSet, "ItemOrder");
         DataTable? StorefrontTable = FSSet.Tables["Storefront"];
         DataTable? InventoryTable = FSSet.Tables["Inventory"];
         DataTable? HistoryTable = FSSet.Tables["StoreOrderHistory"];
         DataTable? ProductTable = FSSet.Tables["Product"];
+        DataTable? OrderTable = FSSet.Tables["ItemOrder"];
         if(StorefrontTable != null && InventoryTable != null){
             foreach(DataRow row in StorefrontTable.Rows){
                 Storefront nsto = new Storefront(row);
