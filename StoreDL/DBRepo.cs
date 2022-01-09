@@ -17,10 +17,12 @@ public class DBRepo : IMRepo{
         string stoSelect = "SELECT * FROM Storefront";
         string invSelect = "SELECT * FROM Inventory";
         string histSelect = "SELECT * FROM StoreOrderHistory";
+        string proSelect = "SELECT * FROM Product";
         DataSet FSSet = new DataSet();
         using SqlDataAdapter stoAdapter = new SqlDataAdapter(stoSelect, connection);
         using SqlDataAdapter invAdapter = new SqlDataAdapter(invSelect, connection);
         using SqlDataAdapter hisAdapter = new SqlDataAdapter(histSelect, connection);
+        using SqlDataAdapter proAdapter = new SqlDataAdapter(proSelect, connection);
         stoAdapter.Fill(FSSet, "Storefront");
         invAdapter.Fill(FSSet, "Inventory");
         hisAdapter.Fill(FSSet, "StoreOrderHistory");
