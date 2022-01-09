@@ -4,6 +4,14 @@ using System.Data;
 
 public class LineItem
 {
+
+    public LineItem(){
+    }
+
+    public LineItem(DataRow row){
+        this.ItemID = (int) row["ProductID"];
+        this.Quantity = (int) row["Quantity"];
+    }
     public int ItemID { get; set; }
     public int OrderId { get; set; }
     public int Quantity { get; set; }
@@ -14,7 +22,6 @@ public class LineItem
     }
 
     public void ToDataRow(ref DataRow row){
-        this.OrderId = (int) row["LineItemID"];
         this.ItemID = (int) row["ProductID"];
         this.Quantity = (int) row["Quantity"];
     }
