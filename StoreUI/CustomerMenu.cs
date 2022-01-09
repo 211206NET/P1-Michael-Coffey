@@ -72,6 +72,7 @@ public class CustomerMenu : IMenu{
                     // file.WriteAllText(filePath, jsonString2);
                 break;
                 case "2":
+                _bl.GetCustomerOrderHistory(nusername);
                   List<Customer> allStoreCustomers = _bl.GetAllCustomers();
                 //   foreach(Customer cus in allStoreCustomers){
                 //       if(cus.Id == cid){

@@ -265,6 +265,9 @@ public class DBRepo : IMRepo{
     }
 
     public void GetCustomerOrderHistory(string _username){
+        List<Order> ordHistory = new List<Order>();
+        using(SqlConnection connection = new SqlConnection(_connectionString));
+        string selectOrHis = "";
     }
 
     // public List<Storefront> SearchStorefronts(string searchItem){
