@@ -62,9 +62,15 @@ public class DBRepo : IMRepo{
         using SqlConnection connection = new SqlConnection(_connectionString);
         string custCollect = "SELECT * FROM Customer";
         string histCollect = "SELECT * FROM CustomerOrderHistory";
+        string ordCollect = "SELECT * FROM ItemOrder";
+        string linorCollect = "SELECT * FROM LineOrder";
+        string proCollect = "SELECT * FROM Product";
         DataSet cusSet = new DataSet();
         using SqlDataAdapter custAdapter = new SqlDataAdapter(custCollect, connection);
         using SqlDataAdapter histCollector = new SqlDataAdapter(histCollect, connection);
+        using SqlDataAdapter ordCollector = new SqlDataAdapter(ordCollect, connection);
+        using SqlDataAdapter linorCollector = new SqlDataAdapter(linorCollect, connection);
+        using SqlDataAdapter proCollector = new SqlDataAdapter(proCollect, connection);
         custAdapter.Fill(cusSet, "Customer");
         histCollector.Fill(cusSet, "CustomerOrderHistory");
         DataTable? CustomerTable = cusSet.Tables["Customer"];
