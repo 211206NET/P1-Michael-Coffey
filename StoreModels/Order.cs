@@ -22,6 +22,15 @@ public class Order
         this.LineItemID = lineitemid;
         //this.CalculateTotal();
     }
+
+    public Order(DataRow row){
+        this.OrderDate = (DateOnly) row["DateOfOrder"];
+        this.CustomerId = (int) row["CustomerID"];
+        this.StoreId = (int) row["StoreID"];
+        this.Total = (decimal) row["Total"];
+        this.LineItemID = (int) row["LineItemID"];
+
+    }
     // public decimal CalculateTotal() {
     //     a method that would go through each lineitem in LineItems property
     //     and sets the total property of the particular order object
