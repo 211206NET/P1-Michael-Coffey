@@ -74,13 +74,15 @@ public class CustomerMenu : IMenu{
                     // file.WriteAllText(filePath, jsonString2);
                 break;
                 case "2":
-                _bl.GetCustomerOrderHistoryDate(nusername);
-                  List<Customer> allStoreCustomers = _bl.GetAllCustomers();
-                //   foreach(Customer cus in allStoreCustomers){
-                //       if(cus.Id == cid){
-                //            cus.printOrderHistory();
-                //       }
-                //   }
+                List<Order> ordHis = _bl.GetCustomerOrderHistoryDate(nusername);
+                if(ordHis.Count == 0){
+                    Console.WriteLine("No orders found.");
+                }
+                else{
+                    foreach(Order ord in ordHis){
+                        Console.WriteLine(ord.ToSring());
+                    }
+                }
                 break;
                 case "3":
                     _bl.DeleteCustomer(nusername);
@@ -88,8 +90,15 @@ public class CustomerMenu : IMenu{
                     exit = true;
                 break;
                 case "4":
-                    _bl.GetCustomerOrderHistoryCost(nusername);
-                    List<Customer> allStoreCustomers2 = _bl.GetAllCustomers();
+                List<Order> ordHis2 = _bl.GetCustomerOrderHistoryDate(nusername);
+                if(ordHis2.Count == 0){
+                    Console.WriteLine("No orders found.");
+                }
+                else{
+                    foreach(Order ord in ordHis2){
+                        Console.WriteLine(ord.ToSring());
+                    }
+                }
                 break;
                 case "x":
                     Console.WriteLine("Have a nice day!");
