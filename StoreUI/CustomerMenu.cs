@@ -40,8 +40,9 @@ public class CustomerMenu : IMenu{
             Console.WriteLine("Hello and Welcome!");
             Console.WriteLine("What would you like to do today?");
             Console.WriteLine("1. Place an order");
-            Console.WriteLine("2. See your order history");
+            Console.WriteLine("2. See your order history by date");
             Console.WriteLine("3. Delete your account");
+            Console.WriteLine("4. See your order history by cost");
             Console.WriteLine("x. Exit");
             string input = Console.ReadLine();
             switch(input){
@@ -73,20 +74,22 @@ public class CustomerMenu : IMenu{
                     // file.WriteAllText(filePath, jsonString2);
                 break;
                 case "2":
-                string input2 = Console.ReadLine();
-                switch(input2){
-                    case "1":
-                    _bl.GetCustomerOrderHistoryDate(nusername);
-                     List<Customer> allStoreCustomers = _bl.GetAllCustomers();
-                     break;
-                     case "2":
-                     _bl.GetCustomerOrderHistoryCost(nusername);
-                }
+                _bl.GetCustomerOrderHistory(nusername);
+                  List<Customer> allStoreCustomers = _bl.GetAllCustomers();
+                //   foreach(Customer cus in allStoreCustomers){
+                //       if(cus.Id == cid){
+                //            cus.printOrderHistory();
+                //       }
+                //   }
                 break;
                 case "3":
                     _bl.DeleteCustomer(nusername);
                     Console.WriteLine("Goodbye!");
                     exit = true;
+                break;
+                case "4":
+                    _bl.GetCustomerOrderHistoryCost(nusername);
+                    List<CustomerMenu> allStoreCustomers = _bl.GetAllCustomers();
                 break;
                 case "x":
                     Console.WriteLine("Have a nice day!");
