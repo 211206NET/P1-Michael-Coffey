@@ -43,7 +43,7 @@ public class MBL{
         _fdl.DeleteCustomer(_username);
     }
 
-    public List<Order> GetCustomerOrderHistoryDate(int _username){
+    public List<Order> GetCustomerOrderHistoryDate(int _userid){
         return _fdl.GetCustomerOrderHistoryDate(_userid);
     }
 
