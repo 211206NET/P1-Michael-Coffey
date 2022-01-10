@@ -162,7 +162,7 @@ public class DBRepo : IMRepo{
             connection.Close();
         }
     }
-    public void PlaceAnOrder(int idOfItem, int numberOfItems, int nStore, string nUserName){
+    public void PlaceAnOrder(int idOfItem, int numberOfItems, int nStore, int cusid){
         List<Customer> allCustomers = GetAllCustomers();
         using(SqlConnection connection = new SqlConnection(_connectionString)){
             connection.Open();
@@ -187,13 +187,7 @@ public class DBRepo : IMRepo{
                 cmd2.ExecuteNonQuery();
             }
             using(SqlCommand cmd3 = new SqlCommand(orderCmd, connection)){
-                SqlParameter param3;
-                foreach(Customer cus in allCustomers){
-                    if(cus.UserName == nUserName){
-                        param3 = new SqlParameter("@cusID", cus.Id);
-                        cmd3.Parameters.Add(param3);
-                    }
-                }
+                SqlParameter param3 = new SqlParameter("@cusID", cusid);
                 param3 = new SqlParameter("@stoID", nStore);
                 cmd3.Parameters.Add(param3);
                 cmd3.ExecuteNonQuery();

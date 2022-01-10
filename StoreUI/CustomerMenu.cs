@@ -29,6 +29,7 @@ public class CustomerMenu : IMenu{
             foreach(Customer cust in theCustomers){
                 if(cust.UserName == nusername && cust.Password == npassword){
                     validc = 1;
+                    cid = cust.Id;
                 }
             }
             if(validc != 1){
@@ -58,7 +59,7 @@ public class CustomerMenu : IMenu{
                     // int inventorySelection = Int32.Parse(Console.ReadLine());
                     Console.WriteLine("How many do you want to buy?");
                     int buyAmount = Int32.Parse(Console.ReadLine());
-                    _bl.PlaceAnOrder(itemId, buyAmount, storeSelection, nusername);
+                    _bl.PlaceAnOrder(itemId, buyAmount, storeSelection, cid);
                     Order nOrder = new Order(cid, numberorder++, storeSelection, linIte++);
                     // allStorefronts[storeSelection].Orders.Add(nOrder);
                     // string jsonString = JsonSerializer.Serialize(allStorefronts);
