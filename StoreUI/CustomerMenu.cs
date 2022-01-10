@@ -74,7 +74,7 @@ public class CustomerMenu : IMenu{
                     // file.WriteAllText(filePath, jsonString2);
                 break;
                 case "2":
-                List<Order> ordHis = _bl.GetCustomerOrderHistoryDate(nusername);
+                List<Order> ordHis = _bl.GetCustomerOrderHistoryDate(cid);
                 if(ordHis.Count == 0){
                     Console.WriteLine("No orders found.");
                 }
@@ -90,7 +90,7 @@ public class CustomerMenu : IMenu{
                     exit = true;
                 break;
                 case "4":
-                List<Order> ordHis2 = _bl.GetCustomerOrderHistoryDate(nusername);
+                List<Order> ordHis2 = _bl.GetCustomerOrderHistoryDate(cid);
                 if(ordHis2.Count == 0){
                     Console.WriteLine("No orders found.");
                 }
