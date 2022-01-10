@@ -61,7 +61,7 @@ public class CustomerMenu : IMenu{
                     Console.WriteLine("How many do you want to buy?");
                     int buyAmount = Int32.Parse(Console.ReadLine());
                     _bl.PlaceAnOrder(itemId, buyAmount, storeSelection, cid);
-                    Order nOrder = new Order(cid, numberorder++, storeSelection, linIte++);
+                    //Order nOrder = new Order(cid, numberorder++, storeSelection, linIte++);
                     // allStorefronts[storeSelection].Orders.Add(nOrder);
                     // string jsonString = JsonSerializer.Serialize(allStorefronts);
                     // File.WriteAllText(filePath2, jsonString);
