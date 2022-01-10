@@ -15,9 +15,9 @@ public class Order
     public Order(){}
 
     public Order(int ordernumber, string customerid, string storeid, int lineitemid){
+        this.OrderNumber = ordernumber;
         this.OrderDate = new DateOnly();
         this.CustomerName = customerid;
-        this.OrderNumber = ordernumber;
         this.StoreName = storeid;
         this.LineItemID = lineitemid;
         //this.CalculateTotal();
