@@ -17,4 +17,5 @@ public interface IMRepo{
 
     void DeleteCustomer(string username);
     void GetCustomerOrderHistory(string _username);
+    void GetStorefrontOrderHistory(string _storename);
 }

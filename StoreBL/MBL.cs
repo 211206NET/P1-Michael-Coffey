@@ -47,6 +47,10 @@ public class MBL{
         _fdl.GetCustomerOrderHistory(_username);
     }
 
+    public void GetStorefrontOrderHistory(string _storename){
+        _fdl.GetStorefrontOrderHistory(_storename);
+    }
+
     // public List<Storefront> SearchStorefronts(string searchItem){
     //     _fdl.SearchStorefronts(searchItem);
     // }

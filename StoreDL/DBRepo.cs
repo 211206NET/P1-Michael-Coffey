@@ -266,8 +266,30 @@ public class DBRepo : IMRepo{
 
     public void GetCustomerOrderHistory(string _username){
         List<Order> ordHistory = new List<Order>();
-        using(SqlConnection connection = new SqlConnection(_connectionString));
-        string selectOrHis = "";
+        using(SqlConnection connection = new SqlConnection(_connectionString)){
+            connection.Open();
+            string selectOrHis = "SELECT * FROM CustomerOrderHistory INNER JOIN ItemOrder ON CustomerOrderHistory.OrderID = ItemOrder.OrderID INNER JOIN Customer ON ItemOrder.CustomerID = Customer.CustomerID WHERE Customer.UserName = @usnam";
+            using(SqlCommand cmd = new SqlCommand(selectOrHis, connection)){
+                SqlParameter param = new SqlParameter("@usnam", _username);
+                cmd.Parameters.Add(param);
+                cmd.ExecuteNonQuery();
+            }
+            connection.Close();
+        }
+    }
+
+    public void GetCustomerOrderHistory(string _username){
+        List<Order> ordHistory = new List<Order>();
+        using(SqlConnection connection = new SqlConnection(_connectionString)){
+            connection.Open();
+            string selectOrHis = "SELECT * FROM CustomerOrderHistory INNER JOIN ItemOrder ON CustomerOrderHistory.OrderID = ItemOrder.OrderID INNER JOIN Customer ON ItemOrder.CustomerID = Customer.CustomerID WHERE Customer.UserName = @usnam";
+            using(SqlCommand cmd = new SqlCommand(selectOrHis, connection)){
+                SqlParameter param = new SqlParameter("@usnam", _username);
+                cmd.Parameters.Add(param);
+                cmd.ExecuteNonQuery();
+            }
+            connection.Close();
+        }
     }
 
     // public List<Storefront> SearchStorefronts(string searchItem){
