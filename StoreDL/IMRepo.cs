@@ -16,8 +16,8 @@ public interface IMRepo{
     void AddProduct(int proID, string proTitle, decimal proPrice, int proYear, int proDirector, int proRating);
 
     void DeleteCustomer(string username);
-    List<Order> GetCustomerOrderHistoryDate(string _username);
-    List<Order> GetCustomerOrderHistoryCost(string _username);
-    List<Order> GetStorefrontOrderHistoryDate(string _storename);
-    List<Order> GetStorefrontOrderHistoryCost(string _storename);
+    List<Order> GetCustomerOrderHistoryDate(int _userid);
+    List<Order> GetCustomerOrderHistoryCost(id _userid);
+    List<Order> GetStorefrontOrderHistoryDate(int _storeid);
+    List<Order> GetStorefrontOrderHistoryCost(int _storeid);
 }
