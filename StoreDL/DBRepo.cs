@@ -259,11 +259,11 @@ public class DBRepo : IMRepo{
         }
     }
 
-    public void GetCustomerOrderHistory(string _username){
+    public void GetCustomerOrderHistoryDate(string _username){
         List<Order> ordHistory = new List<Order>();
         using(SqlConnection connection = new SqlConnection(_connectionString)){
             connection.Open();
-            string selectOrHis = "SELECT ItemOrder.OrderID, ItemOrder.DateOfOrder, Customer.UserName, Storefront.Name, LineOrder.Quantity*Product.Price AS Total FROM CustomerOrderHistory INNER JOIN ItemOrder ON CustomerOrderHistory.OrderID = ItemOrder.OrderID INNER JOIN Customer ON ItemOrder.CustomerID = Customer.CustomerID INNER JOIN LineOrder ON ItemOrder.LineItemID = LineOrder.LineItemID INNER JOIN Product ON LineOrder.ProductID = Product.ProductID INNER JOIN Storefront ON ItemOrder.StoreID = Storefront.StoreID WHERE Customer.UserName = @usnam";
+            string selectOrHis = "SELECT ItemOrder.OrderID, ItemOrder.DateOfOrder, Customer.UserName, Storefront.Name, LineOrder.Quantity*Product.Price AS Total FROM CustomerOrderHistory INNER JOIN ItemOrder ON CustomerOrderHistory.OrderID = ItemOrder.OrderID INNER JOIN Customer ON ItemOrder.CustomerID = Customer.CustomerID INNER JOIN LineOrder ON ItemOrder.LineItemID = LineOrder.LineItemID INNER JOIN Product ON LineOrder.ProductID = Product.ProductID INNER JOIN Storefront ON ItemOrder.StoreID = Storefront.StoreID WHERE Customer.UserName = @usnam ORDER BY DateOfOrder";
             using(SqlCommand cmd = new SqlCommand(selectOrHis, connection)){
                 SqlParameter param = new SqlParameter("@usnam", _username);
                 cmd.Parameters.Add(param);
@@ -273,7 +273,35 @@ public class DBRepo : IMRepo{
         }
     }
 
-    public void GetStorefrontOrderHistory(string _storename){
+    public void GetCustomerOrderHistoryCost(string _username){
+        List<Order> ordHistory = new List<Order>();
+        using(SqlConnection connection = new SqlConnection(_connectionString)){
+            connection.Open();
+            string selectOrHis = "SELECT ItemOrder.OrderID, ItemOrder.DateOfOrder, Customer.UserName, Storefront.Name, LineOrder.Quantity*Product.Price AS Total FROM CustomerOrderHistory INNER JOIN ItemOrder ON CustomerOrderHistory.OrderID = ItemOrder.OrderID INNER JOIN Customer ON ItemOrder.CustomerID = Customer.CustomerID INNER JOIN LineOrder ON ItemOrder.LineItemID = LineOrder.LineItemID INNER JOIN Product ON LineOrder.ProductID = Product.ProductID INNER JOIN Storefront ON ItemOrder.StoreID = Storefront.StoreID WHERE Customer.UserName = @usnam ORDER BY Total";
+            using(SqlCommand cmd = new SqlCommand(selectOrHis, connection)){
+                SqlParameter param = new SqlParameter("@usnam", _username);
+                cmd.Parameters.Add(param);
+                cmd.ExecuteNonQuery();
+            }
+            connection.Close();
+        }
+    }
+
+    public void GetStorefrontOrderHistoryDate(string _storename){
+        List<Order> ordHistory = new List<Order>();
+        using(SqlConnection connection = new SqlConnection(_connectionString)){
+            connection.Open();
+            string selectOrHis = "SELECT * ItemOrder WHERE CustomerID = (SELECT Customer.CustomerID FROM Customer WHERE UserName = @usnam) ORDER BY DateOfOrder";
+            using(SqlCommand cmd = new SqlCommand(selectOrHis, connection)){
+                SqlParameter param = new SqlParameter("@usnam", _storename);
+                cmd.Parameters.Add(param);
+                cmd.ExecuteNonQuery();
+            }
+            connection.Close();
+        }
+    }
+
+    public void GetStorefrontOrderHistoryCost(string _storename){
         List<Order> ordHistory = new List<Order>();
         using(SqlConnection connection = new SqlConnection(_connectionString)){
             connection.Open();

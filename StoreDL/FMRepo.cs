@@ -59,6 +59,10 @@ public class FMRepo : IMRepo {
     }
 
     public void DeleteCustomer(string usname){}
-    public void GetCustomerOrderHistory(string _username){}
-    public void GetStorefrontOrderHistory(string _storename){}
+    public void GetCustomerOrderHistoryDate(string _username){}
+
+    public void GetCustomerOrderHistoryCost(string _username){}
+    public void GetStorefrontOrderHistoryDate(string _storename){}
+
+    public void GetStorefrontOrderHistoryCost(string _storename){}
 }
