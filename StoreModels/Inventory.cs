@@ -13,6 +13,7 @@ public class Inventory
     }
 
     public Inventory(DataRow row){
+        this.StoreId = (int) row["InvnetoryID"];
         this.ItemID = (int) row["ProductID"];
         this.Quantity = (int) row["Quantity"];
 
@@ -23,10 +24,11 @@ public class Inventory
 
     public override string ToString()
     {
-        return $"Store ID: {this.StoreId} \nStock: {this.Quantity} \n {this.ItemID}";
+        return $"Inventory ID: {this.StoreId} \nStock: {this.Quantity} \n {this.ItemID}";
     }
 
     public void ToDataRow(ref DataRow row){
+        this.StoreId = (int) row["InventoryID"];
         this.ItemID = (int) row["ProductID"];
         this.Quantity = (int) row["Quantity"];
     }

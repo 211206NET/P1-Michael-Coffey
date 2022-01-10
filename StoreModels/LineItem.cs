@@ -15,6 +15,7 @@ public class LineItem
     }
 
     public LineItem(DataRow row){
+        this.OrderId = (int) row["LineItemID"];
         this.ItemID = (int) row["ProductID"];
         this.Quantity = (int) row["Quantity"];
     }
@@ -24,10 +25,11 @@ public class LineItem
 
     public override string ToString()
     {
-        return $"Order ID: {this.OrderId} \nQuantity: {this.Quantity} \n{this.ItemID}";
+        return $"LineItem ID: {this.OrderId} \nQuantity: {this.Quantity} \n{this.ItemID}";
     }
 
     public void ToDataRow(ref DataRow row){
+        this.OrderId = (int) row["LineItemID"];
         this.ItemID = (int) row["ProductID"];
         this.Quantity = (int) row["Quantity"];
     }
