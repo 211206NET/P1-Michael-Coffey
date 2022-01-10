@@ -278,11 +278,11 @@ public class DBRepo : IMRepo{
         }
     }
 
-    public void GetCustomerOrderHistory(string _username){
+    public void GetStorefrontOrderHistory(string _storename){
         List<Order> ordHistory = new List<Order>();
         using(SqlConnection connection = new SqlConnection(_connectionString)){
             connection.Open();
-            string selectOrHis = "SELECT * FROM CustomerOrderHistory INNER JOIN ItemOrder ON CustomerOrderHistory.OrderID = ItemOrder.OrderID INNER JOIN Customer ON ItemOrder.CustomerID = Customer.CustomerID WHERE Customer.UserName = @usnam";
+            string selectOrHis = "SELECT * FROM StoreOrderHistory INNER JOIN ItemOrder ON StoreOrderHistory.OrderID = ItemOrder.OrderID INNER JOIN Storefront ON ItemOrder.StoreID = Storefront.StoreID WHERE Storefront.Name = @usnam";
             using(SqlCommand cmd = new SqlCommand(selectOrHis, connection)){
                 SqlParameter param = new SqlParameter("@usnam", _username);
                 cmd.Parameters.Add(param);
