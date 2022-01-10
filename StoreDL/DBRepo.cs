@@ -291,7 +291,7 @@ public class DBRepo : IMRepo{
         List<Order> ordHistory = new List<Order>();
         using(SqlConnection connection = new SqlConnection(_connectionString)){
             connection.Open();
-            string selectOrHis = "SELECT * ItemOrder WHERE CustomerID = (SELECT Customer.CustomerID FROM Customer WHERE UserName = @usnam) ORDER BY DateOfOrder";
+            string selectOrHis = "SELECT ItemOrder.OrderID, ItemOrder.DateOfOrder, Customer.UserName, Storefront.Name, LineOrder.Quantity*Product.Price AS Total FROM ItemOrder INNER JOIN Customer ON ItemOrder.CustomerID = Customer.CustomerID INNER JOIN LineOrder ON LineOrder.LineItemID = ItemOrder.LineItemID INNER JOIN Storefront ON ItemOrder.StoreID = Storefront.StoreID INNER JOIN Product ON LineOrder.ProductID = Product.ProductID WHERE CustomerID = Customer.UserName = @usnam ORDER BY DateOfOrder";
             using(SqlCommand cmd = new SqlCommand(selectOrHis, connection)){
                 SqlParameter param = new SqlParameter("@usnam", _storename);
                 cmd.Parameters.Add(param);
@@ -305,7 +305,7 @@ public class DBRepo : IMRepo{
         List<Order> ordHistory = new List<Order>();
         using(SqlConnection connection = new SqlConnection(_connectionString)){
             connection.Open();
-            string selectOrHis = "SELECT * ItemOrder WHERE CustomerID = (SELECT Customer.CustomerID FROM Customer WHERE UserName = @usnam)";
+            string selectOrHis = "SELECT ItemOrder.OrderID, ItemOrder.DateOfOrder, Customer.UserName, Storefront.Name, LineOrder.Quantity*Product.Price AS Total FROM ItemOrder INNER JOIN Customer ON ItemOrder.CustomerID = Customer.CustomerID INNER JOIN LineOrder ON LineOrder.LineItemID = ItemOrder.LineItemID INNER JOIN Storefront ON ItemOrder.StoreID = Storefront.StoreID INNER JOIN Product ON LineOrder.ProductID = Product.ProductID WHERE CustomerID = Customer.UserName = @usnam ORDER BY Total";
             using(SqlCommand cmd = new SqlCommand(selectOrHis, connection)){
                 SqlParameter param = new SqlParameter("@usnam", _storename);
                 cmd.Parameters.Add(param);
