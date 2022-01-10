@@ -269,8 +269,8 @@ public class DBRepo : IMRepo{
         string selectOrHis = $"SELECT ItemOrder.OrderID, ItemOrder.DateOfOrder, Customer.UserName, Storefront.Name, LineOrder.Quantity*Product.Price AS Total, LineOrder.LineItemID FROM CustomerOrderHistory INNER JOIN ItemOrder ON CustomerOrderHistory.OrderID = ItemOrder.OrderID INNER JOIN Customer ON ItemOrder.CustomerID = Customer.CustomerID INNER JOIN LineOrder ON ItemOrder.LineItemID = LineOrder.LineItemID INNER JOIN Product ON LineOrder.ProductID = Product.ProductID INNER JOIN Storefront ON ItemOrder.StoreID = Storefront.StoreID WHERE Customer.UserName = {_username} ORDER BY DateOfOrder DESC";
         DataSet chSet = new DataSet();
         using SqlDataAdapter hisAdapter = new SqlDataAdapter(selectOrHis, connection);
-        hisAdapter.Fill(chSet, "Orders");
-        DataTable? HistoryTable = chSet.Tables["Orders"];
+        hisAdapter.Fill(chSet, "CustomerOrderHistory");
+        DataTable? HistoryTable = chSet.Tables["CustomerOrderHistory"];
         if(HistoryTable != null){
             foreach(DataRow row in HistoryTable.Rows){
                 Order nord = new Order(row);
@@ -286,8 +286,8 @@ public class DBRepo : IMRepo{
         string selectOrHis = $"SELECT ItemOrder.OrderID, ItemOrder.DateOfOrder, Customer.UserName, Storefront.Name, LineOrder.Quantity*Product.Price AS Total, LineOrder.LineItemID FROM CustomerOrderHistory INNER JOIN ItemOrder ON CustomerOrderHistory.OrderID = ItemOrder.OrderID INNER JOIN Customer ON ItemOrder.CustomerID = Customer.CustomerID INNER JOIN LineOrder ON ItemOrder.LineItemID = LineOrder.LineItemID INNER JOIN Product ON LineOrder.ProductID = Product.ProductID INNER JOIN Storefront ON ItemOrder.StoreID = Storefront.StoreID \nWHERE Customer.UserName = {_username} ORDER BY Total DESC";
         DataSet chSet = new DataSet();
         using SqlDataAdapter hisAdapter = new SqlDataAdapter(selectOrHis, connection);
-        hisAdapter.Fill(chSet, "Orders");
-        DataTable? HistoryTable = chSet.Tables["Orders"];
+        hisAdapter.Fill(chSet, "CustomerOrderHistory");
+        DataTable? HistoryTable = chSet.Tables["CustomerOrderHistory"];
         if(HistoryTable != null){
             foreach(DataRow row in HistoryTable.Rows){
                 Order nord = new Order(row);
@@ -303,8 +303,8 @@ public class DBRepo : IMRepo{
         string selectOrHis = $"SELECT ItemOrder.OrderID, ItemOrder.DateOfOrder, Customer.UserName, Storefront.Name, LineOrder.Quantity*Product.Price AS Total, LineOrder.LineItemID FROM ItemOrder INNER JOIN Customer ON ItemOrder.CustomerID = Customer.CustomerID INNER JOIN LineOrder ON LineOrder.LineItemID = ItemOrder.LineItemID INNER JOIN Storefront ON ItemOrder.StoreID = Storefront.StoreID INNER JOIN Product ON LineOrder.ProductID = Product.ProductID \nWHERE Storefront.Name = {_storename} ORDER BY DateOfOrder DESC";
         DataSet chSet = new DataSet();
         using SqlDataAdapter hisAdapter = new SqlDataAdapter(selectOrHis, connection);
-        hisAdapter.Fill(chSet, "Orders");
-        DataTable? HistoryTable = chSet.Tables["Orders"];
+        hisAdapter.Fill(chSet, "ItemOrder");
+        DataTable? HistoryTable = chSet.Tables["ItemOrder"];
         if(HistoryTable != null){
             foreach(DataRow row in HistoryTable.Rows){
                 Order nord = new Order(row);
@@ -320,8 +320,8 @@ public class DBRepo : IMRepo{
         string selectOrHis = $"SELECT ItemOrder.OrderID, ItemOrder.DateOfOrder, Customer.UserName, Storefront.Name, LineOrder.Quantity*Product.Price AS Total, LineOrder.LineItemID FROM ItemOrder INNER JOIN Customer ON ItemOrder.CustomerID = Customer.CustomerID INNER JOIN LineOrder ON LineOrder.LineItemID = ItemOrder.LineItemID INNER JOIN Storefront ON ItemOrder.StoreID = Storefront.StoreID INNER JOIN Product ON LineOrder.ProductID = Product.ProductID \nWHERE Storefront.Name = {_storename} ORDER BY Total DESC";
         DataSet chSet = new DataSet();
         using SqlDataAdapter hisAdapter = new SqlDataAdapter(selectOrHis, connection);
-        hisAdapter.Fill(chSet, "Orders");
-        DataTable? HistoryTable = chSet.Tables["Orders"];
+        hisAdapter.Fill(chSet, "ItemOrder");
+        DataTable? HistoryTable = chSet.Tables["ItemOrder"];
         if(HistoryTable != null){
             foreach(DataRow row in HistoryTable.Rows){
                 Order nord = new Order(row);
