@@ -169,8 +169,6 @@ public class DBRepo : IMRepo{
             string sqlCmd = "INSERT INTO LineOrder (ProductID, Quantity) VALUES (@proID, @quan)";
             string sqlCmd2 = "UPDATE Inventory SET Quantity -= @quan WHERE ProductID = @proID";
             string orderCmd = "INSERT INTO ItemOrder (DateOfOrder, CustomerID, StoreID) VALUES (GETDATE(), @cusID, @stoID)";
-            string cOrderCmd = "";
-            string sOrderCmd = "";
             //string cusSelect = "SELECT * FROM Customer WHERE UserName = @cusNam";
             using(SqlCommand cmd = new SqlCommand(sqlCmd, connection)){
                 // SqlParameter param = new SqlParameter("@linID", idOfLineOrder);
