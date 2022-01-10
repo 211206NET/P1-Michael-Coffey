@@ -74,7 +74,7 @@ public class CustomerMenu : IMenu{
                     // file.WriteAllText(filePath, jsonString2);
                 break;
                 case "2":
-                _bl.GetCustomerOrderHistory(nusername);
+                _bl.GetCustomerOrderHistoryDate(nusername);
                   List<Customer> allStoreCustomers = _bl.GetAllCustomers();
                 //   foreach(Customer cus in allStoreCustomers){
                 //       if(cus.Id == cid){
@@ -89,7 +89,7 @@ public class CustomerMenu : IMenu{
                 break;
                 case "4":
                     _bl.GetCustomerOrderHistoryCost(nusername);
-                    List<CustomerMenu> allStoreCustomers = _bl.GetAllCustomers();
+                    List<Customer> allStoreCustomers = _bl.GetAllCustomers();
                 break;
                 case "x":
                     Console.WriteLine("Have a nice day!");
