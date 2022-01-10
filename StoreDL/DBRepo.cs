@@ -284,7 +284,7 @@ public class DBRepo : IMRepo{
             connection.Open();
             string selectOrHis = "SELECT * FROM StoreOrderHistory INNER JOIN ItemOrder ON StoreOrderHistory.OrderID = ItemOrder.OrderID INNER JOIN Storefront ON ItemOrder.StoreID = Storefront.StoreID WHERE Storefront.Name = @usnam";
             using(SqlCommand cmd = new SqlCommand(selectOrHis, connection)){
-                SqlParameter param = new SqlParameter("@usnam", _username);
+                SqlParameter param = new SqlParameter("@usnam", _storename);
                 cmd.Parameters.Add(param);
                 cmd.ExecuteNonQuery();
             }
