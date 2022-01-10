@@ -168,7 +168,7 @@ public class DBRepo : IMRepo{
             connection.Open();
             string sqlCmd = "INSERT INTO LineOrder (ProductID, Quantity) VALUES (@proID, @quan)";
             string sqlCmd2 = "UPDATE Inventory SET Quantity -= @quan WHERE ProductID = @proID";
-            string orderCmd = "INSERT INTO ItemOrder (DateOfOrder, CustomerID, StoreID) VALUES (GETDATE(), @cusID, @stoID)";
+            string orderCmd = "INSERT INTO ItemOrder (DateOfOrder, CustomerID, StoreID) VALUES (GETDATE(), @cusID, @stoID, (SELECT LineItemID FROM LineOrder WHERE ProductID = @proID AND Quantity = @quan))";
             //string cusSelect = "SELECT * FROM Customer WHERE UserName = @cusNam";
             using(SqlCommand cmd = new SqlCommand(sqlCmd, connection)){
                 // SqlParameter param = new SqlParameter("@linID", idOfLineOrder);
@@ -190,6 +190,10 @@ public class DBRepo : IMRepo{
                 SqlParameter param3 = new SqlParameter("@cusID", cusid);
                 cmd3.Parameters.Add(param3);
                 param3 = new SqlParameter("@stoID", nStore);
+                cmd3.Parameters.Add(param3);
+                param3 = new SqlParameter("@proID", idOfItem);
+                cmd3.Parameters.Add(param3);
+                param3 = new SqlParameter("@quan", numberOfItems);
                 cmd3.Parameters.Add(param3);
                 cmd3.ExecuteNonQuery();
                 // param3 = new SqlParameter("@liorID", idOfLineOrder);
