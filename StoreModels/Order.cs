@@ -24,6 +24,7 @@ public class Order
     }
 
     public Order(DataRow row){
+        this.OrderNumber = (int) row["OrderID"];
         this.OrderDate = (DateOnly) row["DateOfOrder"];
         this.CustomerId = (int) row["CustomerID"];
         this.StoreId = (int) row["StoreID"];
@@ -59,6 +60,7 @@ public class Order
     }
 
     public void ToDataRow(ref DataRow row){
+        this.OrderNumber = (int) row["OrderID"];
         this.OrderDate = (DateOnly) row["DateOfOrder"];
         this.CustomerId = (int) row["CustomerID"];
         this.StoreId = (int) row["StoreID"];
