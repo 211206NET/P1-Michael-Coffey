@@ -188,6 +188,7 @@ public class DBRepo : IMRepo{
             }
             using(SqlCommand cmd3 = new SqlCommand(orderCmd, connection)){
                 SqlParameter param3 = new SqlParameter("@cusID", cusid);
+                cmd3.Parameters.Add(param3);
                 param3 = new SqlParameter("@stoID", nStore);
                 cmd3.Parameters.Add(param3);
                 cmd3.ExecuteNonQuery();
