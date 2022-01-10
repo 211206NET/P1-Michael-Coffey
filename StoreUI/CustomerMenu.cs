@@ -80,7 +80,7 @@ public class CustomerMenu : IMenu{
                 }
                 else{
                     foreach(Order ord in ordHis){
-                        Console.WriteLine(ord.ToSring());
+                        Console.WriteLine(ord.ToString());
                     }
                 }
                 break;
@@ -96,7 +96,7 @@ public class CustomerMenu : IMenu{
                 }
                 else{
                     foreach(Order ord in ordHis2){
-                        Console.WriteLine(ord.ToSring());
+                        Console.WriteLine(ord.ToString());
                     }
                 }
                 break;
