@@ -89,7 +89,7 @@ public class CustomerMenu : IMenu{
                 break;
                 case "4":
                     _bl.GetCustomerOrderHistoryCost(nusername);
-                    List<Customer> allStoreCustomers = _bl.GetAllCustomers();
+                    List<Customer> allStoreCustomers2 = _bl.GetAllCustomers();
                 break;
                 case "x":
                     Console.WriteLine("Have a nice day!");
