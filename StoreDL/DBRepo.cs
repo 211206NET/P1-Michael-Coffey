@@ -280,7 +280,7 @@ public class DBRepo : IMRepo{
         return ordHistory;
     }
 
-    public void GetCustomerOrderHistoryCost(string _username){
+    public List<Order> GetCustomerOrderHistoryCost(string _username){
         List<Order> ordHistory = new List<Order>();
         using SqlConnection connection = new SqlConnection(_connectionString);
         string selectOrHis = "SELECT ItemOrder.OrderID, ItemOrder.DateOfOrder, Customer.UserName, Storefront.Name, LineOrder.Quantity*Product.Price, LineOrder.LineItemID AS Total FROM CustomerOrderHistory INNER JOIN ItemOrder ON CustomerOrderHistory.OrderID = ItemOrder.OrderID INNER JOIN Customer ON ItemOrder.CustomerID = Customer.CustomerID INNER JOIN LineOrder ON ItemOrder.LineItemID = LineOrder.LineItemID INNER JOIN Product ON LineOrder.ProductID = Product.ProductID INNER JOIN Storefront ON ItemOrder.StoreID = Storefront.StoreID WHERE Customer.UserName = " + _username +  " ORDER BY Total DESC";
@@ -297,7 +297,7 @@ public class DBRepo : IMRepo{
         return ordHistory;
     }
 
-    public void GetStorefrontOrderHistoryDate(string _storename){
+    public List<Order> GetStorefrontOrderHistoryDate(string _storename){
         List<Order> ordHistory = new List<Order>();
         using SqlConnection connection = new SqlConnection(_connectionString);
         string selectOrHis = "SELECT ItemOrder.OrderID, ItemOrder.DateOfOrder, Customer.UserName, Storefront.Name, LineOrder.Quantity*Product.Price AS Total FROM ItemOrder INNER JOIN Customer ON ItemOrder.CustomerID = Customer.CustomerID INNER JOIN LineOrder ON LineOrder.LineItemID = ItemOrder.LineItemID INNER JOIN Storefront ON ItemOrder.StoreID = Storefront.StoreID INNER JOIN Product ON LineOrder.ProductID = Product.ProductID WHERE CustomerID = Customer.UserName = " + _username +  " ORDER BY DateOfOrder DESC";
@@ -314,7 +314,7 @@ public class DBRepo : IMRepo{
         return ordHistory;
     }
 
-    public void GetStorefrontOrderHistoryCost(string _storename){
+    public List<Order> GetStorefrontOrderHistoryCost(string _storename){
         List<Order> ordHistory = new List<Order>();
         using(SqlConnection connection = new SqlConnection(_connectionString)){
             connection.Open();
