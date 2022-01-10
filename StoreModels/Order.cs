@@ -14,7 +14,7 @@ public class Order
 
     public Order(){}
 
-    public Order(string customerid, int ordernumber, string storeid, int lineitemid){
+    public Order(int customerid, int ordernumber, int storeid, int lineitemid){
         this.OrderDate = new DateOnly();
         this.CustomerId = customerid;
         this.OrderNumber = ordernumber;
