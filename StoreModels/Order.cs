@@ -55,7 +55,7 @@ public class Order
 
     public override string ToString()
     {
-        return $"Date: {this.OrderDate} \nCustomer ID: {this.CustomerId} \nOrder ID: {this.OrderNumber} \n Store ID: {this.StoreId}";
+        return $"Date: {this.OrderDate} \nCustomer ID: {this.CustomerId} \nOrder ID: {this.OrderNumber} \nStore ID: {this.StoreId} \n Total Cost: {this.Total}";
     }
 
     public void ToDataRow(ref DataRow row){
