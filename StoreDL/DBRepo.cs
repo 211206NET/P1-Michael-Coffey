@@ -263,46 +263,55 @@ public class DBRepo : IMRepo{
         }
     }
 
-    public void GetCustomerOrderHistoryDate(string _username){
+    public List<Order> GetCustomerOrderHistoryDate(string _username){
         List<Order> ordHistory = new List<Order>();
-        using(SqlConnection connection = new SqlConnection(_connectionString)){
-            connection.Open();
-            string selectOrHis = "SELECT ItemOrder.OrderID, ItemOrder.DateOfOrder, Customer.UserName, Storefront.Name, LineOrder.Quantity*Product.Price AS Total FROM CustomerOrderHistory INNER JOIN ItemOrder ON CustomerOrderHistory.OrderID = ItemOrder.OrderID INNER JOIN Customer ON ItemOrder.CustomerID = Customer.CustomerID INNER JOIN LineOrder ON ItemOrder.LineItemID = LineOrder.LineItemID INNER JOIN Product ON LineOrder.ProductID = Product.ProductID INNER JOIN Storefront ON ItemOrder.StoreID = Storefront.StoreID WHERE Customer.UserName = " + _username +  " ORDER BY DateOfOrder DESC";
-            using(SqlCommand cmd = new SqlCommand(selectOrHis, connection)){
-                SqlParameter param = new SqlParameter("@usnam", _username);
-                cmd.Parameters.Add(param);
-                cmd.ExecuteNonQuery();
+        using SqlConnection connection = new SqlConnection(_connectionString);
+        string selectOrHis = "SELECT ItemOrder.OrderID, ItemOrder.DateOfOrder, Customer.UserName, Storefront.Name, LineOrder.Quantity*Product.Price, LineOrder.LineItemID AS Total FROM CustomerOrderHistory INNER JOIN ItemOrder ON CustomerOrderHistory.OrderID = ItemOrder.OrderID INNER JOIN Customer ON ItemOrder.CustomerID = Customer.CustomerID INNER JOIN LineOrder ON ItemOrder.LineItemID = LineOrder.LineItemID INNER JOIN Product ON LineOrder.ProductID = Product.ProductID INNER JOIN Storefront ON ItemOrder.StoreID = Storefront.StoreID WHERE Customer.UserName = " + _username +  " ORDER BY DateOfOrder DESC";
+        DataSet chSet = new DataSet();
+        using SqlDataAdapter hisAdapter = new SqlDataAdapter(selectOrHis, connection);
+        hisAdapter.Fill(chSet, "Orders");
+        DataTable? HistoryTable = chSet.Tables["Orders"];
+        if(HistoryTable != null){
+            foreach(DataRow row in HistoryTable.Rows){
+                PlaceAnOrder nord = new PlaceAnOrder(row);
+                ordHistory.Add(nord);
             }
-            connection.Close();
         }
+        return ordHistory;
     }
 
     public void GetCustomerOrderHistoryCost(string _username){
         List<Order> ordHistory = new List<Order>();
-        using(SqlConnection connection = new SqlConnection(_connectionString)){
-            connection.Open();
-            string selectOrHis = "SELECT ItemOrder.OrderID, ItemOrder.DateOfOrder, Customer.UserName, Storefront.Name, LineOrder.Quantity*Product.Price AS Total FROM CustomerOrderHistory INNER JOIN ItemOrder ON CustomerOrderHistory.OrderID = ItemOrder.OrderID INNER JOIN Customer ON ItemOrder.CustomerID = Customer.CustomerID INNER JOIN LineOrder ON ItemOrder.LineItemID = LineOrder.LineItemID INNER JOIN Product ON LineOrder.ProductID = Product.ProductID INNER JOIN Storefront ON ItemOrder.StoreID = Storefront.StoreID WHERE Customer.UserName = " + _username + " ORDER BY Total DESC";
-            using(SqlCommand cmd = new SqlCommand(selectOrHis, connection)){
-                SqlParameter param = new SqlParameter("@usnam", _username);
-                cmd.Parameters.Add(param);
-                cmd.ExecuteNonQuery();
+        using SqlConnection connection = new SqlConnection(_connectionString);
+        string selectOrHis = "SELECT ItemOrder.OrderID, ItemOrder.DateOfOrder, Customer.UserName, Storefront.Name, LineOrder.Quantity*Product.Price, LineOrder.LineItemID AS Total FROM CustomerOrderHistory INNER JOIN ItemOrder ON CustomerOrderHistory.OrderID = ItemOrder.OrderID INNER JOIN Customer ON ItemOrder.CustomerID = Customer.CustomerID INNER JOIN LineOrder ON ItemOrder.LineItemID = LineOrder.LineItemID INNER JOIN Product ON LineOrder.ProductID = Product.ProductID INNER JOIN Storefront ON ItemOrder.StoreID = Storefront.StoreID WHERE Customer.UserName = " + _username +  " ORDER BY Total DESC";
+        DataSet chSet = new DataSet();
+        using SqlDataAdapter hisAdapter = new SqlDataAdapter(selectOrHis, connection);
+        hisAdapter.Fill(chSet, "Orders");
+        DataTable? HistoryTable = chSet.Tables["Orders"];
+        if(HistoryTable != null){
+            foreach(DataRow row in HistoryTable.Rows){
+                PlaceAnOrder nord = new PlaceAnOrder(row);
+                ordHistory.Add(nord);
             }
-            connection.Close();
         }
+        return ordHistory;
     }
 
     public void GetStorefrontOrderHistoryDate(string _storename){
         List<Order> ordHistory = new List<Order>();
-        using(SqlConnection connection = new SqlConnection(_connectionString)){
-            connection.Open();
-            string selectOrHis = "SELECT ItemOrder.OrderID, ItemOrder.DateOfOrder, Customer.UserName, Storefront.Name, LineOrder.Quantity*Product.Price AS Total FROM ItemOrder INNER JOIN Customer ON ItemOrder.CustomerID = Customer.CustomerID INNER JOIN LineOrder ON LineOrder.LineItemID = ItemOrder.LineItemID INNER JOIN Storefront ON ItemOrder.StoreID = Storefront.StoreID INNER JOIN Product ON LineOrder.ProductID = Product.ProductID WHERE CustomerID = Customer.UserName = " + _username + " ORDER BY DateOfOrder DESC";
-            using(SqlCommand cmd = new SqlCommand(selectOrHis, connection)){
-                SqlParameter param = new SqlParameter("@usnam", _storename);
-                cmd.Parameters.Add(param);
-                cmd.ExecuteNonQuery();
+        using SqlConnection connection = new SqlConnection(_connectionString);
+        string selectOrHis = "SELECT ItemOrder.OrderID, ItemOrder.DateOfOrder, Customer.UserName, Storefront.Name, LineOrder.Quantity*Product.Price AS Total FROM ItemOrder INNER JOIN Customer ON ItemOrder.CustomerID = Customer.CustomerID INNER JOIN LineOrder ON LineOrder.LineItemID = ItemOrder.LineItemID INNER JOIN Storefront ON ItemOrder.StoreID = Storefront.StoreID INNER JOIN Product ON LineOrder.ProductID = Product.ProductID WHERE CustomerID = Customer.UserName = " + _username +  " ORDER BY DateOfOrder DESC";
+        DataSet chSet = new DataSet();
+        using SqlDataAdapter hisAdapter = new SqlDataAdapter(selectOrHis, connection);
+        hisAdapter.Fill(chSet, "Orders");
+        DataTable? HistoryTable = chSet.Tables["Orders"];
+        if(HistoryTable != null){
+            foreach(DataRow row in HistoryTable.Rows){
+                PlaceAnOrder nord = new PlaceAnOrder(row);
+                ordHistory.Add(nord);
             }
-            connection.Close();
         }
+        return ordHistory;
     }
 
     public void GetStorefrontOrderHistoryCost(string _storename){
