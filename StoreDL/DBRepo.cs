@@ -263,7 +263,7 @@ public class DBRepo : IMRepo{
         List<Order> ordHistory = new List<Order>();
         using(SqlConnection connection = new SqlConnection(_connectionString)){
             connection.Open();
-            string selectOrHis = "SELECT * FROM CustomerOrderHistory INNER JOIN ItemOrder ON CustomerOrderHistory.OrderID = ItemOrder.OrderID INNER JOIN Customer ON ItemOrder.CustomerID = Customer.CustomerID WHERE Customer.UserName = @usnam";
+            string selectOrHis = "SELECT ItemOrder.OrderID, ItemOrder.DateOfOrder, Customer.UserName, Storefront.Name, LineOrder.Quantity*Product.Price AS Total FROM CustomerOrderHistory INNER JOIN ItemOrder ON CustomerOrderHistory.OrderID = ItemOrder.OrderID INNER JOIN Customer ON ItemOrder.CustomerID = Customer.CustomerID INNER JOIN LineOrder ON ItemOrder.LineItemID = LineOrder.LineItemID INNER JOIN Product ON LineOrder.ProductID = Product.ProductID INNER JOIN Storefront ON ItemOrder.StoreID = Storefront.StoreID WHERE Customer.UserName = @usnam";
             using(SqlCommand cmd = new SqlCommand(selectOrHis, connection)){
                 SqlParameter param = new SqlParameter("@usnam", _username);
                 cmd.Parameters.Add(param);
