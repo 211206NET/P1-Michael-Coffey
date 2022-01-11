@@ -2,6 +2,7 @@ namespace DL;
 
 using Microsoft.Data.SqlClient;
 using System.Data;
+using CustomExceptions;
 
 public class DBRepo : IMRepo{ 
 
