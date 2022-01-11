@@ -271,6 +271,7 @@ public class DBRepo : IMRepo{
         using SqlDataAdapter hisAdapter = new SqlDataAdapter(selectOrHis, connection);
         hisAdapter.Fill(chSet, "ItemOrder");
         DataTable? HistoryTable = chSet.Tables["ItemOrder"];
+        if(HistoryTable != null){
             foreach(DataRow row in HistoryTable.Rows){
                 Order nord = new Order(row);
                 ordHistory.Add(nord);
