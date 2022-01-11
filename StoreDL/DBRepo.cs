@@ -295,9 +295,9 @@ public class DBRepo : IMRepo{
         hisAdapter.Fill(chSet, "ItemOrder");
         DataTable? HistoryTable = chSet.Tables["ItemOrder"];
         DataTable? CustomerTable = chSet.Tables["Customer"];
-        DataTable? StorefrontTable = chSet.Table["Storefront"];
-        DataTable? LineOrderTable = chSet.Table["LineOrder"];
-        DataTable? ProductTable = chSet.Table["Product"];
+        DataTable? StorefrontTable = chSet.Tables["Storefront"];
+        DataTable? LineOrderTable = chSet.Tables["LineOrder"];
+        DataTable? ProductTable = chSet.Tables["Product"];
         if(HistoryTable != null){
             foreach(DataRow row in HistoryTable.Rows){
                 Order nord = new Order();
