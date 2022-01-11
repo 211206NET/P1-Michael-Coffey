@@ -45,6 +45,10 @@ public class ManagerMenu : IMenu{
                         Console.WriteLine("Here are the stores");
                         foreach(Storefront sto in _bl.GetAllStorefronts()){
                             Console.WriteLine(sto.ToString());
+                            List<Order> ordHis = _bl.GetStorefrontOrderHistoryDate(sto.ID);
+                            foreach(Order ord in ordHis){
+                                Console.WriteLine(ord.ToString());
+                            }
                             //sto.printInventories();
                             //sto.printOrders();
                         }
@@ -59,6 +63,10 @@ public class ManagerMenu : IMenu{
                         Console.WriteLine("Current Customers");
                         foreach(Customer cus in _bl.GetAllCustomers()){
                             Console.WriteLine(cus.ToString());
+                            List<Order> hisOfOrd = _bl.GetCustomerOrderHistoryDate(cus.id);
+                            foreach(Order nord in hisOfOrd){
+                                Console.WriteLine(nord.ToString());
+                            }
                             //cus.printOrderHistory();
                         }
                     }
