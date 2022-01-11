@@ -18,7 +18,7 @@ public class MBL{
     }
 
     public void AddStorefront(string _name, string _address, int _inventory){
-        if(!_fdl.IsStorefrontDuplicate(new Storefront(_name, _address, _inventory))){ 
+        if(!_fdl.IsStorefrontDuplicate(new Storefront(_address, _name, _inventory))){ 
             _fdl.AddStorefront(_name, _address, _inventory);
         }
         else throw new DuplicateException("This store already exists");
