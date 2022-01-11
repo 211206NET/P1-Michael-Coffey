@@ -108,6 +108,7 @@ public class DBRepo : IMRepo{
     }
 
     public void AddStorefront(string _name, string _address, int _inventoryid){
+        createStorefront:
         using(SqlConnection connection = new SqlConnection(_connectionString)){
             connection.Open();
             string cmdForSql = "INSERT INTO Storefront (Name, Address, InventoryID) VALUES (@nam, @addr, @invid)";
@@ -127,6 +128,17 @@ public class DBRepo : IMRepo{
                 cmd.ExecuteNonQuery();
             }
             connection.Close();
+        }
+        try{
+            Storefront nStorefront = new Storefront(_address, _name, _inventoryid);
+        }
+        catch(InputInvalidException ex){
+            Console.WriteLine(ex.Message);
+            goto createStorefront;
+        }
+        catch(DuplicateException ex){
+            Console.WriteLine(ex.Message);
+            goto createStorefront;
         }
     }
 
@@ -203,6 +215,7 @@ public class DBRepo : IMRepo{
         }
     }
     public void AddCustomer(string _username, string _email, string _password){
+        createCustomer:
         using(SqlConnection connection = new SqlConnection(_connectionString)){
             connection.Open();
             string cmdSql = "INSERT INTO Customer (UserName, Email, Password) VALUES (@usna, @emai, @paswor)";
@@ -222,6 +235,17 @@ public class DBRepo : IMRepo{
                 cmd.ExecuteNonQuery();
             }
             connection.Close();
+        }
+        try{
+            Customer nCustomer = new Customer(_username, _password, _email);
+        }
+        catch(InputInvalidException ex){
+            Console.WriteLine(ex.Message);
+            goto createCustomer;
+        }
+        catch(DuplicateException ex){
+            Console.WriteLine(ex.Message);
+            goto createCustomer;
         }
     }
 
