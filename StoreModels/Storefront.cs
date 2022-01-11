@@ -12,6 +12,12 @@ public class Storefront
 
     public Storefront(){}
 
+    public Storefront(string address, string name, int inventoryid){
+        this.Address = address;
+        this.Name = name;
+        this.InventoryID = inventoryid;
+    }
+
     public Storefront(string address, string name, int inventoryid, int orderid){
         this.Address = address;
         this.Name = name;

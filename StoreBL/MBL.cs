@@ -1,5 +1,7 @@
 namespace BL;
 
+using CustomExceptions;
+
 public class MBL{
     private IMRepo _fdl;
 
@@ -16,7 +18,10 @@ public class MBL{
     }
 
     public void AddStorefront(string _name, string _address, int _inventory){
-        _fdl.AddStorefront(_name, _address, _inventory);
+        if(!_fdl.IsStorefrontDuplicate(new Storefront(_name, _address, _inventory))){ 
+            _fdl.AddStorefront(_name, _address, _inventory);
+        }
+        else throw new DuplicateException("This store already exists");
     }
 
     public void AddInventory(int idOfItem, int amount){
@@ -32,7 +37,10 @@ public class MBL{
     }
 
     public void AddCustomer(string _username, string _email, string _password){
-        _fdl.AddCustomer(_username, _email, _password);
+        if(!_fdl.IsCustomerDuplicate(new Customer(_username, _email, _password))){
+            _fdl.AddCustomer(_username, _email, _password);
+        }
+        else throw new DuplicateException("This customer already has an account!");
     }
 
     public void AddProduct(int _ID, string _name, decimal _price, int _year, int _director, int _rating){
