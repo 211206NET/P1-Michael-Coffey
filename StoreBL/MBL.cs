@@ -37,7 +37,7 @@ public class MBL{
     }
 
     public void AddCustomer(string _username, string _email, string _password){
-        if(!_fdl.IsCustomerDuplicate(new Customer(_username, _email, _password))){
+        if(!_fdl.IsCustomerDuplicate(new Customer(_username, _password, _email))){
             _fdl.AddCustomer(_username, _email, _password);
         }
         else throw new DuplicateException("This customer already has an account!");

@@ -11,6 +11,12 @@ public class Customer
 
     public Customer(){}
 
+    public Customer(string username, string password, string email){
+        this.UserName = username;
+        this.Password = password;
+        this.Email = email;
+    }
+
     public Customer(int id, string username, string password, string email, int orders){
         this.Id = id;
         this.UserName = username;
