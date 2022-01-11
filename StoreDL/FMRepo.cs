@@ -73,4 +73,10 @@ public class FMRepo : IMRepo {
     public List<Order> GetStorefrontOrderHistoryCost(int _storeid){
         return new List<Order>();
     }
+    public bool IsStorefrontDuplicate(Storefront sto){
+        return false;
+    }
+    public bool IsCustomerDuplicate(Customer cus){
+        return false;
+    }
 }

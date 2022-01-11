@@ -59,6 +59,13 @@ public class MBL{
         return _fdl.GetStorefrontOrderHistoryCost(_storeid);
     }
 
+    public bool IsStorefrontDuplicate(Storefront storefront){
+        return _fdl.IsStorefrontDuplicate(storefront);
+    }
+    public bool IsCustomerDuplicate(Customer cus){
+        return _fdl.IsCustomerDuplicate(cus);
+    }
+
     // public List<Storefront> SearchStorefronts(string searchItem){
     //     _fdl.SearchStorefronts(searchItem);
     // }

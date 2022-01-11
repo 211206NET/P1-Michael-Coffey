@@ -20,4 +20,6 @@ public interface IMRepo{
     List<Order> GetCustomerOrderHistoryCost(int _userid);
     List<Order> GetStorefrontOrderHistoryDate(int _storeid);
     List<Order> GetStorefrontOrderHistoryCost(int _storeid);
+    bool IsStorefrontDuplicate(Storefront newStorefront);
+    bool IsCustomerDuplicate(Customer newCustomer);
 }
