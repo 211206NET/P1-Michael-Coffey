@@ -273,7 +273,13 @@ public class DBRepo : IMRepo{
         DataTable? HistoryTable = chSet.Tables["ItemOrder"];
         if(HistoryTable != null){
             foreach(DataRow row in HistoryTable.Rows){
-                Order nord = new Order(row);
+                Order nord = new Order();
+                nord.OrderNumber = (int) row["OrderID"];
+                nord.OrderDate = (DateOnly) row["DateOfOrder"];
+                nord.CustomerName = (string) row["UserName"];
+                nord.StoreName = (string) row["Name"];
+                nord.Total = (decimal) row["Total"];
+                nord.LineItemID = (int) row["LineItemID"];
                 ordHistory.Add(nord);
             }
         }
@@ -294,7 +300,13 @@ public class DBRepo : IMRepo{
         DataTable? ProductTable = chSet.Table["Product"];
         if(HistoryTable != null){
             foreach(DataRow row in HistoryTable.Rows){
-                Order nord = new Order(row);
+                Order nord = new Order();
+                nord.OrderNumber = (int) row["OrderID"];
+                nord.OrderDate = (DateOnly) row["DateOfOrder"];
+                nord.CustomerName = (string) row["UserName"];
+                nord.StoreName = (string) row["Name"];
+                nord.Total = (decimal) row["Total"];
+                nord.LineItemID = (int) row["LineItemID"];
                 ordHistory.Add(nord);
             }
         }
@@ -311,7 +323,13 @@ public class DBRepo : IMRepo{
         DataTable? HistoryTable = chSet.Tables["ItemOrder"];
         if(HistoryTable != null){
             foreach(DataRow row in HistoryTable.Rows){
-                Order nord = new Order(row);
+                Order nord = new Order();
+                nord.OrderNumber = (int) row["OrderID"];
+                nord.OrderDate = (DateOnly) row["DateOfOrder"];
+                nord.CustomerName = (string) row["UserName"];
+                nord.StoreName = (string) row["Name"];
+                nord.Total = (decimal) row["Total"];
+                nord.LineItemID = (int) row["LineItemID"];
                 ordHistory.Add(nord);
             }
         }
@@ -328,7 +346,13 @@ public class DBRepo : IMRepo{
         DataTable? HistoryTable = chSet.Tables["ItemOrder"];
         if(HistoryTable != null){
             foreach(DataRow row in HistoryTable.Rows){
-                Order nord = new Order(row);
+                Order nord = new Order();
+                nord.OrderNumber = (int) row["OrderID"];
+                nord.OrderDate = (DateOnly) row["DateOfOrder"];
+                nord.CustomerName = (string) row["UserName"];
+                nord.StoreName = (string) row["Name"];
+                nord.Total = (decimal) row["Total"];
+                nord.LineItemID = (int) row["LineItemID"];
                 ordHistory.Add(nord);
             }
         }
