@@ -86,7 +86,7 @@ public class ModelTests{
         int orderdate = new DateTime();
         int customerid = 12;
         int storeid = 9;
-        int total = 0.0;
+        decimal total = 0.0;
         int lineitemid = 11;
         testOrder.OrderNumber = orderid;
         testOrder.OrderDate = orderdate;
@@ -165,5 +165,74 @@ public class ModelTests{
     public void StorefrontShouldNotSetInvalidName(string input){
         Storefront testStorefront = new Storefront();
         Assert.Throws<InputInvalidException>(() => testStorefront.Name = input);
+    }
+    [Fact]
+    public void CustomerShouldHaveCustomToStringMethod(){
+        Customer testCustomer = new Customer{
+            ID = 13,
+            UserName = "MKats",
+            Password = "pen2Kaji",
+            Email = "misato_katsuragi@wille.com"
+        };
+        string expectedOutput = "ID: 13 \nUsername: MKats \nPassword: pen2Kaji \nEmail: misato_katsuragi@wille.com";
+        Assert.Equal(expectedOutput, testCustomer.ToString());
+    }
+    [Fact]
+    public void InventoryShouldHaveCustomToStringMethod(){
+        Inventory testInventory = new Inventory{
+            StoreID = 10,
+            ItemID = 10,
+            Quantity = 15
+        };
+        string expectedOutput = "InventoryID: 10 \nStock: 15 \n10";
+        Assert.Equal(expectedOutput, testInventory.ToString());
+    }
+    [Fact]
+    public void LineItemShouldHaveCustomToStringMethod(){
+        LineItem testLineItem = new LineItem{
+            ItemID = 7,
+            OrderId = 12,
+            Quantity = 3
+
+        };
+        string expectedOutput = "LineItemID: 12 \nQuantity: 3 \n7";
+        Assert.Equal(expectedOutput, testLineItem.ToString());
+    }
+    [Fact]
+    public void OrderShouldHaveCustomToStringMethod(){
+        Order testOrder = new Order{
+            OrderNumber = 10,
+            OrderDate = new DateTime(),
+            CustomerId = 13,
+            StoreID = 10,
+            Total = 0.0,
+            LineItemID = 12
+        };
+        string expectedOutput = $"Date: {new DateTime()} \nCustomer: 13 \nOrder ID: 10 \nStore: 10 \nTotal Cost: 0";
+        Assert.Equal(expectedOutput, testOrder.ToString());
+    }
+    [Fact]
+    public void ProductShouldHaveCustomToStringMethod(){
+        Product testProduct = new Product{
+            ProductName = "The Matrix Resurrections",
+            DirectorID = 59,
+            MPARatingID = 4,
+            ReleaseYearID = 1,
+            Price = 19.99
+        };
+        string expectedOutput = "Title: The Matrix Resurrections \nDir.: 59 \nRating: 4 \nYear: 1 \nCost: 20";
+        Assert.Equal(expectedOutput, testProduct.ToString());
+    }
+    [Fact]
+    public void StorefrontShouldHaveCustomToStringMethod(){
+        Storefront testStorefront = new Storefront{
+            ID = 9,
+            Address = "6360 Sunset Blvd., Los Angeles, CA",
+            Name = "The Dome Entertainment Centre",
+            InventoryID = 10,
+            OrderID = 9
+        };
+        string expectedOutput = "Name: The Dome Entertainment Centre \nAddress: 6360 Sunset Blvd., Los Angeles, CA";
+        Assert.Equal(expectedOutput, testStorefront.ToString());
     }
 }
