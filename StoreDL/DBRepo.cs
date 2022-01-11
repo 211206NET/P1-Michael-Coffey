@@ -335,6 +335,30 @@ public class DBRepo : IMRepo{
         return ordHistory;
     }
 
+    public bool IsStorefrontDuplicate(Storefront storefront){
+        string searchQuery = $"SELECT * FROM Storefront WHERE Name={storefront.Name} AND Address={storefront.Address}";
+        using SqlConnection connection = new SqlConnection(_connectionString);
+        using SqlCommand cmd = new SqlCommand(searchQuery, connection);
+        connection.Open();
+        using SqlDataReader reader = cmd.ExecuteReader();
+        if(reader.HasRows){
+            return true;
+        }
+        return false;
+    }
+
+    public bool IsCustomerDuplicate(Customer customer){
+        string searchQuery = $"SELECT * FROM Customer WHERE Username={customer.UserName} AND Email = {customer.Email}";
+        using SqlConnection connection = new SqlConnection(_connectionString);
+        using SqlCommand cmd = new SqlCommand(searchQuery, connection);
+        connection.Open();
+        using SqlDataReader reader = cmd.ExecuteReader();
+        if(reader.HasRows){
+            return true;
+        }
+        return false;
+    }
+
     // public List<Storefront> SearchStorefronts(string searchItem){
     //     string searchStatement = $"SELECT * FROM Storefront WHERE Name LIKE '%{searchItem}%' OR Address LIKE '%{searchItem}%'";
     //     using SqlConnection connection = new SqlConnection(_connectionString);
