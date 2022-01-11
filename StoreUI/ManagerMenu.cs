@@ -63,7 +63,7 @@ public class ManagerMenu : IMenu{
                         Console.WriteLine("Current Customers");
                         foreach(Customer cus in _bl.GetAllCustomers()){
                             Console.WriteLine(cus.ToString());
-                            List<Order> hisOfOrd = _bl.GetCustomerOrderHistoryDate(cus.id);
+                            List<Order> hisOfOrd = _bl.GetCustomerOrderHistoryDate(cus.Id);
                             foreach(Order nord in hisOfOrd){
                                 Console.WriteLine(nord.ToString());
                             }
