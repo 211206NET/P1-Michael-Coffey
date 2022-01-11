@@ -16,7 +16,7 @@ public class Order
 
     public Order(int ordernumber, int customerid, int storeid, int lineitemid){
         this.OrderNumber = ordernumber;
-        this.OrderDate = new DateOnly();
+        this.OrderDate = new DateTime();
         this.CustomerId = customerid;
         this.StoreID = storeid;
         this.LineItemID = lineitemid;
@@ -25,7 +25,7 @@ public class Order
 
     public Order(DataRow row){
         this.OrderNumber = (int) row["OrderID"];
-        this.OrderDate = (DateOnly) row["DateOfOrder"];
+        this.OrderDate = (DateTime) row["DateOfOrder"];
         this.CustomerId = (int) row["CustomerID"];
         this.StoreID = (int) row["StoreID"];
         this.Total = (decimal) row["Total"];
@@ -61,7 +61,7 @@ public class Order
 
     public void ToDataRow(ref DataRow row){
         this.OrderNumber = (int) row["OrderID"];
-        this.OrderDate = (DateOnly) row["DateOfOrder"];
+        this.OrderDate = (DateTime) row["DateOfOrder"];
         this.CustomerId = (int) row["CustomerID"];
         this.StoreID= (int) row["StoreID"];
         this.Total = (decimal) row["Total"];
