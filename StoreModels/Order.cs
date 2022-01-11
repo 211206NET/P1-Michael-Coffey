@@ -6,19 +6,19 @@ public class Order
 {
     //You can also use DateTime data type for this
     public DateOnly OrderDate { get; set; }
-    public string CustomerName { get; set; }
+    public int CustomerId { get; set; }
     public int OrderNumber { get; set; }
-    public string StoreName { get; set; }
+    public int StoreID { get; set; }
     public int LineItemID { get; set; }
     public decimal Total { get; set; }
 
     public Order(){}
 
-    public Order(int ordernumber, string customerid, string storeid, int lineitemid){
+    public Order(int ordernumber, int customerid, int storeid, int lineitemid){
         this.OrderNumber = ordernumber;
         this.OrderDate = new DateOnly();
-        this.CustomerName = customerid;
-        this.StoreName = storeid;
+        this.CustomerId = customerid;
+        this.StoreID = storeid;
         this.LineItemID = lineitemid;
         //this.CalculateTotal();
     }
@@ -26,8 +26,8 @@ public class Order
     public Order(DataRow row){
         this.OrderNumber = (int) row["OrderID"];
         this.OrderDate = (DateOnly) row["DateOfOrder"];
-        this.CustomerName = (string) row["UserName"];
-        this.StoreName = (string) row["Name"];
+        this.CustomerId = (int) row["CustomerID"];
+        this.StoreID = (int) row["StoreID"];
         this.Total = (decimal) row["Total"];
         this.LineItemID = (int) row["LineItemID"];
 
@@ -56,14 +56,14 @@ public class Order
 
     public override string ToString()
     {
-        return $"Date: {this.OrderDate} \nCustomer UserName: {this.CustomerName} \nOrder ID: {this.OrderNumber} \nStore Name: {this.StoreName} \n Total Cost: {this.Total}";
+        return $"Date: {this.OrderDate} \nCustomer: {this.CustomerId} \nOrder ID: {this.OrderNumber} \nStore: {this.StoreID} \n Total Cost: {this.Total}";
     }
 
     public void ToDataRow(ref DataRow row){
         this.OrderNumber = (int) row["OrderID"];
         this.OrderDate = (DateOnly) row["DateOfOrder"];
-        this.CustomerName = (string) row["UserName"];
-        this.StoreName= (string) row["Name"];
+        this.CustomerId = (int) row["CustomerID"];
+        this.StoreID= (int) row["StoreID"];
         this.Total = (decimal) row["Total"];
         this.LineItemID = (int) row["LineItemID"];
     }
