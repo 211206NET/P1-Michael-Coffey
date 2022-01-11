@@ -266,7 +266,7 @@ public class DBRepo : IMRepo{
     public List<Order> GetCustomerOrderHistoryDate(int _userid){
         List<Order> ordHistory = new List<Order>();
         using SqlConnection connection = new SqlConnection(_connectionString);
-        string selectOrHis = $"SELECT ItemOrder.OrderID, ItemOrder.DateOfOrder, ItemOrder.CustomerID, ItemOrder.StoreID, LineOrder.Quantity*Product.Price AS Total, LineOrder.LineItemID FROM ItemOrder INNER JOIN LineOrder ON ItemOrder.LineItemID = LineOrder.LineItemID INNER JOIN Product LineOrder.ProductID = Product.ProductID WHERE ItemOrder.CustomerID = {_userid} ORDER BY ItemOrder.DateOfOrder DESC";
+        string selectOrHis = $"SELECT ItemOrder.OrderID, ItemOrder.DateOfOrder, ItemOrder.CustomerID, ItemOrder.StoreID, LineOrder.Quantity*Product.Price AS Total, LineOrder.LineItemID FROM ItemOrder INNER JOIN LineOrder ON ItemOrder.LineItemID = LineOrder.LineItemID INNER JOIN Product ON LineOrder.ProductID = Product.ProductID WHERE ItemOrder.CustomerID = {_userid} ORDER BY ItemOrder.DateOfOrder DESC";
         DataSet chSet = new DataSet();
         using SqlDataAdapter hisAdapter = new SqlDataAdapter(selectOrHis, connection);
         hisAdapter.Fill(chSet, "ItemOrder");
