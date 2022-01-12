@@ -51,7 +51,10 @@ public class CustomerMenu : IMenu{
                     List<Customer> allCustomers = _bl.GetAllCustomers();
                     for(int i = 0; i < allStorefronts.Count; i++){
                         Console.WriteLine($"[{i}] {allStorefronts[i].ToString()}");
-                        Console.WriteLine(_bl.GetInventory(allStorefronts[i].ID));
+                        List<Product> allPro =_bl.GetInventory(allStorefronts[i].ID);
+                        foreach(Product nPro in allPro){
+                            Console.WriteLine(nPro.ToString());
+                        }
                     }
                     Console.WriteLine("Select an item's id:");
                     int itemId = Int32.Parse(Console.ReadLine());
