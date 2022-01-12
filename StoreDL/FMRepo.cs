@@ -59,6 +59,10 @@ public class FMRepo : IMRepo {
     }
 
     public void DeleteCustomer(string usname){}
+
+    public List<Product> GetInventory(int _storeid){
+        return new List<Product>();
+    }
     public List<Order> GetCustomerOrderHistoryDate(int _userid){
         return new List<Order>();
     }

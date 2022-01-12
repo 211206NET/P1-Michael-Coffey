@@ -47,8 +47,13 @@ public class ManagerMenu : IMenu{
                             Console.WriteLine(sto.ToString());
                             Console.WriteLine("======Past Orders======");
                             List<Order> ordHis = _bl.GetStorefrontOrderHistoryDate(sto.ID);
+                            List<Product> nInv = _bl.GetInventory(sto.ID);
                             foreach(Order ord in ordHis){
                                 Console.WriteLine(ord.ToString());
+                            }
+                            Console.WriteLine("======Inventory======");
+                            foreach(Product pro in nInv){
+                                Console.WriteLine(pro.ToString());
                             }
                             //sto.printInventories();
                             //sto.printOrders();

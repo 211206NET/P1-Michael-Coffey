@@ -51,6 +51,10 @@ public class MBL{
         _fdl.DeleteCustomer(_username);
     }
 
+    public List<Product> GetInventory(int _storeid){
+        return _fdl.GetInventory(_storeid);
+    }
+
     public List<Order> GetCustomerOrderHistoryDate(int _userid){
         return _fdl.GetCustomerOrderHistoryDate(_userid);
     }

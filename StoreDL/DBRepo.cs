@@ -354,6 +354,28 @@ public class DBRepo : IMRepo{
         }
     }
 
+public List<Product> GetInventory(int _storeid){
+    List<Product> allProducts = new List<Product>();
+    using(SqlConnection connection = new SqlConnection(_connectionString)){
+        connection.Open();
+        string proCmd = $"SELECT Product.Title, Product.Price, Director.DirectorName, ReleaseYear.Year, MPARating.Rating, Inventory.Quantity FROM Inventory INNER JOIN Product ON Inventory.ProductID = Product.ProductID INNER JOIN Director ON Product.DirectorID = Director.DirectorID INNER JOIN ReleaseYear ON Product.YearID = ReleaseYear.YearID INNER JOIN MPARating ON Product.RatingID = MPARating.RatingID WHERE Inventory.InventoryID = (SELECT InventoryID FROM Storefront WHERE StoreID = {_storeid})";
+        using(SqlCommand cmd = new SqlCommand(proCmd, connection)){
+            using(SqlDataReader reader = cmd.ExecuteReader()){
+                while(reader.Read()){
+                    Product nProduct = new Product();
+                    nProduct.ProductName = reader.GetString(0);
+                    nProduct.Price = reader.GetDecimal(1);
+                    nProduct.Director = reader.GetString(2);
+                    nProduct.ReleaseYear = reader.GetInt32(3);
+                    nProduct.MPARating = reader.GetString(4);
+                    nProduct.Quantity = reader.GetInt32(5);
+                }
+            }
+        }
+        connection.Close();
+    }
+    return allProducts;
+}
 ///<summary>
 ///Returns the order history of the customer organized by the date of the order.
 ///</summary>

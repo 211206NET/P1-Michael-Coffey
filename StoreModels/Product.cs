@@ -5,41 +5,42 @@ using System.Data;
 public class Product
 {
     public string ProductName { get; set; }
-    public int DirectorID { get; set; }
+    public string Director { get; set; }
 
-    public int MPARatingID { get; set; }
+    public string MPARating { get; set; }
 
-    public int ReleaseYearID { get; set; }
+    public int ReleaseYear { get; set; }
     public decimal Price { get; set; }
+    public int Quantity { get; set; }
 
     public Product(){}
 
-    public Product(string productname, int directorid, int mparatingid, int releaseyearid, decimal price){
+    public Product(string productname, string directorid, string mparatingid, int releaseyearid, decimal price){
         this.ProductName = productname;
-        this.DirectorID = directorid;
-        this.MPARatingID = mparatingid;
-        this.ReleaseYearID = releaseyearid;
+        this.Director = directorid;
+        this.MPARating = mparatingid;
+        this.ReleaseYear = releaseyearid;
         this.Price = price;
     }
 
     public Product(DataRow row){
         this.ProductName = (string) row["Title"] ?? "";
         this.Price = (decimal) row["Price"];
-        this.ReleaseYearID = (int) row["YearID"];
-        this.DirectorID = (int) row["DirectorID"];
-        this.MPARatingID = (int) row["MPARatingID"];
+        this.ReleaseYear = (int) row["Year"];
+        this.Director = (string) row["DirectorName"];
+        this.MPARating = (string) row["Rating"];
     }
 
     public override string ToString()
     {
-        return $"Title: {this.ProductName} \nDir.: {this.DirectorID} \nRating: {this.MPARatingID} \n Year: {this.ReleaseYearID} \nCost: {this.Price}";
+        return $"Title: {this.ProductName} \nDir.: {this.Director} \nRating: {this.MPARating} \n Year: {this.ReleaseYear} \nCost: {this.Price} \nQuantity: {this.Quantity}";
     }
 
     public void ToDataRow(ref DataRow row){
         this.ProductName = (string) row["Title"] ?? "";
         this.Price = (decimal) row["Price"];
-        this.ReleaseYearID = (int) row["YearID"];
-        this.DirectorID = (int) row["DirectorID"];
-        this.MPARatingID = (int) row["MPARatingID"];
+        this.ReleaseYear = (int) row["Year"];
+        this.Director = (string) row["Director"];
+        this.MPARating = (string) row["MPARatingID"];
     }
 }
