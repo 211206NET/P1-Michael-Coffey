@@ -139,33 +139,6 @@ public class ModelTests{
         Assert.Equal(inventoryid, testStorefront.InventoryID);
         Assert.Equal(orderid, testStorefront.OrderID);
     }
-    [Theory]
-    [InlineData("#$%^@#$%#@")]
-    [InlineData("     ")]
-    [InlineData(null)]
-    [InlineData("")]
-    public void CustomerShouldNotSetInvalidName(string input){
-        Customer testCustomer = new Customer();
-        Assert.Throws<InputInvalidException>(() => testCustomer.UserName = input);
-    }
-    [Theory]
-    [InlineData("#$%^@#$%#@")]
-    [InlineData("     ")]
-    [InlineData(null)]
-    [InlineData("")]
-    public void ProductShouldNotSetInvalidName(string input){
-        Product testProduct = new Product();
-        Assert.Throws<InputInvalidException>(() => testProduct.ProductName = input);
-    }
-    [Theory]
-    [InlineData("#$%^@#$%#@")]
-    [InlineData("     ")]
-    [InlineData(null)]
-    [InlineData("")]
-    public void StorefrontShouldNotSetInvalidName(string input){
-        Storefront testStorefront = new Storefront();
-        Assert.Throws<InputInvalidException>(() => testStorefront.Name = input);
-    }
     [Fact]
     public void CustomerShouldHaveCustomToStringMethod(){
         Customer testCustomer = new Customer{
