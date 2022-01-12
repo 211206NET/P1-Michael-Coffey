@@ -32,7 +32,7 @@ public class Product
         this.ProductName = productname;
         this.DirectorID = directorid;
         this.MPARatingID = mparatingid;
-        this.ReleaseYear = releaseyearid;
+        this.ReleaseYearID = releaseyearid;
         this.Price = price;
     }
 
