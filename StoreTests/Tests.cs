@@ -168,7 +168,7 @@ public class ModelTests{
             Quantity = 3
 
         };
-        string expectedOutput = "LineItemID: 12 \nQuantity: 3 \n7";
+        string expectedOutput = "LineItem ID: 12 \nQuantity: 3 \n7";
         Assert.Equal(expectedOutput, testLineItem.ToString());
     }
     [Fact]
