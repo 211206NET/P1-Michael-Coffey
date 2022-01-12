@@ -354,11 +354,16 @@ public class DBRepo : IMRepo{
         }
     }
 
+///<summary>
+///Returns the inventory of a store.
+///</summary>
+///<param i = "_storeid">ID of the store</param>
+///<returns>The products found in a storefront</returns>
 public List<Product> GetInventory(int _storeid){
     List<Product> allProducts = new List<Product>();
     using(SqlConnection connection = new SqlConnection(_connectionString)){
         connection.Open();
-        string proCmd = $"SELECT Product.Title, Product.Price, Director.DirectorName, ReleaseYear.Year, MPARating.Rating, Inventory.Quantity FROM Inventory INNER JOIN Product ON Inventory.ProductID = Product.ProductID INNER JOIN Director ON Product.DirectorID = Director.DirectorID INNER JOIN ReleaseYear ON Product.YearID = ReleaseYear.YearID INNER JOIN MPARating ON Product.RatingID = MPARating.RatingID WHERE Inventory.InventoryID = (SELECT InventoryID FROM Storefront WHERE StoreID = {_storeid})";
+        string proCmd = $"SELECT Inventory.InventoryID, Product.Title, Product.Price, Director.DirectorName, ReleaseYear.Year, MPARating.Rating, Inventory.Quantity FROM Inventory INNER JOIN Product ON Inventory.ProductID = Product.ProductID INNER JOIN Director ON Product.DirectorID = Director.DirectorID INNER JOIN ReleaseYear ON Product.YearID = ReleaseYear.YearID INNER JOIN MPARating ON Product.RatingID = MPARating.RatingID WHERE Inventory.InventoryID = (SELECT InventoryID FROM Storefront WHERE StoreID = {_storeid})";
         using(SqlCommand cmd = new SqlCommand(proCmd, connection)){
             using(SqlDataReader reader = cmd.ExecuteReader()){
                 while(reader.Read()){
@@ -390,12 +395,13 @@ public List<Product> GetInventory(int _storeid){
                 using(SqlDataReader reader = cmd.ExecuteReader()){
                     while(reader.Read()){
                         Order nOrder = new Order();
-                        nOrder.OrderNumber = reader.GetInt32(0);
-                        nOrder.OrderDate = reader.GetDateTime(1);
-                        nOrder.CustomerName = reader.GetString(2);
-                        nOrder.StoreName = reader.GetString(3);
-                        nOrder.Total = reader.GetDecimal(4);
-                        nOrder.LineItemID = reader.GetInt32(5);
+                        nOrder.InventoryID = reader.GetInt32(0);
+                        nOrder.OrderNumber = reader.GetInt32(1);
+                        nOrder.OrderDate = reader.GetDateTime(2);
+                        nOrder.CustomerName = reader.GetString(3);
+                        nOrder.StoreName = reader.GetString(4);
+                        nOrder.Total = reader.GetDecimal(5);
+                        nOrder.LineItemID = reader.GetInt32(6);
                         ordHistory.Add(nOrder);
                     }
                 }

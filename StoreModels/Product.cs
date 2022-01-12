@@ -15,10 +15,12 @@ public class Product
     public int ReleaseYearID { get; set; }
     public decimal Price { get; set; }
     public int Quantity { get; set; }
+    public int InventoryID { get; set; }
 
     public Product(){}
 
-    public Product(string productname, string directorid, string mparatingid, int releaseyearid, decimal price){
+    public Product(int invenotryid, string productname, string directorid, string mparatingid, int releaseyearid, decimal price){
+        this.InventoryID = invenotryid;
         this.ProductName = productname;
         this.Director = directorid;
         this.MPARating = mparatingid;
@@ -44,7 +46,7 @@ public class Product
 
     public override string ToString()
     {
-        return $"Title: {this.ProductName} \nDir.: {this.Director} \nRating: {this.MPARating} \n Year: {this.ReleaseYear} \nCost: {this.Price} \nQuantity: {this.Quantity}";
+        return $"Inventory ID: {this.InventoryID} \nTitle: {this.ProductName} \nDir.: {this.Director} \nRating: {this.MPARating} \n Year: {this.ReleaseYear} \nCost: {this.Price} \nQuantity: {this.Quantity}";
     }
 
     public void ToDataRow(ref DataRow row){

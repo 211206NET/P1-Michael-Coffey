@@ -214,13 +214,14 @@ public class ModelTests{
     [Fact]
     public void ProductShouldHaveCustomToStringMethod(){
         Product testProduct = new Product{
+            InventoryID = 16,
             ProductName = "The Matrix Resurrections",
-            DirectorID = 59,
-            MPARatingID = 4,
-            ReleaseYearID = 1,
+            DirectorID = "Lana Wachowski",
+            MPARatingID = "R",
+            ReleaseYearID = 2021,
             Price = 19.99
         };
-        string expectedOutput = "Title: The Matrix Resurrections \nDir.: 59 \nRating: 4 \nYear: 1 \nCost: 20";
+        string expectedOutput = "Inventory ID: 16 \nTitle: The Matrix Resurrections \nDir.: Lana Wachowski \nRating: r \nYear: 2021 \nCost: 20";
         Assert.Equal(expectedOutput, testProduct.ToString());
     }
     [Fact]
