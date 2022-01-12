@@ -218,7 +218,7 @@ public class ModelTests{
             ProductName = "The Matrix Resurrections",
             Director = "Lana Wachowski",
             MPARating = "R",
-            ReleaseYearID = 2021,
+            ReleaseYear = 2021,
             Price = 20
         };
         string expectedOutput = "Inventory ID: 16 \nTitle: The Matrix Resurrections \nDir.: Lana Wachowski \nRating: R \nYear: 2021 \nCost: 20";
