@@ -2,7 +2,7 @@
 using Models;
 using Serilog;
 
-long.Logger = new LoggerConfiguration()
+Log.Logger = new LoggerConfiguration()
 .WriteTo.File(@"..\StoreDL\logger.txt")
 .CreateLogger();
 
