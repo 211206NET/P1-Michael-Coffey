@@ -3,6 +3,7 @@ namespace DL;
 using Microsoft.Data.SqlClient;
 using System.Data;
 using CustomExceptions;
+using Seriog;
 
 
 ///<summary>
@@ -167,6 +168,7 @@ public class DBRepo : IMRepo{
             Console.WriteLine(ex.Message);
             goto createStorefront;
         }
+        Log.Information("new storefront added {_name}", _name);
     }
 
 ///<summary>
@@ -212,6 +214,7 @@ public class DBRepo : IMRepo{
             }
             connection.Close();
         }
+        Log.Information("user has added {numberToAdd} to {idOfInventory}", numberToAdd, idOfInventory);
     }
 
     ///<summary>
@@ -260,6 +263,7 @@ public class DBRepo : IMRepo{
             }
             connection.Close();
         }
+        Log.Information("new order placed into the database {cusid} {idOfItem}", cusid, idOfItem);
     }
 
     ///<summary>
@@ -301,6 +305,7 @@ public class DBRepo : IMRepo{
             Console.WriteLine(ex.Message);
             goto createCustomer;
         }
+        Log.Information("new customer added to the database {_username}", _username);
     }
 
 ///<summary>
