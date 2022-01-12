@@ -116,9 +116,9 @@ public class ManagerMenu : IMenu{
                     Console.WriteLine("Enter the film's title");
                     string nTitle = Console.ReadLine();
                     Console.WriteLine("Enter the film's director");
-                    int nDirector = Int32.Parse(Console.ReadLine());
+                    int nDirector = Console.ReadLine();
                     Console.WriteLine("Enter a film's rating");
-                    int nRating = Int32.Parse(Console.ReadLine());
+                    int nRating = Console.ReadLine();
                     Console.WriteLine("Enter a film's release year");
                     int nYear = Int32.Parse(Console.ReadLine());
                     Console.WriteLine("Enter the price");
