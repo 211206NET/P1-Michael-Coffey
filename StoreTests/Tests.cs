@@ -184,7 +184,7 @@ public class ModelTests{
             ItemID = 10,
             Quantity = 15
         };
-        string expectedOutput = "InventoryID: 10 \nStock: 15 \n10";
+        string expectedOutput = "Inventory ID: 10 \nStock: 15 \n 10";
         Assert.Equal(expectedOutput, testInventory.ToString());
     }
     [Fact]

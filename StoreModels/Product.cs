@@ -46,7 +46,7 @@ public class Product
 
     public override string ToString()
     {
-        return $"Inventory ID: {this.InventoryID} \nTitle: {this.ProductName} \nDir.: {this.Director} \nRating: {this.MPARating} \n Year: {this.ReleaseYear} \nCost: {this.Price} \nQuantity: {this.Quantity}";
+        return $"Inventory ID: {this.InventoryID} \nTitle: {this.ProductName} \nDir.: {this.Director} \nRating: {this.MPARating} \nYear: {this.ReleaseYear} \nCost: {this.Price} \nQuantity: {this.Quantity}";
     }
 
     public void ToDataRow(ref DataRow row){
