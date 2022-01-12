@@ -4,14 +4,30 @@ using Microsoft.Data.SqlClient;
 using System.Data;
 using CustomExceptions;
 
+
+///<summary>
+///This relates to the information in the database, as it reveals important data and allows the user to manipulate it.
+///</summary>
 public class DBRepo : IMRepo{ 
 
+///<summary>
+///This string connects the repo to the databse
+///</summary>
     private string _connectionString; 
 
+///<summary>
+///This constructor establishes the connection between the repo and the database.
+///</summary>
+///<param name="connectionString">This gives a value to the _connectionString variable.</param>
     public DBRepo(string connectionString){
         _connectionString = connectionString;
         //Console.WriteLine(_connectionString);
     }
+
+    ///<summary>
+    ///This returns the values of each storefront from the database to a list of storefront objects.
+    ///</summary>
+    ///<returns>A list of the storefronts from the database</returns>
     public List<Storefront> GetAllStorefronts(){
         List<Storefront> allStorefronts = new List<Storefront>();
         using SqlConnection connection = new SqlConnection(_connectionString);
@@ -64,6 +80,10 @@ public class DBRepo : IMRepo{
         return allStorefronts;
     }
 
+///<summary>
+///This returns the values of each customer from the database into a list of customer objects.
+///</summary>
+///<returns>A list of customers from the database</returns>
     public List<Customer> GetAllCustomers(){
         List<Customer> allCustomers = new List<Customer>();
         using SqlConnection connection = new SqlConnection(_connectionString);
@@ -108,6 +128,12 @@ public class DBRepo : IMRepo{
         return allCustomers;
     }
 
+///<summary>
+///This function adds a storefront value to the database along with the needed data.
+///</summary>
+///<param i ="_name">The name of the new storefront</param>
+///<param i = "_address">The address of the new store</param>
+///<param i = "_inventoryid">The id for the inventory of the new storefront</param>
     public void AddStorefront(string _name, string _address, int _inventoryid){
         createStorefront:
         using(SqlConnection connection = new SqlConnection(_connectionString)){
@@ -143,6 +169,11 @@ public class DBRepo : IMRepo{
         }
     }
 
+///<summary>
+///This adds an inventory value to the database.
+///</summary>
+///<param i = "idOfItem">Id of the item found in the inventory</param>
+///<param i = "amount">The amount of a particular item in the new inventory</param>
     public void AddInventory(int idOfItem, int amount){
         using(SqlConnection connection = new SqlConnection(_connectionString)){
             connection.Open();
@@ -159,6 +190,13 @@ public class DBRepo : IMRepo{
             connection.Close();
         }
     }
+
+    ///<summary>
+    ///This refils the stock of a particular inventory.
+    ///</summary>
+    ///<param i = "idOfItem">Id of the item found in the particular inventory</param>
+    ///<param i = "idOfInventory">Id of the inventory that needs more supplies</param>
+    ///<param i = "numberToAdd">Amount that will be added to the inventory</param>
     public void ReplenishStock(int idOfItem, int idOfInventory, int numberToAdd){
         using(SqlConnection connection = new SqlConnection(_connectionString)){
             connection.Open();
@@ -175,6 +213,14 @@ public class DBRepo : IMRepo{
             connection.Close();
         }
     }
+
+    ///<summary>
+    ///This allows the user to place an order through the app.
+    ///</summary>
+    ///<param i = "idOfItem">ID for the item the user wants to get</param>
+    ///<param i = "numberOfItems">Amount that the user wnats to buy</param>
+    ///<param i = "nStore">ID for the store with the particular item</param>
+    ///<param i = "cusid">ID for the customer that is making the purchase</param>
     public void PlaceAnOrder(int idOfItem, int numberOfItems, int nStore, int cusid){
         List<Customer> allCustomers = GetAllCustomers();
         using(SqlConnection connection = new SqlConnection(_connectionString)){
@@ -215,6 +261,13 @@ public class DBRepo : IMRepo{
             connection.Close();
         }
     }
+
+    ///<summary>
+    ///Adds a customer to the database.
+    ///</summary>
+    ///<param i = "_username">Username for the new customer</param>
+    ///<param i = "_email">Email address of the new customer</param>
+    ///<param i = "_password">Password for the new customer's account</param>
     public void AddCustomer(string _username, string _email, string _password){
         createCustomer:
         using(SqlConnection connection = new SqlConnection(_connectionString)){
@@ -250,6 +303,15 @@ public class DBRepo : IMRepo{
         }
     }
 
+///<summary>
+///Adds a product to the database.
+///</summary>
+///<param i = "_ID">ID of the new product</param>
+///<param i = "_name">Title of the film</param>
+///<param i = "_price">Price of the new product</param>
+///<param i = "_year">ID for the release year of the film</param>
+///<param i = "_director">ID for the director of the film</param>
+///<param i = "_rating">ID for the MPA Rating of the film</param>
     public void AddProduct(int _ID, string _name, decimal _price, int _year, int _director, int _rating){
         using(SqlConnection connection = new SqlConnection(_connectionString)){
             connection.Open();
@@ -273,6 +335,10 @@ public class DBRepo : IMRepo{
         }
     }
 
+///<summary>
+///Deletes a customer from the database.
+///</summary>
+///<param i = "_userName">username of the user</param>
     public void DeleteCustomer(string _userName){
         using(SqlConnection connection = new SqlConnection(_connectionString)){
             connection.Open();
@@ -288,6 +354,11 @@ public class DBRepo : IMRepo{
         }
     }
 
+///<summary>
+///Returns the order history of the customer organized by the date of the order.
+///</summary>
+///<param i = "_userid">ID of the user</param>
+///<returns>The orders of the customer by date</returns>
     public List<Order> GetCustomerOrderHistoryDate(int _userid){
         List<Order> ordHistory = new List<Order>();
         using SqlConnection connection = new SqlConnection(_connectionString);
@@ -305,6 +376,11 @@ public class DBRepo : IMRepo{
         return ordHistory;
     }
 
+///<summary>
+///Returns the order hsitory of the customer organized by the cost of the order. 
+///</summary>
+///<param i = "_userid">ID for the customer</param>
+///<returns>A list of the customer's orders by the cost</returns>
     public List<Order> GetCustomerOrderHistoryCost(int _userid){
         List<Order> ordHistory = new List<Order>();
         using SqlConnection connection = new SqlConnection(_connectionString);
@@ -326,6 +402,11 @@ public class DBRepo : IMRepo{
         return ordHistory;
     }
 
+///<summary>
+///Returns the order history of a storefront organized by the date of the order.
+///</summary>
+///<param i = "_storeid">The ID of the store</param>
+///<returns>List of the orders from the storefront by date</returns>
     public List<Order> GetStorefrontOrderHistoryDate(int _storeid){
         List<Order> ordHistory = new List<Order>();
         using SqlConnection connection = new SqlConnection(_connectionString);
@@ -343,6 +424,11 @@ public class DBRepo : IMRepo{
         return ordHistory;
     }
 
+///<summary>
+///Returns the order history of a storefront organized by the cost.
+///</summary>
+///<param i = "_storeid">ID for the store</param>
+///<returns>list of orders from the store by cost</returns>
     public List<Order> GetStorefrontOrderHistoryCost(int _storeid){
         List<Order> ordHistory = new List<Order>();
         using SqlConnection connection = new SqlConnection(_connectionString);
@@ -360,6 +446,11 @@ public class DBRepo : IMRepo{
         return ordHistory;
     }
 
+///<summary>
+//Checks if a new storefront is a duplicate of a preexisting store.
+///</summary>
+///<param i = "storefront">The new storefront that is used for analysis</param>
+///<returns>A boolean that indicates the stores relation with the rest of the database</param>
     public bool IsStorefrontDuplicate(Storefront storefront){
         string searchQuery = $"SELECT * FROM Storefront WHERE Name='{storefront.Name}' AND Address='{storefront.Address}'";
         using SqlConnection connection = new SqlConnection(_connectionString);
@@ -372,6 +463,11 @@ public class DBRepo : IMRepo{
         return false;
     }
 
+///<summary>
+///Checks is a new customer is a duplicate of a preexisting account.
+///</summary>
+///<param i = "customer">Customer that is used for analysis</param>
+///<returns>A boolean that determines the customer's relationship with the database.</returns>
     public bool IsCustomerDuplicate(Customer customer){
         string searchQuery = $"SELECT * FROM Customer WHERE Username='{customer.UserName}' AND Email = '{customer.Email}'";
         using SqlConnection connection = new SqlConnection(_connectionString);
