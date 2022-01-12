@@ -84,20 +84,20 @@ public class ModelTests{
         Order testOrder = new Order();
         int orderid = 8;
         int orderdate = new DateTime();
-        int customerid = 12;
-        int storeid = 9;
+        string customername = "Dr_R_Akagi";
+        string storename = "AMC Chicago";
         decimal total = 0.0;
         int lineitemid = 11;
         testOrder.OrderNumber = orderid;
         testOrder.OrderDate = orderdate;
-        testOrder.CustomerId = customerid;
-        testOrder.StoreID = storeid;
+        testOrder.CustomerName = customername;
+        testOrder.StoreName = storename;
         testOrder.Total = total;
         testOrder.LineItemID = lineitemid;
         Assert.Equal(orderid, testOrder.OrderNumber);
         Assert.Equal(orderdate, testOrder.OrderDate);
-        Assert.Equal(customerid, testOrder.CustomerId);
-        Assert.Equal(storeid, testOrder.StoreID);
+        Assert.Equal(customername, testOrder.CustomerName);
+        Assert.Equal(storename, testOrder.StoreName);
         Assert.Equal(total, testOrder.Total);
         Assert.Equal(lineitemid, testOrder.LineItemID);
     }
@@ -203,12 +203,12 @@ public class ModelTests{
         Order testOrder = new Order{
             OrderNumber = 10,
             OrderDate = new DateTime(),
-            CustomerId = 13,
-            StoreID = 10,
+            CustomerName = "RKaji",
+            StoreName = "Regal Los Angeles",
             Total = 0.0,
             LineItemID = 12
         };
-        string expectedOutput = $"Date: {new DateTime()} \nCustomer: 13 \nOrder ID: 10 \nStore: 10 \nTotal Cost: 0";
+        string expectedOutput = $"Date: {new DateTime()} \nCustomer: RKaji \nOrder ID: 10 \nStore: Regal Los Angeles \nTotal Cost: 0";
         Assert.Equal(expectedOutput, testOrder.ToString());
     }
     [Fact]
