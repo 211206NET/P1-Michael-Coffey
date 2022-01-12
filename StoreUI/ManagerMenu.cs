@@ -45,6 +45,7 @@ public class ManagerMenu : IMenu{
                         Console.WriteLine("Here are the stores");
                         foreach(Storefront sto in _bl.GetAllStorefronts()){
                             Console.WriteLine(sto.ToString());
+                            Console.WriteLine("======Past Orders======");
                             List<Order> ordHis = _bl.GetStorefrontOrderHistoryDate(sto.ID);
                             foreach(Order ord in ordHis){
                                 Console.WriteLine(ord.ToString());
@@ -63,6 +64,7 @@ public class ManagerMenu : IMenu{
                         Console.WriteLine("Current Customers");
                         foreach(Customer cus in _bl.GetAllCustomers()){
                             Console.WriteLine(cus.ToString());
+                            Console.WriteLine("======Past Orders======");
                             List<Order> hisOfOrd = _bl.GetCustomerOrderHistoryDate(cus.Id);
                             foreach(Order nord in hisOfOrd){
                                 Console.WriteLine(nord.ToString());
