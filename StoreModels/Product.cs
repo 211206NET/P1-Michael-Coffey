@@ -6,10 +6,13 @@ public class Product
 {
     public string ProductName { get; set; }
     public string Director { get; set; }
+    public int DirectorID { get; set;}
 
     public string MPARating { get; set; }
+    public int MPARatingID { get; set; }
 
     public int ReleaseYear { get; set; }
+    public int ReleaseYearID { get; set; }
     public decimal Price { get; set; }
     public int Quantity { get; set; }
 
@@ -19,6 +22,14 @@ public class Product
         this.ProductName = productname;
         this.Director = directorid;
         this.MPARating = mparatingid;
+        this.ReleaseYear = releaseyearid;
+        this.Price = price;
+    }
+
+    public Product(string productname, int directorid, int mparatingid, int releaseyearid, decimal price){
+        this.ProductName = productname;
+        this.DirectorID = directorid;
+        this.MPARatingID = mparatingid;
         this.ReleaseYear = releaseyearid;
         this.Price = price;
     }
