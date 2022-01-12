@@ -1,0 +1,4 @@
+2022-01-12 11:06:12.405 -06:00 [INF] new customer added to the database aSmith10
+2022-01-12 11:09:44.450 -06:00 [INF] new storefront added Premiere Theatre 7
+2022-01-12 11:16:50.761 -06:00 [INF] user has added 4 to 3
+2022-01-12 11:21:52.811 -06:00 [INF] new order placed into the database 1 5
