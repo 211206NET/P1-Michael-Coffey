@@ -368,12 +368,13 @@ public List<Product> GetInventory(int _storeid){
             using(SqlDataReader reader = cmd.ExecuteReader()){
                 while(reader.Read()){
                     Product nProduct = new Product();
-                    nProduct.ProductName = reader.GetString(0);
-                    nProduct.Price = reader.GetDecimal(1);
-                    nProduct.Director = reader.GetString(2);
-                    nProduct.ReleaseYear = reader.GetInt32(3);
-                    nProduct.MPARating = reader.GetString(4);
-                    nProduct.Quantity = reader.GetInt32(5);
+                    nProduct.InventoryID = reader.GetInt32(0);
+                    nProduct.ProductName = reader.GetString(1);
+                    nProduct.Price = reader.GetDecimal(2);
+                    nProduct.Director = reader.GetString(3);
+                    nProduct.ReleaseYear = reader.GetInt32(4);
+                    nProduct.MPARating = reader.GetString(5);
+                    nProduct.Quantity = reader.GetInt32(6);
                 }
             }
         }
@@ -395,13 +396,12 @@ public List<Product> GetInventory(int _storeid){
                 using(SqlDataReader reader = cmd.ExecuteReader()){
                     while(reader.Read()){
                         Order nOrder = new Order();
-                        nOrder.InventoryID = reader.GetInt32(0);
-                        nOrder.OrderNumber = reader.GetInt32(1);
-                        nOrder.OrderDate = reader.GetDateTime(2);
-                        nOrder.CustomerName = reader.GetString(3);
-                        nOrder.StoreName = reader.GetString(4);
-                        nOrder.Total = reader.GetDecimal(5);
-                        nOrder.LineItemID = reader.GetInt32(6);
+                        nOrder.OrderNumber = reader.GetInt32(0);
+                        nOrder.OrderDate = reader.GetDateTime(1);
+                        nOrder.CustomerName = reader.GetString(2);
+                        nOrder.StoreName = reader.GetString(3);
+                        nOrder.Total = reader.GetDecimal(4);
+                        nOrder.LineItemID = reader.GetInt32(5);
                         ordHistory.Add(nOrder);
                     }
                 }
