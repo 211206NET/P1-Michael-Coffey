@@ -59,7 +59,7 @@ public class ModelTests{
         int storeid = 9;
         int itemid = 9;
         int quantity = 8;
-        testInvnetory.StoreId = storeid;
+        testInventory.StoreId = storeid;
         testInventory.ItemID = itemid;
         testInventory.Quantity = quantity;
         Assert.Equal(storeid, testInventory.StoreId);
@@ -83,10 +83,10 @@ public class ModelTests{
     public void OrderShouldSetValidData(){
         Order testOrder = new Order();
         int orderid = 8;
-        int orderdate = new DateTime();
+        DateTime orderdate = new DateTime();
         string customername = "Dr_R_Akagi";
         string storename = "AMC Chicago";
-        decimal total = 0.0;
+        decimal total = 0;
         int lineitemid = 11;
         testOrder.OrderNumber = orderid;
         testOrder.OrderDate = orderdate;
@@ -95,7 +95,7 @@ public class ModelTests{
         testOrder.Total = total;
         testOrder.LineItemID = lineitemid;
         Assert.Equal(orderid, testOrder.OrderNumber);
-        Assert.Equal(orderdate, testOrder.OrderDate);
+        Assert.Equal(orderdate.ToString(), testOrder.OrderDate.ToString());
         Assert.Equal(customername, testOrder.CustomerName);
         Assert.Equal(storename, testOrder.StoreName);
         Assert.Equal(total, testOrder.Total);
@@ -108,7 +108,7 @@ public class ModelTests{
         int directorid = 194;
         int ratingid = 4;
         int yearid = 51;
-        decimal price = 19.99;
+        decimal price = 20;
         testProduct.ProductName = productname;
         testProduct.DirectorID = directorid;
         testProduct.MPARatingID = ratingid;
@@ -169,7 +169,7 @@ public class ModelTests{
     [Fact]
     public void CustomerShouldHaveCustomToStringMethod(){
         Customer testCustomer = new Customer{
-            ID = 13,
+            Id = 13,
             UserName = "MKats",
             Password = "pen2Kaji",
             Email = "misato_katsuragi@wille.com"
@@ -180,7 +180,7 @@ public class ModelTests{
     [Fact]
     public void InventoryShouldHaveCustomToStringMethod(){
         Inventory testInventory = new Inventory{
-            StoreID = 10,
+            StoreId = 10,
             ItemID = 10,
             Quantity = 15
         };
@@ -205,7 +205,7 @@ public class ModelTests{
             OrderDate = new DateTime(),
             CustomerName = "RKaji",
             StoreName = "Regal Los Angeles",
-            Total = 0.0,
+            Total = 0,
             LineItemID = 12
         };
         string expectedOutput = $"Date: {new DateTime()} \nCustomer: RKaji \nOrder ID: 10 \nStore: Regal Los Angeles \nTotal Cost: 0";
@@ -216,10 +216,10 @@ public class ModelTests{
         Product testProduct = new Product{
             InventoryID = 16,
             ProductName = "The Matrix Resurrections",
-            DirectorID = "Lana Wachowski",
-            MPARatingID = "R",
+            Director = "Lana Wachowski",
+            MPARating = "R",
             ReleaseYearID = 2021,
-            Price = 19.99
+            Price = 20
         };
         string expectedOutput = "Inventory ID: 16 \nTitle: The Matrix Resurrections \nDir.: Lana Wachowski \nRating: r \nYear: 2021 \nCost: 20";
         Assert.Equal(expectedOutput, testProduct.ToString());
