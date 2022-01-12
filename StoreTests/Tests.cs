@@ -219,9 +219,10 @@ public class ModelTests{
             Director = "Lana Wachowski",
             MPARating = "R",
             ReleaseYear = 2021,
-            Price = 20
+            Price = 20,
+            Quantity = 7
         };
-        string expectedOutput = "Inventory ID: 16 \nTitle: The Matrix Resurrections \nDir.: Lana Wachowski \nRating: R \nYear: 2021 \nCost: 20";
+        string expectedOutput = "Inventory ID: 16 \nTitle: The Matrix Resurrections \nDir.: Lana Wachowski \nRating: R \nYear: 2021 \nCost: 20 \nQuantity: 7";
         Assert.Equal(expectedOutput, testProduct.ToString());
     }
     [Fact]
