@@ -221,7 +221,7 @@ public class ModelTests{
             ReleaseYearID = 2021,
             Price = 20
         };
-        string expectedOutput = "Inventory ID: 16 \nTitle: The Matrix Resurrections \nDir.: Lana Wachowski \nRating: r \nYear: 2021 \nCost: 20";
+        string expectedOutput = "Inventory ID: 16 \nTitle: The Matrix Resurrections \nDir.: Lana Wachowski \nRating: R \nYear: 2021 \nCost: 20";
         Assert.Equal(expectedOutput, testProduct.ToString());
     }
     [Fact]
