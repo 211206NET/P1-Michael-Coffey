@@ -3,7 +3,7 @@ namespace DL;
 using Microsoft.Data.SqlClient;
 using System.Data;
 using CustomExceptions;
-using Seriog;
+using Serilog;
 
 
 ///<summary>
