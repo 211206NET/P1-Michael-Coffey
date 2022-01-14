@@ -33,8 +33,17 @@ namespace storeWebAPI.Controllers
 
         // POST api/<StorefrontController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public ActionResult Post([FromBody] Storefront storefrontToAdd)
         {
+            try
+            {
+                _bl.AddStorefront(storefrontToAdd.Name, storefrontToAdd.Address, storefrontToAdd.InventoryID);
+                return Created("Successfully added", storefrontToAdd);
+            }
+            catch(DuplicateException ex)
+            {
+                return Conflict(ex.Message);
+            }
         }
 
         // PUT api/<StorefrontController>/5

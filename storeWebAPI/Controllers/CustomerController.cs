@@ -33,8 +33,17 @@ namespace storeWebAPI.Controllers
 
         // POST api/<CustomerController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public ActionResult Post([FromBody] Customer customerToAdd)
         {
+            try
+            {
+                _bl.AddCustomer(customerToAdd.UserName, customerToAdd.Email, customerToAdd.Password);
+                return Created("Successfully added", customerToAdd);
+            }
+            catch(DuplicateException ex)
+            {
+                return Conflict(ex.Message);
+            }
         }
 
         // PUT api/<CustomerController>/5
