@@ -1,4 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Models;
+using DL;
+using BL;
+using CustomExceptions;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -8,11 +12,16 @@ namespace storeWebAPI.Controllers
     [ApiController]
     public class CustomerController : ControllerBase
     {
+        private IBL _bl;
+        public CustomerController(IBL bl)
+        {
+            _bl = bl;
+        }
         // GET: api/<CustomerController>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public List<Customer> Get()
         {
-            return new string[] { "value1", "value2" };
+            return _bl.GetAllCustomers();
         }
 
         // GET api/<CustomerController>/5
