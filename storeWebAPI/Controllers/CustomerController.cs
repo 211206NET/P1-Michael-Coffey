@@ -54,8 +54,9 @@ namespace storeWebAPI.Controllers
 
         // DELETE api/<CustomerController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public void Delete([FromBody] Customer lostCustomer)
         {
+            _bl.DeleteCustomer(lostCustomer.UserName);
         }
     }
 }
