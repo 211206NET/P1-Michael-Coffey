@@ -2,7 +2,7 @@ namespace BL;
 
 using CustomExceptions;
 
-public class MBL{
+public class MBL : IBL{
     private IMRepo _fdl;
 
     public MBL(IMRepo repo){
