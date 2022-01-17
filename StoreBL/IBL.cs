@@ -1,8 +1,8 @@
 namespace BL;
 
 public interface IBL{
-    List<Storefront> GetAllStorefronts();
-    List<Customer> GetAllCustomers();
+    Task<List<Storefront>> GetAllStorefrontsAsync();
+    Task<List<Customer>> GetAllCustomersAsync();
     void AddStorefront(string _name, string _address, int _inventory);
     void AddInventory(int idOfItem, int amount);
     void ReplenishStock(int nId, int nInv, int nAmo);
