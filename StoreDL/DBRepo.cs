@@ -81,6 +81,29 @@ public class DBRepo : IMRepo{
         return allStorefronts;
     }
 
+    public async Task<List<Storefront>> GetAllStorefrontsAsync(){
+        List<Storefront> allStorefronts = new List<Storefront>();
+        using(SqlConnection connection = new SqlConnection(_connectionString)){
+            connection.Open();
+            string queryText = "SELECT * FROM Restaurant";
+            using(SqlCommand cmd = new SqlCommand(queryText, connection)){
+                using(SqlDataReader reader = cmd.ExecuteReader()){
+                    while(await reader.ReadAsync()){
+                        Storefront sto = new Storefront();
+                        sto.ID = reader.GetInt32(0);
+                        sto.Address = reader.GetString(1);
+                        sto.Name = reader.GetString(2);
+                        sto.InventoryID = reader.GetInt32(3);
+                        sto.OrderID = reader.GetInt32(4);
+                        allStorefronts.Add(sto);
+                    }
+                }
+            }
+            connection.Close();
+        }
+        return allStorefronts;
+    }
+
 ///<summary>
 ///This returns the values of each customer from the database into a list of customer objects.
 ///</summary>
@@ -125,6 +148,28 @@ public class DBRepo : IMRepo{
                 // ).ToList();
                 allCustomers.Add(cus);
             }
+        }
+        return allCustomers;
+    }
+
+    public async Task<List<Customer>> GetAllCustomersAsync(){
+        List<Customer> allCustomers = new List<Customer>();
+        using(SqlConnection connection = new SqlConnection(_connectionString)){
+            connection.Open();
+            string queryTxt = "SELECT * FROM Customer";
+            using(SqlCommand cmd = new SqlCommand(queryTxt, connection)){
+                using(SqlDataReader reader = cmd.ExecuteReader()){
+                    while(await reader.ReadAsync()){
+                        Customer cust = new Customer();
+                        cust.Id = reader.GetInt32(0);
+                        cust.UserName = reader.GetString(1);
+                        cust.Password = reader.GetString(2);
+                        cust.Email = reader.GetString(3);
+                        allCustomers.Add(cust);
+                    }
+                }
+            }
+            connection.Close();
         }
         return allCustomers;
     }

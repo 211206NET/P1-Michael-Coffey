@@ -10,11 +10,11 @@ public class MBL : IBL{
     }
 
     public async Task<List<Storefront>> GetAllStorefrontsAsync(){
-        return _fdl.GetAllStorefrontsAsync();
+        return await _fdl.GetAllStorefrontsAsync();
     }
 
     public async Task<List<Customer>> GetAllCustomersAsync(){
-        return _fdl.GetAllCustomersAsync();
+        return await _fdl.GetAllCustomersAsync();
     }
 
     public void AddStorefront(string _name, string _address, int _inventory){

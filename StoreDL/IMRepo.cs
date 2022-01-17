@@ -3,7 +3,11 @@ namespace DL;
 public interface IMRepo{
     List<Storefront> GetAllStorefronts();
 
+    Task<List<Storefront>> GetAllStorefrontsAsync();
+
     List<Customer> GetAllCustomers();
+
+    Task<List<Customer>> GetAllCustomersAsync();
 
     void AddStorefront(string _name, string _address, int _inventory);
 

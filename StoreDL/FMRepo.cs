@@ -3,7 +3,7 @@ namespace DL;
 using System.IO;
 using System.Text.Json;
 
-public class FMRepo : IMRepo {
+public class FMRepo{
     private string filePath = "../StoreDL/Storefronts.json";
     private string filePath2 = "../StoreDL/Customers.json";
 
