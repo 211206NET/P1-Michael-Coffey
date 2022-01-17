@@ -9,12 +9,12 @@ public class MBL : IBL{
         _fdl = repo;
     }
 
-    public List<Storefront> GetAllStorefronts(){
-        return _fdl.GetAllStorefronts();
+    public async Task<List<Storefront>> GetAllStorefrontsAsync(){
+        return _fdl.GetAllStorefrontsAsync();
     }
 
-    public List<Customer> GetAllCustomers(){
-        return _fdl.GetAllCustomers();
+    public async Task<List<Customer>> GetAllCustomersAsync(){
+        return _fdl.GetAllCustomersAsync();
     }
 
     public void AddStorefront(string _name, string _address, int _inventory){
