@@ -34,7 +34,7 @@ namespace storeWebAPI.Controllers
 
         // GET api/<StorefrontController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public string GetStoreByID(int id)
         {
             return "value";
         }

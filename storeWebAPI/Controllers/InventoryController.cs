@@ -10,7 +10,7 @@ namespace storeWebAPI.Controllers
     {
         // GET: api/<ValuesController>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IEnumerable<string> GetInventories()
         {
             return new string[] { "value1", "value2" };
         }
@@ -24,7 +24,7 @@ namespace storeWebAPI.Controllers
 
         // POST api/<ValuesController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public void PostInventories([FromBody] string value)
         {
         }
 
@@ -36,7 +36,7 @@ namespace storeWebAPI.Controllers
 
         // DELETE api/<ValuesController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public void DeleteInventory(int id)
         {
         }
     }
