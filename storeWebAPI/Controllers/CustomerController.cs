@@ -22,7 +22,7 @@ namespace storeWebAPI.Controllers
         }
         // GET: api/<CustomerController>
         [HttpGet]
-        public async Task<List<Customer>> Get()
+        public async Task<List<Customer>> GetCustomers()
         {
             List<Customer> allCus;
             if(!_memoryCache.TryGetValue("customer", out allCus)){
@@ -42,7 +42,7 @@ namespace storeWebAPI.Controllers
 
         // POST api/<CustomerController>
         [HttpPost]
-        public ActionResult Post([FromBody] Customer customerToAdd)
+        public ActionResult PostCustomer([FromBody] Customer customerToAdd)
         {
             try
             {
@@ -63,7 +63,7 @@ namespace storeWebAPI.Controllers
 
         // DELETE api/<CustomerController>/5
         [HttpDelete("{id}")]
-        public void Delete([FromBody] Customer lostCustomer)
+        public void DeleteCustomer([FromBody] Customer lostCustomer)
         {
             _bl.DeleteCustomer(lostCustomer.UserName);
         }

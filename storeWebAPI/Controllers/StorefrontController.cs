@@ -15,13 +15,14 @@ namespace storeWebAPI.Controllers
     {
         private IBL _bl;
         private IMemoryCache _memoryCache;
-        public StorefrontController(IBL bl)
+        public StorefrontController(IBL bl, IMemoryCache memoryCache)
         {
             _bl = bl;
+            _memoryCache = memoryCache;
         }
         // GET: api/<StorefrontController>
         [HttpGet]
-        public async Task<List<Storefront>> Get()
+        public async Task<List<Storefront>> GetStores()
         {
             List<Storefront> allSto;
             if(!_memoryCache.TryGetValue("storefront", out allSto)){
@@ -40,7 +41,7 @@ namespace storeWebAPI.Controllers
 
         // POST api/<StorefrontController>
         [HttpPost]
-        public ActionResult Post([FromBody] Storefront storefrontToAdd)
+        public ActionResult PostStore([FromBody] Storefront storefrontToAdd)
         {
             try
             {
@@ -61,7 +62,7 @@ namespace storeWebAPI.Controllers
 
         // DELETE api/<StorefrontController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public void DeleteStore(int id)
         {
         }
     }
