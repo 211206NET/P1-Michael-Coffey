@@ -1,4 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Models;
+using DL;
+using BL;
+using CustomExceptions;
+using Microsoft.Extensions.Caching.Memory;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -8,6 +13,15 @@ namespace storeWebAPI.Controllers
     [ApiController]
     public class OrderController : ControllerBase
     {
+
+        private IBL _bl;
+        private IMemoryCache _memoryCache;
+
+        public OrderController(IBL bl, IMemoryCache memoryCache)
+        {
+            _bl = bl;
+            _memoryCache = memoryCache;
+        }
         // GET: api/<ValuesController>
         [HttpGet]
         public IEnumerable<string> GetOrders()
