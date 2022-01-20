@@ -38,7 +38,7 @@ namespace storeWebAPI.Controllers
 
         // POST api/<ValuesController>
         [HttpPost]
-        public void PostOrders([FromBody] string value)
+        public void PostOrders([FromBody] Order nOrder)
         {
         }
 
