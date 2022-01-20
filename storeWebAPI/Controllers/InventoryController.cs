@@ -24,9 +24,15 @@ namespace storeWebAPI.Controllers
         }
         // GET: api/<ValuesController>
         [HttpGet]
-        public IEnumerable<string> GetInventories()
+        public async Task<List<Inventory>> GetInventories()
         {
-            return new string[] { "value1", "value2" };
+            List<Inventory> nInventories = new List<Inventory>();
+            if(!_memoryCache.TryGetValue("inventory", out nInventories))
+            {
+                nInventories = await _bl.GetAllInventoriesAsync();
+                _memoryCache.Set("inventory", nInventories, new TimeSpan(0, 0, 30));
+            }
+            return nInventories;
         }
 
         // GET api/<ValuesController>/5
