@@ -35,9 +35,9 @@ namespace storeWebAPI.Controllers
 
         // GET api/<CustomerController>/5
         [HttpGet("{id}")]
-        public string GetCustomerByID(int id)
+        public Customer GetCustomerByID(int id)
         {
-            return "value";
+            return _bl.GetCustomerByID(id);
         }
 
         // POST api/<CustomerController>
