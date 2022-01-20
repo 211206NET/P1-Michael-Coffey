@@ -57,7 +57,7 @@ namespace storeWebAPI.Controllers
 
         // PUT api/<CustomerController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public void PutIntoCustomer(int id, [FromBody] string value)
         {
         }
 
