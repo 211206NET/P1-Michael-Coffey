@@ -208,6 +208,9 @@ public class DBRepo : IMRepo{
                 using(SqlDataReader reader = cmd.ExecuteReader()){
                     while(await reader.ReadAsync()){
                         Inventory inv = new Inventory();
+                        inv.StoreId = reader.GetInt32(0);
+                        inv.ItemID = reader.GetInt32(1);
+                        inv.Quantity = reader.GetInt32(2);
                         allInventories.Add(inv);
                     }
                 }
