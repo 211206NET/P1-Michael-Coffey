@@ -18,6 +18,7 @@ public interface IMRepo{
     void AddCustomer(string _username, string _email, string _password);
 
     Customer GetCustomerByID(int id);
+    Storefront GetStorefrontByID(int id);
 
     void AddProduct(int proID, string proTitle, decimal proPrice, int proYear, int proDirector, int proRating);
 

@@ -363,6 +363,16 @@ public class DBRepo : IMRepo{
         return new Customer();
     }
 
+    public Storefront GetStorefrontByID(int id){
+        List<Storefront> allStorefronts = GetAllStorefronts();
+        foreach(Storefront sto in allStorefronts){
+            if(sto.ID == id){
+                return sto;
+            }
+        }
+        return new Storefront();
+    }
+
 ///<summary>
 ///Adds a product to the database.
 ///</summary>
