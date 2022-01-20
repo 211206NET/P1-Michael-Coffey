@@ -8,6 +8,9 @@ public interface IMRepo{
     List<Customer> GetAllCustomers();
 
     Task<List<Customer>> GetAllCustomersAsync();
+    List<Inventory> GetAllInventories();
+
+    Task<List<Inventory>> GetAllInventoriesAsync();
 
     void AddStorefront(string _name, string _address, int _inventory);
 

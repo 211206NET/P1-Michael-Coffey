@@ -17,6 +17,10 @@ public class MBL : IBL{
         return await _fdl.GetAllCustomersAsync();
     }
 
+    public async Task<List<Inventory>> GetAllInventoriesAsync(){
+        return await _fdl.GetAllInventoriesAsync();
+    }
+
     public void AddStorefront(string _name, string _address, int _inventory){
         if(!_fdl.IsStorefrontDuplicate(new Storefront(_address, _name, _inventory))){ 
             _fdl.AddStorefront(_name, _address, _inventory);

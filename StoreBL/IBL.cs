@@ -3,6 +3,7 @@ namespace BL;
 public interface IBL{
     Task<List<Storefront>> GetAllStorefrontsAsync();
     Task<List<Customer>> GetAllCustomersAsync();
+    Task<List<Inventory>> GetAllInventoriesAsync();
     void AddStorefront(string _name, string _address, int _inventory);
     void AddInventory(int idOfItem, int amount);
     void ReplenishStock(int nId, int nInv, int nAmo);

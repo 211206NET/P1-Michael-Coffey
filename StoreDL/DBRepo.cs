@@ -182,6 +182,41 @@ public class DBRepo : IMRepo{
         return allCustomers;
     }
 
+    public List<Inventory> GetAllInventories(){
+        List<Inventory> allInventories = new List<Inventory>();
+        using SqlConnection connection = new SqlConnection(_connectionString);
+        string invStatement = "SELECT * FROM Inventory";
+        DataSet ISet = new DataSet();
+        using SqlDataAdapter inAdapter = new SqlDataAdapter(invStatement, connection);
+        inAdapter.Fill(ISet, "Inventory");
+        DataTable? InvenTable = ISet.Tables["Inventory"];
+        if(InvenTable != null){
+            foreach(DataRow row in InvenTable.Rows){
+                Inventory inv = new Inventory(row);
+                allInventories.Add(inv);
+            }
+        }
+        return allInventories;
+    }
+
+    public async Task<List<Inventory>> GetAllInventoriesAsync(){
+        List<Inventory> allInventories = new List<Inventory>();
+        using(SqlConnection connection = new SqlConnection(_connectionString)){
+            connection.Open();
+            string queryText = "SELECT * FROM Inventory";
+            using(SqlCommand cmd = new SqlCommand(queryText, connection)){
+                using(SqlDataReader reader = cmd.ExecuteReader()){
+                    while(await reader.ReadAsync()){
+                        Inventory inv = new Inventory();
+                        allInventories.Add(inv);
+                    }
+                }
+            }
+            connection.Close();
+        }
+        return allInventories;
+    }
+
 ///<summary>
 ///This function adds a storefront value to the database along with the needed data.
 ///</summary>
