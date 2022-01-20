@@ -12,6 +12,7 @@ public interface IBL{
     Storefront GetStorefrontByID(int id);
     void AddProduct(int _ID, string _name, decimal _price, int _year, int _director, int _rating);
     void DeleteCustomer(string _username);
+    void DeleteStorefront(string _storename);
     List<Product> GetInventory(int _storeid);
     List<Order> GetCustomerOrderHistoryDate(int _userid);
     List<Order> GetCustomerOrderHistoryCost(int _userid);

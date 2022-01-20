@@ -59,6 +59,10 @@ public class MBL : IBL{
         _fdl.DeleteCustomer(_username);
     }
 
+    public void DeleteStorefront(string _storename){
+        _fdl.DeleteStorefront(_storename);
+    }
+
     public List<Product> GetInventory(int _storeid){
         return _fdl.GetInventory(_storeid);
     }

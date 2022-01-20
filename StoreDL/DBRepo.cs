@@ -442,6 +442,19 @@ public class DBRepo : IMRepo{
         }
     }
 
+    public void DeleteStorefront(string _storeName){
+        using(SqlConnection connection = new SqlConnection(_connectionString)){
+            connection.Open();
+            string delCommand = "DELETE FROM Storefront WHERE Name = @stoNam";
+            using(SqlCommand cmd = new SqlCommand(delCommand, connection)){
+                SqlParameter param = new SqlParameter("@stoNam", _storeName);
+                cmd.Parameters.Add(param);
+                cmd.ExecuteNonQuery();
+            }
+            connection.Close();
+        }
+    }
+
 ///<summary>
 ///Returns the inventory of a store.
 ///</summary>
