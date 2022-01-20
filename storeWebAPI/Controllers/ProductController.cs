@@ -13,6 +13,15 @@ namespace storeWebAPI.Controllers
     [ApiController]
     public class ProductController : ControllerBase
     {
+
+        private IBL _bl;
+        private IMemoryCache _memoryCache;
+
+        public ProductController(IBL bl, IMemoryCache memoryCache)
+        {
+            _bl = bl;
+            _memoryCache = memoryCache;
+        }
         // GET: api/<ValuesController>
         [HttpGet]
         public IEnumerable<string> GetProducts()
