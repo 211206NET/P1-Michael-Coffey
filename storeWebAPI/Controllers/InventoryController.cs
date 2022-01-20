@@ -31,9 +31,9 @@ namespace storeWebAPI.Controllers
 
         // GET api/<ValuesController>/5
         [HttpGet("{id}")]
-        public string GetInventoryByID(int id)
+        public List<Product> GetInventoryByID(int id)
         {
-            return "value";
+            return _bl.GetInventory(id);
         }
 
         // POST api/<ValuesController>

@@ -38,8 +38,9 @@ namespace storeWebAPI.Controllers
 
         // POST api/<ValuesController>
         [HttpPost]
-        public void PostProducts([FromBody] string value)
+        public void PostProducts([FromBody] Product newPro)
         {
+            _bl.AddProduct(newPro.InventoryID, newPro.ProductName, newPro.Price, newPro.ReleaseYearID, newPro.DirectorID, newPro.MPARatingID);
         }
 
         // PUT api/<ValuesController>/5
