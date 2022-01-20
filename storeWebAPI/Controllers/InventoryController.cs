@@ -38,14 +38,16 @@ namespace storeWebAPI.Controllers
 
         // POST api/<ValuesController>
         [HttpPost]
-        public void PostInventories([FromBody] string value)
+        public void PostInventories([FromBody] Inventory newInv, int nam)
         {
+            _bl.AddInventory(newInv.ItemID, nam);
         }
 
         // PUT api/<ValuesController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public void Put(int id, [FromBody] Inventory nInvent, int newam)
         {
+            _bl.ReplenishStock(id, nInvent.StoreId, newam);
         }
 
         // DELETE api/<ValuesController>/5
