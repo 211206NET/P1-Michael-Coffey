@@ -182,6 +182,10 @@ public class DBRepo : IMRepo{
         return allCustomers;
     }
 
+    /// <summary>
+    /// This returns all values in the inventory table
+    /// </summary>
+    /// <returns>A list of inventory objects</returns>
     public List<Inventory> GetAllInventories(){
         List<Inventory> allInventories = new List<Inventory>();
         using SqlConnection connection = new SqlConnection(_connectionString);
@@ -199,6 +203,10 @@ public class DBRepo : IMRepo{
         return allInventories;
     }
 
+    /// <summary>
+    /// Returns the inventories in an asynchronous way
+    /// </summary>
+    /// <returns>All inventories in the database</returns>
     public async Task<List<Inventory>> GetAllInventoriesAsync(){
         List<Inventory> allInventories = new List<Inventory>();
         using(SqlConnection connection = new SqlConnection(_connectionString)){
