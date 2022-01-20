@@ -445,7 +445,7 @@ public class DBRepo : IMRepo{
     /// <summary>
     /// Deletes a storefront from the database.
     /// </summary>
-    /// <param name="_storeName"></param>
+    /// <param name="_storeName">name of the store</param>
     public void DeleteStorefront(string _storeName){
         using(SqlConnection connection = new SqlConnection(_connectionString)){
             connection.Open();
