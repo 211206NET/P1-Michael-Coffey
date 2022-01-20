@@ -81,6 +81,10 @@ public class DBRepo : IMRepo{
         return allStorefronts;
     }
 
+    /// <summary>
+    /// Gets all storefronts in an asyncronous way
+    /// </summary>
+    /// <returns>A list of all storefronts</returns>
     public async Task<List<Storefront>> GetAllStorefrontsAsync(){
         List<Storefront> allStorefronts = new List<Storefront>();
         using(SqlConnection connection = new SqlConnection(_connectionString)){
@@ -152,6 +156,10 @@ public class DBRepo : IMRepo{
         return allCustomers;
     }
 
+    /// <summary>
+    /// Gets all customers in an asyncronous way
+    /// </summary>
+    /// <returns>A list of all customers</returns>
     public async Task<List<Customer>> GetAllCustomersAsync(){
         List<Customer> allCustomers = new List<Customer>();
         using(SqlConnection connection = new SqlConnection(_connectionString)){
@@ -353,6 +361,11 @@ public class DBRepo : IMRepo{
         Log.Information("new customer added to the database {_username}", _username);
     }
 
+    /// <summary>
+    /// Gets a customer from its id
+    /// </summary>
+    /// <param name="id">ID of the selected customer</param>
+    /// <returns>A particular customer</returns>
     public Customer GetCustomerByID(int id){
         List<Customer> allCustomers = GetAllCustomers();
         foreach(Customer cus in allCustomers){
@@ -363,6 +376,11 @@ public class DBRepo : IMRepo{
         return new Customer();
     }
 
+    /// <summary>
+    /// Gets a storefront from its id
+    /// </summary>
+    /// <param name="id">ID of its selected storefront</param>
+    /// <returns>A particular storefront</returns>
     public Storefront GetStorefrontByID(int id){
         List<Storefront> allStorefronts = GetAllStorefronts();
         foreach(Storefront sto in allStorefronts){
