@@ -24,9 +24,9 @@ namespace storeWebAPI.Controllers
         }
         // GET: api/<ValuesController>
         [HttpGet]
-        public IEnumerable<string> GetProducts()
+        public List<Product> GetProducts(int invID)
         {
-            return new string[] { "value1", "value2" };
+            return _bl.GetInventory(invID);
         }
 
         // GET api/<ValuesController>/5
