@@ -353,6 +353,16 @@ public class DBRepo : IMRepo{
         Log.Information("new customer added to the database {_username}", _username);
     }
 
+    public Customer GetCustomerByID(int id){
+        List<Customer> allCustomers = GetAllCustomers();
+        foreach(Customer cus in allCustomers){
+            if(cus.Id == id){
+                return cus;
+            }
+        }
+        return new Customer();
+    }
+
 ///<summary>
 ///Adds a product to the database.
 ///</summary>

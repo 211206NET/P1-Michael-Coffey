@@ -43,6 +43,10 @@ public class MBL : IBL{
         else throw new DuplicateException("This customer already has an account!");
     }
 
+    public Customer GetCustomerByID(int id){
+        return _fdl.GetCustomerByID(id);
+    }
+
     public void AddProduct(int _ID, string _name, decimal _price, int _year, int _director, int _rating){
         _fdl.AddProduct(_ID, _name, _price, _year, _director, _rating);
     }

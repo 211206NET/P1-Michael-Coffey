@@ -8,6 +8,7 @@ public interface IBL{
     void ReplenishStock(int nId, int nInv, int nAmo);
     void PlaceAnOrder(int sId, int nBuy, int nSto, int nUser);
     void AddCustomer(string _username, string _email, string _password);
+    Customer GetCustomerByID(int id);
     void AddProduct(int _ID, string _name, decimal _price, int _year, int _director, int _rating);
     void DeleteCustomer(string _username);
     List<Product> GetInventory(int _storeid);
