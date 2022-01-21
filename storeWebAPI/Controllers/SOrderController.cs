@@ -24,9 +24,9 @@ namespace storeWebAPI.Controllers
         }
         // GET: api/<SOrderController>
         [HttpGet]
-        public List<Order> GetSOrdersDate(int id)
+        public List<Order> GetOrdersCost()
         {
-            return _bl.GetStorefrontOrderHistoryDate(id);
+            return _bl.GetOrdersCost();
         }
 
         // GET api/<SOrderController>/5
@@ -34,6 +34,11 @@ namespace storeWebAPI.Controllers
         public List<Order> GetSOrdersCost(int id)
         {
             return _bl.GetStorefrontOrderHistoryCost(id);
+        }
+        [HttpGet("{id}")]
+        public List<Order> GetSOrderDate(int id)
+        {
+            return _bl.GetStorefrontOrderHistoryDate(id);
         }
 
         // POST api/<SOrderController>

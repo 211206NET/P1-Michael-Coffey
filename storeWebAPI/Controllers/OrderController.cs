@@ -24,14 +24,20 @@ namespace storeWebAPI.Controllers
         }
         // GET: api/<ValuesController>
         [HttpGet]
-        public List<Order> GetOrdersDate(int id)
+        public List<Order> GetOrdersDate()
         {
-            return _bl.GetCustomerOrderHistoryDate(id);
+            return _bl.GetOrdersDate();
         }
 
         // GET api/<ValuesController>/5
         [HttpGet("{id}")]
-        public List<Order> GetOrdersCost(int id)
+        public List<Order> GetCOrdersDate(int id)
+        {
+            return _bl.GetCustomerOrderHistoryDate(id);
+        }
+
+        [HttpGet("{id}")]
+        public List<Order> GetCOrdersCost(int id)
         {
             return _bl.GetCustomerOrderHistoryCost(id);
         }
