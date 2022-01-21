@@ -492,6 +492,10 @@ public List<Product> GetInventory(int _storeid){
     return allProducts;
 }
 
+    /// <summary>
+    /// Gets the orders organized by the date the order was placed.
+    /// </summary>
+    /// <returns>List of orders arranged by dates</returns>
 public List<Order> GetOrdersDate(){
     List<Order> allOrder = new List<Order>();
     using(SqlConnection connection = new SqlConnection(_connectionString)){
@@ -516,6 +520,10 @@ public List<Order> GetOrdersDate(){
     return allOrder;
 }
 
+    /// <summary>
+    /// Gets the orders organized by the total price of the order.
+    /// </summary>
+    /// <returns>List of orders arranged by cost</returns>
 public List<Order> GetOrdersCost(){
     List<Order> allOrders = new List<Order>();
     using(SqlConnection connection = new SqlConnection(_connectionString)){
