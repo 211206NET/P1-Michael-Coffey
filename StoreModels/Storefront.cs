@@ -25,6 +25,10 @@ public class Storefront
         this.OrderID = orderid;
     }
 
+    /// <summary>
+    /// Takes a row from the Storefront table and converts it into a Storefront object
+    /// </summary>
+    /// <param name="row">Row from the Storefront table</param>
     public Storefront(DataRow row){
         this.Name = row["Name"].ToString() ?? "";
         this.Address = row["Address"].ToString() ?? "";
@@ -32,23 +36,15 @@ public class Storefront
         this.OrderID = (int) row["SOrderHistoryID"];
     }
 
-    // public void printInventories(){
-    //     foreach(Inventory inv in this.Inventories){
-    //         Console.WriteLine($"{inv.ToString()}");
-    //     }
-    // }
-
-    // public void printOrders(){
-    //     foreach(Order ord in this.Orders){
-    //         Console.WriteLine($"{ord.ToString()}");
-    //     }
-    // }
-
     public override string ToString()
     {
         return $"Name: {this.Name} \nAddress: {this.Address}";
     }
 
+    /// <summary>
+    /// Takes a row from the Storefront table and converts it into a Storefront object
+    /// </summary>
+    /// <param name="row">Reference to a row in the Storefront table</param>
     public void ToDataRow(ref DataRow row){
         row["Name"] = this.Name ?? "";
         row["Address"] = this.Address ?? "";
