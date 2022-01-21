@@ -35,9 +35,11 @@ namespace storeWebAPI.Controllers
         {
             return _bl.GetCustomerOrderHistoryDate(id);
         }
-        public List<Order> GetCOrdersCost(int id)
+
+        [HttpGet("{nid}")]
+        public List<Order> GetCOrdersCost(int nid)
         {
-            return _bl.GetCustomerOrderHistoryCost(id);
+            return _bl.GetCustomerOrderHistoryCost(nid);
         }
 
         // POST api/<ValuesController>
