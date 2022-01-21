@@ -15,6 +15,8 @@ public interface IBL{
     void DeleteCustomer(string _username);
     void DeleteStorefront(string _storename);
     List<Product> GetInventory(int _storeid);
+    List<Order> GetOrdersDate();
+    List<Order> GetOrdersCost();
     List<Order> GetCustomerOrderHistoryDate(int _userid);
     List<Order> GetCustomerOrderHistoryCost(int _userid);
     List<Order> GetStorefrontOrderHistoryDate(int _storeid);

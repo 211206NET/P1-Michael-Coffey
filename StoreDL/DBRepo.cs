@@ -491,6 +491,54 @@ public List<Product> GetInventory(int _storeid){
     }
     return allProducts;
 }
+
+public List<Order> GetOrdersDate(){
+    List<Order> allOrder = new List<Order>();
+    using(SqlConnection connection = new SqlConnection(_connectionString)){
+        connection.Open();
+        string orderSelect = "SELECT ItemOrder.OrderID, ItemOrder.DateOfOrder, Customer.UserName, Storefront.Name, LineOrder.Quantity*Product.Price AS Total, LineOrder.LineItemID FROM ItemOrder INNER JOIN LineOrder ON ItemOrder.LineItemID = LineOrder.LineItemID INNER JOIN Product ON LineOrder.ProductID = Product.ProductID INNER JOIN Customer ON ItemOrder.CustomerID = Customer.CustomerID INNER JOIN Storefront ON ItemOrder.StoreID = Storefront.StoreID ORDER BY ItemOrder.DateOfOrder DESC";
+        using(SqlCommand cmd = new SqlCommand(orderSelect, connection)){
+            using(SqlDataReader reader = cmd.ExecuteReader()){
+                while(reader.Read()){
+                    Order newOrder = new Order();
+                    newOrder.OrderNumber = reader.GetInt32(0);
+                    newOrder.OrderDate = reader.GetDateTime(1);
+                    newOrder.CustomerName = reader.GetString(2);
+                    newOrder.StoreName = reader.GetString(3);
+                    newOrder.Total = reader.GetDecimal(4);
+                    newOrder.LineItemID = reader.GetInt32(5);
+                    allOrder.Add(newOrder);
+                }
+            }
+        }
+        connection.Close();
+    }
+    return allOrder;
+}
+
+public List<Order> GetOrdersCost(){
+    List<Order> allOrders = new List<Order>();
+    using(SqlConnection connection = new SqlConnection(_connectionString)){
+        connection.Open();
+        string orderSelect = "SELECT ItemOrder.OrderID, ItemOrder.DateOfOrder, Customer.UserName, Storefront.Name, LineOrder.Quantity*Product.Price AS Total, LineOrder.LineItemID FROM ItemOrder INNER JOIN LineOrder ON ItemOrder.LineItemID = LineOrder.LineItemID INNER JOIN Product ON LineOrder.ProductID = Product.ProductID INNER JOIN Customer ON ItemOrder.CustomerID = Customer.CustomerID INNER JOIN Storefront ON ItemOrder.StoreID = Storefront.StoreID ORDER BY Total DESC";
+        using(SqlCommand cmd = new SqlCommand(orderSelect, connection)){
+            using(SqlDataReader reader = cmd.ExecuteReader()){
+                while(reader.Read()){
+                    Order newOrder = new Order();
+                    newOrder.OrderNumber = reader.GetInt32(0);
+                    newOrder.OrderDate = reader.GetDateTime(1);
+                    newOrder.CustomerName = reader.GetString(2);
+                    newOrder.StoreName = reader.GetString(3);
+                    newOrder.Total = reader.GetDecimal(4);
+                    newOrder.LineItemID = reader.GetInt32(5);
+                    allOrders.Add(newOrder);
+                }
+            }
+        }
+        connection.Close();
+    }
+    return allOrders;
+}
 ///<summary>
 ///Returns the order history of the customer organized by the date of the order.
 ///</summary>

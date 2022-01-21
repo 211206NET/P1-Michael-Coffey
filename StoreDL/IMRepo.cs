@@ -28,6 +28,8 @@ public interface IMRepo{
     void DeleteCustomer(string username);
     void DeleteStorefront(string storename);
     List<Product> GetInventory(int _storeid);
+    List<Order> GetOrdersDate();
+    List<Order> GetOrdersCost();
     List<Order> GetCustomerOrderHistoryDate(int _userid);
     List<Order> GetCustomerOrderHistoryCost(int _userid);
     List<Order> GetStorefrontOrderHistoryDate(int _storeid);

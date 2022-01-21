@@ -71,6 +71,14 @@ public class MBL : IBL{
         return _fdl.GetInventory(_storeid);
     }
 
+    public List<Order> GetOrdersDate(){
+        return _fdl.GetOrdersDate();
+    }
+
+    public List<Order> GetOrdersCost(){
+        return _fdl.GetOrdersCost();
+    }
+
     public List<Order> GetCustomerOrderHistoryDate(int _userid){
         return _fdl.GetCustomerOrderHistoryDate(_userid);
     }
