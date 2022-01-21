@@ -25,6 +25,10 @@ public class Customer
         //this.Orders = orders;
     }
 
+    /// <summary>
+    /// Converts a Customer data row into a customer object
+    /// </summary>
+    /// <param name="row">a data row from Customer object, must have id, username, password, and email address</param>
     public Customer(DataRow row){
         this.Id = (int) row["CustomerID"];
         this.UserName = row["UserName"].ToString() ?? "";
@@ -33,19 +37,15 @@ public class Customer
         //this.Orders = (int) row["COrderHistoryID"];
     }
 
-    // public void printOrderHistory(){
-    //     foreach(Order oh in this.Orders){
-    //         Console.WriteLine(oh.ToString());
-    //         oh.printLineItems();
-    //         Console.WriteLine(oh.CalculateTotal());
-    //     }
-    // }
-
     public override string ToString()
     {
         return $"ID: {this.Id} \nUsername: {this.UserName} \nPassword: {this.Password} \nEmail: {this.Email}";
     }
 
+    /// <summary>
+    /// Takes in the Customer table's data row and fills it with the Customer Instance's info
+    /// </summary>
+    /// <param name="row">Customer Table's data row passed by ref</param>
     public void ToDataRow(ref DataRow row){
         row["CustomerID"] = (int) this.Id;
         row["UserName"] = (string) this.UserName;
