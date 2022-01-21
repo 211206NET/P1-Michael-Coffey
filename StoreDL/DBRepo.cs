@@ -56,25 +56,6 @@ public class DBRepo : IMRepo{
         if(StorefrontTable != null && InventoryTable != null){
             foreach(DataRow row in StorefrontTable.Rows){
                 Storefront nsto = new Storefront(row);
-                // nsto.InventoryID = InventoryTable.AsEnumerable().Where(r => (int) r["InventoryID"] == nsto.InvnetoryID).Select(
-                //     r => 
-                //         new Inventory{
-                //             InventoryID = (int) r["InventoryID"],
-                //             ProductID = (int) r["ProductID"],
-                //             Quantity = (int) r["Quantity"]
-                //         }
-                // ).ToList();
-                // nsto.SOrderHistoryID = HistoryTable.AsEnumerable().Where(r => (int) r["SOrderHistoryID"] == nsto.SOrderHistoryID).Select(
-                //     r => 
-                //          new Order{
-                //             OrderID = (int) r["OrderID"],
-                //             DateOfOrder = (Date) r["DateOfOrder"],
-                //             CustomerID = (int) r["CustomerID"],
-                //             StoreID = (int) r["StoreID"],
-                //             Total = (decimal) r["Total"],
-                //             LineItemID = (int) r["LineItemID"]
-                //          }
-                // ).ToList();
                 allStorefronts.Add(nsto);
             }
         }
@@ -139,17 +120,6 @@ public class DBRepo : IMRepo{
         if(CustomerTable != null && HistoryTable != null){
             foreach(DataRow row in CustomerTable.Rows){
                 Customer cus = new Customer(row);
-                // cus.Orders = HistoryTable.AsEnumerable().Where(r => (int) r["COrderHistoryID"] = cus.Orders).Select(
-                //     r => 
-                //           new Order{
-                //               OrderID = (int) row["OrderID"],
-                //               DateOfOrder = (Date) row["DateOfOrder"],
-                //               CustomerID = (int) row["CustomerID"],
-                //               StoreID = (int) row["StoreID"],
-                //               Total = (decimal) row["Total"],
-                //               LineItemID = (int) row["LineItemID"]
-                //           }
-                // ).ToList();
                 allCustomers.Add(cus);
             }
         }
@@ -250,8 +220,6 @@ public class DBRepo : IMRepo{
                 cmd.Parameters.Add(param);
                 param = new SqlParameter("@invid", _inventoryid);
                 cmd.Parameters.Add(param);
-                // param = new SqlParameter("@soh", _sorderhistoryid);
-                // cmd.Parameters.Add(param);
                 cmd.ExecuteNonQuery();
             }
             connection.Close();
@@ -280,8 +248,6 @@ public class DBRepo : IMRepo{
             connection.Open();
             string sqlCmd = "INSERT INTO Inventory (ProductID, Quantity) VALUES (@proID, @quan)";
             using(SqlCommand cmd = new SqlCommand(sqlCmd, connection)){
-                // SqlParameter param = new SqlParameter("@invID", idOfInventory);
-                // cmd.Parameters.Add(param);
                 SqlParameter param = new SqlParameter("@proID", idOfItem);
                 cmd.Parameters.Add(param);
                 param = new SqlParameter("@quan", amount);
@@ -332,8 +298,6 @@ public class DBRepo : IMRepo{
             string orderCmd = "INSERT INTO ItemOrder (DateOfOrder, CustomerID, StoreID, LineItemID) VALUES (GETDATE(), @cusID, @stoID, (SELECT LineItemID FROM LineOrder WHERE ProductID = @proID AND Quantity = @quan))";
             //string cusSelect = "SELECT * FROM Customer WHERE UserName = @cusNam";
             using(SqlCommand cmd = new SqlCommand(sqlCmd, connection)){
-                // SqlParameter param = new SqlParameter("@linID", idOfLineOrder);
-                // cmd.Parameters.Add(param);
                 SqlParameter param = new SqlParameter("@proID", idOfItem);
                 cmd.Parameters.Add(param);
                 param = new SqlParameter("@quan", numberOfItems);
@@ -357,8 +321,6 @@ public class DBRepo : IMRepo{
                 param3 = new SqlParameter("@quan", numberOfItems);
                 cmd3.Parameters.Add(param3);
                 cmd3.ExecuteNonQuery();
-                // param3 = new SqlParameter("@liorID", idOfLineOrder);
-                // cmd3.ExecuteNonQuery();
             }
             connection.Close();
         }
@@ -387,8 +349,6 @@ public class DBRepo : IMRepo{
                 cmd.Parameters.Add(param);
                 param = new SqlParameter("@paswor", _password);
                 cmd.Parameters.Add(param);
-                // param = new SqlParameter("@coh", _corderhistoryid);
-                // cmd.Parameters.Add(param);
                 cmd.ExecuteNonQuery();
             }
             connection.Close();
@@ -478,8 +438,6 @@ public class DBRepo : IMRepo{
             connection.Open();
             string delCmd = "DELETE FROM Customer WHERE UserName = @usnam";
             using(SqlCommand cmd = new SqlCommand(delCmd, connection)){
-                // SqlParameter param = new SqlParameter("@cusid", _cusID);
-                // cmd.Parameters.Add(param);
                 SqlParameter param = new SqlParameter("@usnam", _userName);
                 cmd.Parameters.Add(param);
                 cmd.ExecuteNonQuery();
@@ -559,16 +517,6 @@ public List<Product> GetInventory(int _storeid){
             }
             connection.Close();
         }
-        // DataSet chSet = new DataSet();
-        // using SqlDataAdapter hisAdapter = new SqlDataAdapter(selectOrHis, connection);
-        // hisAdapter.Fill(chSet, "ItemOrder");
-        // DataTable? HistoryTable = chSet.Tables["ItemOrder"];
-        // if(HistoryTable != null){
-        //     foreach(DataRow row in HistoryTable.Rows){
-        //         Order nord = new Order(row);
-        //         ordHistory.Add(nord);
-        //     }
-        // }
         return ordHistory;
     }
 
@@ -598,20 +546,6 @@ public List<Product> GetInventory(int _storeid){
             }
             connection.Close();
         }
-        // DataSet chSet = new DataSet();
-        // using SqlDataAdapter hisAdapter = new SqlDataAdapter(selectOrHis, connection);
-        // hisAdapter.Fill(chSet, "ItemOrder");
-        // DataTable? HistoryTable = chSet.Tables["ItemOrder"];
-        // DataTable? CustomerTable = chSet.Tables["Customer"];
-        // DataTable? StorefrontTable = chSet.Tables["Storefront"];
-        // DataTable? LineOrderTable = chSet.Tables["LineOrder"];
-        // DataTable? ProductTable = chSet.Tables["Product"];
-        // if(HistoryTable != null){
-        //     foreach(DataRow row in HistoryTable.Rows){
-        //         Order nord = new Order(row);
-        //         ordHistory.Add(nord);
-        //     }
-        // }
         return ordHistory;
     }
 
@@ -641,16 +575,6 @@ public List<Product> GetInventory(int _storeid){
             }
             connection.Close();
         }
-        // DataSet chSet = new DataSet();
-        // using SqlDataAdapter hisAdapter = new SqlDataAdapter(selectOrHis, connection);
-        // hisAdapter.Fill(chSet, "ItemOrder");
-        // DataTable? HistoryTable = chSet.Tables["ItemOrder"];
-        // if(HistoryTable != null){
-        //     foreach(DataRow row in HistoryTable.Rows){
-        //         Order nord = new Order(row);
-        //         ordHistory.Add(nord);
-        //     }
-        // }
         return ordHistory;
     }
 
@@ -680,16 +604,6 @@ public List<Product> GetInventory(int _storeid){
             }
             connection.Close();
         }
-        // DataSet chSet = new DataSet();
-        // using SqlDataAdapter hisAdapter = new SqlDataAdapter(selectOrHis, connection);
-        // hisAdapter.Fill(chSet, "ItemOrder");
-        // DataTable? HistoryTable = chSet.Tables["ItemOrder"];
-        // if(HistoryTable != null){
-        //     foreach(DataRow row in HistoryTable.Rows){
-        //         Order nord = new Order(row);
-        //         ordHistory.Add(nord);
-        //     }
-        // }
         return ordHistory;
     }
 
@@ -726,36 +640,4 @@ public List<Product> GetInventory(int _storeid){
         }
         return false;
     }
-
-    // public List<Storefront> SearchStorefronts(string searchItem){
-    //     string searchStatement = $"SELECT * FROM Storefront WHERE Name LIKE '%{searchItem}%' OR Address LIKE '%{searchItem}%'";
-    //     using SqlConnection connection = new SqlConnection(_connectionString);
-    //     using SqlCommand cmd = new SqlCommand(searchStatement, connection);
-    //     using SqlDataAdapter adapter = new SqlDataAdapter(cmd);
-    //     DataSet StorefrontSets = new DataSet();
-    //     adapter.Fill(StorefrontSets, "Storefront");
-    //     DataTable storefrontTable = StorefrontSets.Tables["Storefront"];
-    //     List<Storefront> searchResults = new List<Storefront>();
-    //     foreach(DataRow row in storefrontTable.Row){
-    //         Storefront sto = new Storefront(row);
-    //         searchResults.Add(sto);
-    //     }
-    //     return searchResults;
-    // }
-
-    // public List<Product> SearchInventories(string searchItem){
-    //     string searchTerms = $"SELECT Inventory.InventoryID, Product.Title, Product.Price, Director.DirectorName, ReleaseYear.Year, MPARating.Rating FROM Invenotry INNER JOIN Product ON Inventory.ProductID=Product.ProductID INNER JOIN Director ON Product.DirectorID = Director.DirectorID INNER JOIN ReleaseYear ON Product.YearID = ReleaseYear.YearID INNER JOIN MPARating ON MPARating.RatingID = Product.RatingID WHERE Product.Title LIKE '%{searchItem}%' OR Director.DirectorName LIKE '%{searchItem}%'";
-    //     using SqlConnection connection = new SqlConnection(_connectionString);
-    //     using SqlCommand cmd = new SqlCommand(searchTerms, connection);
-    //     using SqlDataAdapter adapter = new SqlDataAdapter(cmd);
-    //     DataSet InventorySets = new DataSet();
-    //     adapter.Fill(InventorySets, "Inventory");
-    //     DataTable inventoryTable = InventorySets.Tables["Inventory"];
-    //     List<Product> searchResults = new List<Product>();
-    //     foreach(DataRow row in inventoryTable.Row){
-    //         Product pro = new Product(row);
-    //         searchResults.Add(pro);
-    //     }
-    //     return searchResults;
-    // }
 }
