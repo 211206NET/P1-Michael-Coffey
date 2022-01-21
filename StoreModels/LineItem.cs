@@ -14,6 +14,10 @@ public class LineItem
         this.Quantity = quantity;
     }
 
+    /// <summary>
+    /// Takes a row from the LineOrder table and converts it into a LineItem object
+    /// </summary>
+    /// <param name="row">Row from the LineOrder Table</param>
     public LineItem(DataRow row){
         this.OrderId = (int) row["LineItemID"];
         this.ItemID = (int) row["ProductID"];
@@ -28,6 +32,10 @@ public class LineItem
         return $"LineItem ID: {this.OrderId} \nQuantity: {this.Quantity} \n{this.ItemID}";
     }
 
+    /// <summary>
+    /// Takes an instance of a LineItem object and adds them to the LineOrder table
+    /// </summary>
+    /// <param name="row">reference to a LineOrder table row</param>
     public void ToDataRow(ref DataRow row){
         this.OrderId = (int) row["LineItemID"];
         this.ItemID = (int) row["ProductID"];
