@@ -35,8 +35,6 @@ namespace storeWebAPI.Controllers
         {
             return _bl.GetCustomerOrderHistoryDate(id);
         }
-
-        [HttpGet("{id}")]
         public List<Order> GetCOrdersCost(int id)
         {
             return _bl.GetCustomerOrderHistoryCost(id);
