@@ -23,6 +23,10 @@ public class Order
         //this.CalculateTotal();
     }
 
+    /// <summary>
+    /// Takes a row from the ItemOrder table and converts it to an Order object
+    /// </summary>
+    /// <param name="row">Row from the ItemOrder table</param>
     public Order(DataRow row){
         this.OrderNumber = (int) row["OrderID"];
         this.OrderDate = (DateTime) row["DateOfOrder"];
@@ -32,33 +36,16 @@ public class Order
         this.LineItemID = (int) row["LineItemID"];
 
     }
-    // public decimal CalculateTotal() {
-    //     a method that would go through each lineitem in LineItems property
-    //     and sets the total property of the particular order object
-    //     decimal total = 0;
-    //     if(this.LineItems?.Count > 0)
-    //     {
-    //         foreach(LineItem lineitem in this.LineItems)
-    //         {
-    //             //multiply the product's price by how many we're buying
-    //             total += lineitem.Item.Price * lineitem.Quantity;
-    //         }
-    //     }
-    //     this.Total = total;
-    //     return total;
-    // }
-
-    // public void printLineItems(){
-    //     foreach(LineItem li in this.LineItems){
-    //         Console.WriteLine($"{li.ToString()}");
-    //     }
-    // }
 
     public override string ToString()
     {
         return $"Date: {this.OrderDate} \nCustomer: {this.CustomerName} \nOrder ID: {this.OrderNumber} \nStore: {this.StoreName} \nTotal Cost: {this.Total}";
     }
 
+    /// <summary>
+    /// Takes an instance of an Order object and turns it into a row in the ItemOrder table
+    /// </summary>
+    /// <param name="row">Refence to a row in the ItemOrder table</param>
     public void ToDataRow(ref DataRow row){
         this.OrderNumber = (int) row["OrderID"];
         this.OrderDate = (DateTime) row["DateOfOrder"];
