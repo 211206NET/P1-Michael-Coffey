@@ -36,6 +36,10 @@ public class Product
         this.Price = price;
     }
 
+    /// <summary>
+    /// Takes a row from the Product table and converts it into a Product object
+    /// </summary>
+    /// <param name="row">Row from the Product Table</param>
     public Product(DataRow row){
         this.ProductName = (string) row["Title"] ?? "";
         this.Price = (decimal) row["Price"];
@@ -49,6 +53,10 @@ public class Product
         return $"Inventory ID: {this.InventoryID} \nTitle: {this.ProductName} \nDir.: {this.Director} \nRating: {this.MPARating} \nYear: {this.ReleaseYear} \nCost: {this.Price} \nQuantity: {this.Quantity}";
     }
 
+    /// <summary>
+    /// Takes an instance of a Product object and converts it into a row on the Product Table
+    /// </summary>
+    /// <param name="row">Refernce to a row in the Product table</param>
     public void ToDataRow(ref DataRow row){
         this.ProductName = (string) row["Title"] ?? "";
         this.Price = (decimal) row["Price"];
