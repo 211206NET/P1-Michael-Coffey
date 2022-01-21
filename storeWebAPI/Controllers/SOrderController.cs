@@ -36,6 +36,7 @@ namespace storeWebAPI.Controllers
             return _bl.GetStorefrontOrderHistoryCost(id);
         }
 
+        // GET api/<SOrderController>/5
         [HttpGet("{did}")]
         public List<Order> GetSOrderDate(int did)
         {
