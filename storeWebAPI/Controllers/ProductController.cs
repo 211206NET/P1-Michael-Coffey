@@ -45,14 +45,30 @@ namespace storeWebAPI.Controllers
 
         // PUT api/<ValuesController>/5
         [HttpPut("{id}")]
-        public void PutIntoProduct(int id, [FromBody] string value)
+        public void PutDirectorIntoProduct(int id, [FromBody] string value)
         {
+            _bl.AddDirectorToProduct(id, value);
+        }
+
+        //PUT api/<ProductController>/5
+        [HttpPut("{pid}")]
+        public void PutReleaseYearIntoProduct(int pid, [FromBody] int value)
+        {
+            _bl.AddReleaseYearToProduct(pid, value);
+        }
+
+        //PUT api/<ProductController>/5
+        [HttpPut("{mid}")]
+        public void PutMPARatingIntoProduct(int mid, [FromBody] string value)
+        {
+            _bl.AddRatingToProduct(mid, value);
         }
 
         // DELETE api/<ValuesController>/5
         [HttpDelete("{id}")]
-        public void DeleteProduct(int id)
+        public void DeleteProduct(string movieTitle)
         {
+            _bl.DeleteProduct(movieTitle);
         }
     }
 }
