@@ -57,8 +57,9 @@ namespace storeWebAPI.Controllers
 
         // PUT api/<CustomerController>/5
         [HttpPut("{id}")]
-        public void PutIntoCustomer(int id, [FromBody] string value)
+        public void PutIntoCustomer(int id, [FromBody] int value)
         {
+            _bl.PutCOHIDIntoCustomer(id, value);
         }
 
         // DELETE api/<CustomerController>/5
