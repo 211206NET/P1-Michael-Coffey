@@ -46,11 +46,11 @@ public class MBL : IBL{
         }
         else throw new DuplicateException("This customer already has an account!");
     }
-    public void PutCOHIDIntoCustomer(int id){
-        _fdl.PutCOHIDIntoCustomer(id);
+    public void PutCOHIDIntoCustomer(int cid, int id){
+        _fdl.PutCOHIDIntoCustomer(cid, id);
     }
-    public void PutSOHIDIntoStorefront(int id){
-        _fdl.PutSOHIDIntoStorefront(id);
+    public void PutSOHIDIntoStorefront(int sid, int id){
+        _fdl.PutSOHIDIntoStorefront(sid, id);
     }
     public Customer GetCustomerByID(int id){
         return _fdl.GetCustomerByID(id);

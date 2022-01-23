@@ -19,8 +19,8 @@ public interface IMRepo{
     void ReplenishStock(int idOfItem, int idOfInventory, int numberToAdd);
     void PlaceAnOrder(int idOfItem, int numberOfItems, int stoId, int cusId);
     void AddCustomer(string _username, string _email, string _password);
-    void PutCOHIDIntoCustomer(int id);
-    void PutSOHIDIntoStorefront(int id);
+    void PutCOHIDIntoCustomer(int cid, int id);
+    void PutSOHIDIntoStorefront(int sid, int id);
 
     Customer GetCustomerByID(int id);
     Storefront GetStorefrontByID(int id);

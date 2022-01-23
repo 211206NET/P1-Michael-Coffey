@@ -367,12 +367,14 @@ public class DBRepo : IMRepo{
         Log.Information("new customer added to the database {_username}", _username);
     }
 
-    public void PutCOHIDIntoCustomer(int id){
+    public void PutCOHIDIntoCustomer(int cid, int id){
         using(SqlConnection connection = new SqlConnection(_connectionString)){
             connection.Open();
-            string cIDCmd = "INSERT INTO Customer (COrderHistoryID) VALUES @ohId";
+            string cIDCmd = "INSERT INTO Customer (COrderHistoryID) VALUES @ohId WHERE CustomerID = @cuId";
             using(SqlCommand cmd = new SqlCommand(cIDCmd, connection)){
                 SqlParameter param = new SqlParameter("@ohId", id);
+                cmd.Parameters.Add(param);
+                param = new SqlParameter("@cuId", cid);
                 cmd.Parameters.Add(param);
                 cmd.ExecuteNonQuery();
             }
@@ -380,12 +382,14 @@ public class DBRepo : IMRepo{
         }
     }
 
-    public void PutSOHIDIntoStorefront(int id){
+    public void PutSOHIDIntoStorefront(int sid, int id){
         using(SqlConnection connection = new SqlConnection(_connectionString)){
             connection.Open();
-            string cIDCmd = "INSERT INTO Storefront (SOrderHistoryID) VALUES @ohId";
+            string cIDCmd = "INSERT INTO Storefront (SOrderHistoryID) VALUES @ohId WHERE StoreID = @stId";
             using(SqlCommand cmd = new SqlCommand(cIDCmd, connection)){
                 SqlParameter param = new SqlParameter("@ohId", id);
+                cmd.Parameters.Add(param);
+                param = new SqlParameter("@stId", sid);
                 cmd.Parameters.Add(param);
                 cmd.ExecuteNonQuery();
             }
