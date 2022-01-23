@@ -367,6 +367,32 @@ public class DBRepo : IMRepo{
         Log.Information("new customer added to the database {_username}", _username);
     }
 
+    public void PutCOHIDIntoCustomer(int id){
+        using(SqlConnection connection = new SqlConnection(_connectionString)){
+            connection.Open();
+            string cIDCmd = "INSERT INTO Customer (COrderHistoryID) VALUES @ohId";
+            using(SqlCommand cmd = new SqlCommand(cIDCmd, connection)){
+                SqlParameter param = new SqlParameter("@ohId", id);
+                cmd.Parameters.Add(param);
+                cmd.ExecuteNonQuery();
+            }
+            connection.Close();
+        }
+    }
+
+    public void PutSOHIDIntoStorefront(int id){
+        using(SqlConnection connection = new SqlConnection(_connectionString)){
+            connection.Open();
+            string cIDCmd = "INSERT INTO Storefront (SOrderHistoryID) VALUES @ohId";
+            using(SqlCommand cmd = new SqlCommand(cIDCmd, connection)){
+                SqlParameter param = new SqlParameter("@ohId", id);
+                cmd.Parameters.Add(param);
+                cmd.ExecuteNonQuery();
+            }
+            connection.Close();
+        }
+    }
+
     /// <summary>
     /// Gets a customer from its id
     /// </summary>
@@ -429,6 +455,51 @@ public class DBRepo : IMRepo{
         }
     }
 
+    public void AddDirectorToProduct(int pid, string ndirector){
+        using(SqlConnection connection = new SqlConnection(_connectionString)){
+            connection.Open();
+            string dirCmd = "INSERT INTO Product (DirectorID) VALUES (SELECT DirectorID FROM Director WHERE DirectorName = @dirNam) WHERE ProductID = @proId";
+            using(SqlCommand cmd = new SqlCommand(dirCmd, connection)){
+                SqlParameter param = new SqlParameter("@dirNam", ndirector);
+                cmd.Parameters.Add(param);
+                param = new SqlParameter("@proId", pid);
+                cmd.Parameters.Add(param);
+                cmd.ExecuteNonQuery();
+            }
+            connection.Close();
+        }
+    }
+
+    public void AddReleaseYearToProduct(int pid, int nyear){
+        using(SqlConnection connection = new SqlConnection(_connectionString)){
+            connection.Open();
+            string yirCmd = "INSERT INTO Product (YearID) VALUES (SELECT YearID FROM ReleaseYear WHERE Year = @yir) WHERE ProductID = @proId";
+            using(SqlCommand cmd = new SqlCommand(yirCmd, connection)){
+                SqlParameter param = new SqlParameter("@yir", nyear);
+                cmd.Parameters.Add(param);
+                param = new SqlParameter("@proId", pid);
+                cmd.Parameters.Add(param);
+                cmd.ExecuteNonQuery();
+            }
+            connection.Close();
+        }
+    }
+
+    public void AddRatingToProduct(int pid, string nrating){
+        using(SqlConnection connection = new SqlConnection(_connectionString)){
+            connection.Open();
+            string ratCmd = "INSERT INTO PRODUCT (RatingID) VALUES (SELECT RatingID FROM MPARating WHERE Rating = @mpa) WHERE ProductID = @proID";
+            using(SqlCommand cmd = new SqlCommand(ratCmd, connection)){
+                SqlParameter param = new SqlParameter("@mpa", nrating);
+                cmd.Parameters.Add(param);
+                param = new SqlParameter("@proID", pid);
+                cmd.Parameters.Add(param);
+                cmd.ExecuteNonQuery();
+            }
+            connection.Close();
+        }
+    }
+
 ///<summary>
 ///Deletes a customer from the database.
 ///</summary>
@@ -456,6 +527,32 @@ public class DBRepo : IMRepo{
             string delCommand = "DELETE FROM Storefront WHERE Name = @stoNam";
             using(SqlCommand cmd = new SqlCommand(delCommand, connection)){
                 SqlParameter param = new SqlParameter("@stoNam", _storeName);
+                cmd.Parameters.Add(param);
+                cmd.ExecuteNonQuery();
+            }
+            connection.Close();
+        }
+    }
+
+    public void DeleteProduct(string _productname){
+        using(SqlConnection connection = new SqlConnection(_connectionString)){
+            connection.Open();
+            string delProCommand = "DELETE FROM Storefront WHERE Title = @proNam";
+            using(SqlCommand cmd = new SqlCommand(delProCommand, connection)){
+                SqlParameter param = new SqlParameter("@proNam", _productname);
+                cmd.Parameters.Add(param);
+                cmd.ExecuteNonQuery();
+            }
+            connection.Close();
+        }
+    }
+
+    public void DeleteOrder(int oid){
+        using(SqlConnection connection = new SqlConnection(_connectionString)){
+            connection.Open();
+            string ordCommand = "DELETE FROM ItemOrder WHERE OrderID = @norid";
+            using(SqlCommand cmd = new SqlCommand(ordCommand, connection)){
+                SqlParameter param = new SqlParameter("@norid", oid);
                 cmd.Parameters.Add(param);
                 cmd.ExecuteNonQuery();
             }

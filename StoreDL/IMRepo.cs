@@ -19,14 +19,19 @@ public interface IMRepo{
     void ReplenishStock(int idOfItem, int idOfInventory, int numberToAdd);
     void PlaceAnOrder(int idOfItem, int numberOfItems, int stoId, int cusId);
     void AddCustomer(string _username, string _email, string _password);
+    void PutCOHIDIntoCustomer(int id);
+    void PutSOHIDIntoStorefront(int id);
 
     Customer GetCustomerByID(int id);
     Storefront GetStorefrontByID(int id);
-
     void AddProduct(int proID, string proTitle, decimal proPrice, int proYear, int proDirector, int proRating);
-
+    void AddDirectorToProduct(int pid, string ndirector);
+    void AddReleaseYearToProduct(int pid, int nyear);
+    void AddRatingToProduct(int pid, string nrating);
     void DeleteCustomer(string username);
     void DeleteStorefront(string storename);
+    void DeleteProduct(string _productname);
+    void DeleteOrder(int oid);
     List<Product> GetInventory(int _storeid);
     List<Order> GetOrdersDate();
     List<Order> GetOrdersCost();

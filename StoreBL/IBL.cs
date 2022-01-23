@@ -9,11 +9,18 @@ public interface IBL{
     void ReplenishStock(int nId, int nInv, int nAmo);
     void PlaceAnOrder(int sId, int nBuy, int nSto, int nUser);
     void AddCustomer(string _username, string _email, string _password);
+    void PutCOHIDIntoCustomer(int id);
+    void PutSOHIDIntoStorefront(int id);
     Customer GetCustomerByID(int id);
     Storefront GetStorefrontByID(int id);
     void AddProduct(int _ID, string _name, decimal _price, int _year, int _director, int _rating);
+    void AddDirectorToProduct(int pid, string ndirector);
+    void AddReleaseYearToProduct(int pid, int nyear);
+    void AddRatingToProduct(int pid, string nrating);
     void DeleteCustomer(string _username);
     void DeleteStorefront(string _storename);
+    void DeleteProduct(string _productname);
+    void DeleteOrder(int oid);
     List<Product> GetInventory(int _storeid);
     List<Order> GetOrdersDate();
     List<Order> GetOrdersCost();

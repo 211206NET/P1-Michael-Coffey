@@ -46,7 +46,12 @@ public class MBL : IBL{
         }
         else throw new DuplicateException("This customer already has an account!");
     }
-
+    public void PutCOHIDIntoCustomer(int id){
+        _fdl.PutCOHIDIntoCustomer(id);
+    }
+    public void PutSOHIDIntoStorefront(int id){
+        _fdl.PutSOHIDIntoStorefront(id);
+    }
     public Customer GetCustomerByID(int id){
         return _fdl.GetCustomerByID(id);
     }
@@ -54,11 +59,18 @@ public class MBL : IBL{
     public Storefront GetStorefrontByID(int id){
         return _fdl.GetStorefrontByID(id);
     }
-
     public void AddProduct(int _ID, string _name, decimal _price, int _year, int _director, int _rating){
         _fdl.AddProduct(_ID, _name, _price, _year, _director, _rating);
     }
-
+    public void AddDirectorToProduct(int pid, string ndirector){
+        _fdl.AddDirectorToProduct(pid, ndirector);
+    }
+    public void AddReleaseYearToProduct(int pid, int nyear){
+        _fdl.AddReleaseYearToProduct(pid, nyear);
+    }
+    public void AddRatingToProduct(int pid, string nrating){
+        _fdl.AddRatingToProduct(pid, nrating);
+    }
     public void DeleteCustomer(string _username){
         _fdl.DeleteCustomer(_username);
     }
@@ -66,7 +78,12 @@ public class MBL : IBL{
     public void DeleteStorefront(string _storename){
         _fdl.DeleteStorefront(_storename);
     }
-
+    public void DeleteProduct(string _productname){
+        _fdl.DeleteProduct(_productname);
+    }
+    public void DeleteOrder(int oid){
+        _fdl.DeleteOrder(oid);
+    }
     public List<Product> GetInventory(int _storeid){
         return _fdl.GetInventory(_storeid);
     }
