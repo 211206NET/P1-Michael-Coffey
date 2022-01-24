@@ -60,6 +60,7 @@ namespace storeWebAPI.Controllers
         [HttpDelete("{id}")]
         public void DeleteInventory(int id)
         {
+            _bl.DeleteInventory(id);
         }
     }
 }
