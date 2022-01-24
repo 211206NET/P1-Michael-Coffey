@@ -70,7 +70,7 @@ public class DBRepo : IMRepo{
         List<Storefront> allStorefronts = new List<Storefront>();
         using(SqlConnection connection = new SqlConnection(_connectionString)){
             connection.Open();
-            string queryText = "SELECT * FROM Restaurant";
+            string queryText = "SELECT * FROM Storefront";
             using(SqlCommand cmd = new SqlCommand(queryText, connection)){
                 using(SqlDataReader reader = cmd.ExecuteReader()){
                     while(await reader.ReadAsync()){
