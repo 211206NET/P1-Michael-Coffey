@@ -22,14 +22,14 @@ namespace storeWebAPI.Controllers
             _bl = bl;
             _memoryCache = memoryCache;
         }
-        // GET: api/<ValuesController>
+        // GET: api/<OrderController>
         [HttpGet]
         public List<Order> GetOrdersDate()
         {
             return _bl.GetOrdersDate();
         }
 
-        // GET api/<ValuesController>/5
+        // GET api/<OrderController>/5
         [HttpGet("{id}")]
         public List<Order> GetCOrdersDate(int id)
         {
@@ -43,19 +43,19 @@ namespace storeWebAPI.Controllers
             return _bl.GetCustomerOrderHistoryCost(nid);
         }
 
-        // POST api/<ValuesController>
+        // POST api/<OrderController>
         [HttpPost]
         public void PostOrders([FromBody] Order nOrder)
         {
         }
 
-        // PUT api/<ValuesController>/5
+        // PUT api/<OrderController>/5
         [HttpPut("{id}")]
         public void PutIntoOrder(int id, [FromBody] Order nOrder)
         {
         }
 
-        // DELETE api/<ValuesController>/5
+        // DELETE api/<OrderController>/5
         [HttpDelete("{id}")]
         public void DeleteOrder(int id)
         {

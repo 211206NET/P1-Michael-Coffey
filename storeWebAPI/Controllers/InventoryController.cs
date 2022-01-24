@@ -22,7 +22,7 @@ namespace storeWebAPI.Controllers
             _bl = bl;
             _memoryCache = memoryCache;
         }
-        // GET: api/<ValuesController>
+        // GET: api/<InventoryController>
         [HttpGet]
         public async Task<List<Inventory>> GetInventories()
         {
@@ -35,28 +35,28 @@ namespace storeWebAPI.Controllers
             return nInventories;
         }
 
-        // GET api/<ValuesController>/5
+        // GET api/<InventoryController>/5
         [HttpGet("{id}")]
         public List<Product> GetInventoryByID(int id)
         {
             return _bl.GetInventory(id);
         }
 
-        // POST api/<ValuesController>
+        // POST api/<InventoryController>
         [HttpPost]
         public void PostInventories([FromBody] Inventory newInv, int nam)
         {
             _bl.AddInventory(newInv.ItemID, nam);
         }
 
-        // PUT api/<ValuesController>/5
+        // PUT api/<InventoryController>/5
         [HttpPut("{id}")]
         public void PutIntoInventories(int id, [FromBody] Inventory nInvent, int newam)
         {
             _bl.ReplenishStock(id, nInvent.StoreId, newam);
         }
 
-        // DELETE api/<ValuesController>/5
+        // DELETE api/<InventoryController>/5
         [HttpDelete("{id}")]
         public void DeleteInventory(int id)
         {

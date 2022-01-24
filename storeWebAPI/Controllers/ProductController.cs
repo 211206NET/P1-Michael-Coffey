@@ -22,28 +22,28 @@ namespace storeWebAPI.Controllers
             _bl = bl;
             _memoryCache = memoryCache;
         }
-        // GET: api/<ValuesController>
+        // GET: api/<ProductController>
         [HttpGet]
         public List<Product> GetProducts(int invID)
         {
             return _bl.GetInventory(invID);
         }
 
-        // GET api/<ValuesController>/5
+        // GET api/<ProductController>/5
         [HttpGet("{id}")]
         public string GetProductByID(int id)
         {
             return "value";
         }
 
-        // POST api/<ValuesController>
+        // POST api/<ProductController>
         [HttpPost]
         public void PostProducts([FromBody] Product newPro)
         {
             _bl.AddProduct(newPro.InventoryID, newPro.ProductName, newPro.Price, newPro.ReleaseYearID, newPro.DirectorID, newPro.MPARatingID);
         }
 
-        // PUT api/<ValuesController>/5
+        // PUT api/<ProductController>/5
         [HttpPut("{id}")]
         public void PutDirectorIntoProduct(int id, [FromBody] string value)
         {
@@ -64,7 +64,7 @@ namespace storeWebAPI.Controllers
             _bl.AddRatingToProduct(mid, value);
         }
 
-        // DELETE api/<ValuesController>/5
+        // DELETE api/<ProductController>/5
         [HttpDelete("{id}")]
         public void DeleteProduct(string movieTitle)
         {
