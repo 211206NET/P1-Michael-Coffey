@@ -44,9 +44,9 @@ namespace storeWebAPI.Controllers
 
         // POST api/<InventoryController>
         [HttpPost]
-        public void PostInventories([FromBody] Inventory newInv, int nam)
+        public void PostInventories(int itemid, int nam)
         {
-            _bl.AddInventory(newInv.ItemID, nam);
+            _bl.AddInventory(itemid, nam);
         }
 
         // PUT api/<InventoryController>/5

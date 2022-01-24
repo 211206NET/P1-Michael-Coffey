@@ -64,7 +64,7 @@ namespace storeWebAPI.Controllers
 
         // DELETE api/<StorefrontController>/5
         [HttpDelete("{id}")]
-        public void DeleteStore(Storefront nStore)
+        public void DeleteStore([FromBody] Storefront nStore)
         {
             _bl.DeleteStorefront(nStore.Name);
         }
