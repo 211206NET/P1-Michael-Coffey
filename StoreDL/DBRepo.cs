@@ -367,6 +367,11 @@ public class DBRepo : IMRepo{
         Log.Information("new customer added to the database {_username}", _username);
     }
 
+    /// <summary>
+    /// Gives a specific value to the customer order history ID column
+    /// </summary>
+    /// <param name="cid">Id of the selected customer</param>
+    /// <param name="id">New CustomerOrderHistoryID</param>
     public void PutCOHIDIntoCustomer(int cid, int id){
         using(SqlConnection connection = new SqlConnection(_connectionString)){
             connection.Open();
@@ -382,6 +387,11 @@ public class DBRepo : IMRepo{
         }
     }
 
+    /// <summary>
+    /// Gives a specific value to the store order history ID column
+    /// </summary>
+    /// <param name="sid">ID of the selected storefront</param>
+    /// <param name="id">New StorefrontOrderHistoryID</param>
     public void PutSOHIDIntoStorefront(int sid, int id){
         using(SqlConnection connection = new SqlConnection(_connectionString)){
             connection.Open();
@@ -459,6 +469,11 @@ public class DBRepo : IMRepo{
         }
     }
 
+    /// <summary>
+    /// Adds a Director value to a product item
+    /// </summary>
+    /// <param name="pid">ID of the selected product</param>
+    /// <param name="ndirector">Name of the filmmaker</param>
     public void AddDirectorToProduct(int pid, string ndirector){
         using(SqlConnection connection = new SqlConnection(_connectionString)){
             connection.Open();
@@ -474,6 +489,11 @@ public class DBRepo : IMRepo{
         }
     }
 
+    /// <summary>
+    /// Adds a release year to a product item
+    /// </summary>
+    /// <param name="pid">ID of the selected product</param>
+    /// <param name="nyear">Year of the film's release</param>
     public void AddReleaseYearToProduct(int pid, int nyear){
         using(SqlConnection connection = new SqlConnection(_connectionString)){
             connection.Open();
@@ -489,6 +509,11 @@ public class DBRepo : IMRepo{
         }
     }
 
+    /// <summary>
+    /// Adds a rating to a product
+    /// </summary>
+    /// <param name="pid">ID of the selected product</param>
+    /// <param name="nrating">The Motion Picture Association's rating for the film</param>
     public void AddRatingToProduct(int pid, string nrating){
         using(SqlConnection connection = new SqlConnection(_connectionString)){
             connection.Open();
@@ -538,6 +563,10 @@ public class DBRepo : IMRepo{
         }
     }
 
+    /// <summary>
+    /// Deletes a product from the database
+    /// </summary>
+    /// <param name="_productname">name of the product that is set to be deleted</param>
     public void DeleteProduct(string _productname){
         using(SqlConnection connection = new SqlConnection(_connectionString)){
             connection.Open();
@@ -551,6 +580,10 @@ public class DBRepo : IMRepo{
         }
     }
 
+    /// <summary>
+    /// Deletes an order from the database
+    /// </summary>
+    /// <param name="oid">ID of the order that will be deleted</param>
     public void DeleteOrder(int oid){
         using(SqlConnection connection = new SqlConnection(_connectionString)){
             connection.Open();
