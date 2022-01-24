@@ -597,6 +597,19 @@ public class DBRepo : IMRepo{
         }
     }
 
+    public void DeleteInventory(int iId){
+        using(SqlConnection connection = new SqlConnection(_connectionString)){
+            connection.Open();
+            string invCommand = "DELETE FROM Inventory WHERE InventoryID = @invID";
+            using(SqlCommand cmd = new SqlCommand(invCommand, connection)){
+                SqlParameter param = new SqlParameter("@invID", iId);
+                cmd.Parameters.Add(param);
+                cmd.ExecuteNonQuery();
+            }
+            connection.Close();
+        }
+    }
+
 ///<summary>
 ///Returns the inventory of a store.
 ///</summary>

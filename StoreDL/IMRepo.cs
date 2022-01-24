@@ -32,6 +32,7 @@ public interface IMRepo{
     void DeleteStorefront(string storename);
     void DeleteProduct(string _productname);
     void DeleteOrder(int oid);
+    void DeleteInventory(int iId);
     List<Product> GetInventory(int _storeid);
     List<Order> GetOrdersDate();
     List<Order> GetOrdersCost();

@@ -20,6 +20,7 @@ public interface IBL{
     void DeleteCustomer(string _username);
     void DeleteStorefront(string _storename);
     void DeleteProduct(string _productname);
+    void DeleteInventory(int iId);
     void DeleteOrder(int oid);
     List<Product> GetInventory(int _storeid);
     List<Order> GetOrdersDate();

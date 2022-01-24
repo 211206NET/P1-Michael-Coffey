@@ -84,6 +84,9 @@ public class MBL : IBL{
     public void DeleteOrder(int oid){
         _fdl.DeleteOrder(oid);
     }
+    public void DeleteInventory(int iId){
+        _fdl.DeleteInventory(iId);
+    }
     public List<Product> GetInventory(int _storeid){
         return _fdl.GetInventory(_storeid);
     }
