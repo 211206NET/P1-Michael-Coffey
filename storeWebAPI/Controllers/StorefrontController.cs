@@ -57,7 +57,7 @@ namespace storeWebAPI.Controllers
 
         // PUT api/<StorefrontController>/5
         [HttpPut("{id}")]
-        public void PutIntoStore(int id, [FromBody] int value)
+        public void PutIntoStore(int id, int value)
         {
             _bl.PutSOHIDIntoStorefront(id, value);
         }
