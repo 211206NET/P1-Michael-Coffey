@@ -45,8 +45,9 @@ namespace storeWebAPI.Controllers
 
         // POST api/<SOrderController>
         [HttpPost]
-        public void PostStoreOrder([FromBody] Order nOrder)
+        public void PostStoreOrder(int itemId, int itemNum, int storeId, int cusID)
         {
+            _bl.PlaceAnOrder(itemId, itemNum, storeId, cusID);
         }
 
         // PUT api/<SOrderController>/5
