@@ -375,7 +375,7 @@ public class DBRepo : IMRepo{
     public void PutCOHIDIntoCustomer(int cid, int id){
         using(SqlConnection connection = new SqlConnection(_connectionString)){
             connection.Open();
-            string cIDCmd = "INSERT INTO Customer (COrderHistoryID) VALUES @ohId WHERE CustomerID = @cuId";
+            string cIDCmd = "INSERT INTO Customer (COrderHistoryID) VALUES (@ohId) WHERE CustomerID = @cuId";
             using(SqlCommand cmd = new SqlCommand(cIDCmd, connection)){
                 SqlParameter param = new SqlParameter("@ohId", id);
                 cmd.Parameters.Add(param);
@@ -395,11 +395,41 @@ public class DBRepo : IMRepo{
     public void PutSOHIDIntoStorefront(int sid, int id){
         using(SqlConnection connection = new SqlConnection(_connectionString)){
             connection.Open();
-            string cIDCmd = "INSERT INTO Storefront (SOrderHistoryID) VALUES @ohId WHERE StoreID = @stId";
+            string cIDCmd = "INSERT INTO Storefront (SOrderHistoryID) VALUES (@ohId) WHERE StoreID = @stId";
             using(SqlCommand cmd = new SqlCommand(cIDCmd, connection)){
                 SqlParameter param = new SqlParameter("@ohId", id);
                 cmd.Parameters.Add(param);
                 param = new SqlParameter("@stId", sid);
+                cmd.Parameters.Add(param);
+                cmd.ExecuteNonQuery();
+            }
+            connection.Close();
+        }
+    }
+
+    public void PutOHInCOrderHistory(int ohId, int id){
+        using(SqlConnection connection = new SqlConnection(_connectionString)){
+            connection.Open();
+            string ohCmd = "INSERT INTO CustomerOrderHistory VALUES (@oId) WHERE COrderHistoryID = @orHisId";
+            using(SqlCommand cmd = new SqlCommand(ohCmd, connection)){
+                SqlParameter param = new SqlParameter("@oId", id);
+                cmd.Parameters.Add(param);
+                param = new SqlParameter("@orHisId", ohId);
+                cmd.Parameters.Add(param);
+                cmd.ExecuteNonQuery();
+            }
+            connection.Close();
+        }
+    }
+
+    public void PutOHInSOrderHistory(int ohId, int id){
+        using(SqlConnection connection = new SqlConnection(_connectionString)){
+            connection.Open();
+            string ohCmd = "INSERT INTO StoreOrderHistory VALUES (@oId) WHERE SOrderHistoryID = @orHisId";
+            using(SqlCommand cmd = new SqlCommand(ohCmd, connection)){
+                SqlParameter param = new SqlParameter("@oId", id);
+                cmd.Parameters.Add(param);
+                param = new SqlParameter("@orHisId", ohId);
                 cmd.Parameters.Add(param);
                 cmd.ExecuteNonQuery();
             }
@@ -435,6 +465,10 @@ public class DBRepo : IMRepo{
             }
         }
         return new Storefront();
+    }
+
+    public Product GetProductByID(int id){
+        return new Product();
     }
 
 ///<summary>

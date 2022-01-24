@@ -11,8 +11,11 @@ public interface IBL{
     void AddCustomer(string _username, string _email, string _password);
     void PutCOHIDIntoCustomer(int cid, int id);
     void PutSOHIDIntoStorefront(int sid, int id);
+    void PutOHInCOrderHistory(int ohId, int id);
+    void PutOHInSOrderHistory(int ohId, int id);
     Customer GetCustomerByID(int id);
     Storefront GetStorefrontByID(int id);
+    Product GetProductByID(int id);
     void AddProduct(int _ID, string _name, decimal _price, int _year, int _director, int _rating);
     void AddDirectorToProduct(int pid, string ndirector);
     void AddReleaseYearToProduct(int pid, int nyear);

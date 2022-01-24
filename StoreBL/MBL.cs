@@ -52,12 +52,21 @@ public class MBL : IBL{
     public void PutSOHIDIntoStorefront(int sid, int id){
         _fdl.PutSOHIDIntoStorefront(sid, id);
     }
+    public void PutOHInCOrderHistory(int ohId, int id){
+        _fdl.PutOHInCOrderHistory(ohId, id);
+    }
+    public void PutOHInSOrderHistory(int ohId, int id){
+        _fdl.PutOHInSOrderHistory(ohId, id);
+    }
     public Customer GetCustomerByID(int id){
         return _fdl.GetCustomerByID(id);
     }
 
     public Storefront GetStorefrontByID(int id){
         return _fdl.GetStorefrontByID(id);
+    }
+    public Product GetProductByID(int id){
+        return _fdl.GetProductByID(id);
     }
     public void AddProduct(int _ID, string _name, decimal _price, int _year, int _director, int _rating){
         _fdl.AddProduct(_ID, _name, _price, _year, _director, _rating);
