@@ -1,5 +1,6 @@
 using DL;
 using BL;
+using Microsoft.Extensions.Caching.Memory;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,6 +10,7 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddMemoryCache();
 
 builder.Services.AddScoped<IMRepo>(ctx => new DBRepo(builder.Configuration.GetConnectionString("FSDB")));
 builder.Services.AddScoped<IBL, MBL>();
