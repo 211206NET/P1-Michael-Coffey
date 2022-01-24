@@ -597,6 +597,10 @@ public class DBRepo : IMRepo{
         }
     }
 
+    /// <summary>
+    /// Deletes an inventory from the database
+    /// </summary>
+    /// <param name="iId">ID of the inventory that will be deleted</param>
     public void DeleteInventory(int iId){
         using(SqlConnection connection = new SqlConnection(_connectionString)){
             connection.Open();
