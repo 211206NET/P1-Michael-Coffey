@@ -66,9 +66,9 @@ namespace storeWebAPI.Controllers
 
         // DELETE api/<ProductController>/5
         [HttpDelete("{id}")]
-        public void DeleteProduct(string movieTitle)
+        public void DeleteProduct([FromBody] Product selectedProduct)
         {
-            _bl.DeleteProduct(movieTitle);
+            _bl.DeleteProduct(selectedProduct.ProductName);
         }
     }
 }
