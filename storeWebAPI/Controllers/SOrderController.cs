@@ -45,19 +45,19 @@ namespace storeWebAPI.Controllers
 
         // POST api/<SOrderController>
         [HttpPost]
-        public void Post([FromBody] Order nOrder)
+        public void PostStoreOrder([FromBody] Order nOrder)
         {
         }
 
         // PUT api/<SOrderController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public void PutIntoStoreOrder(int id, [FromBody] string value)
         {
         }
 
         // DELETE api/<SOrderController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public void DeleteStoreOrder(int id)
         {
             _bl.DeleteOrder(id);
         }
