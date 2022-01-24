@@ -51,9 +51,9 @@ namespace storeWebAPI.Controllers
 
         // PUT api/<InventoryController>/5
         [HttpPut("{id}")]
-        public void PutIntoInventories(int id, [FromBody] Inventory nInvent, int newam)
+        public void PutIntoInventories(int id, int stoID, int newam)
         {
-            _bl.ReplenishStock(id, nInvent.StoreId, newam);
+            _bl.ReplenishStock(id, stoID, newam);
         }
 
         // DELETE api/<InventoryController>/5
