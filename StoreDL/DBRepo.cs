@@ -570,7 +570,7 @@ public class DBRepo : IMRepo{
     public void DeleteProduct(string _productname){
         using(SqlConnection connection = new SqlConnection(_connectionString)){
             connection.Open();
-            string delProCommand = "DELETE FROM Storefront WHERE Title = @proNam";
+            string delProCommand = "DELETE FROM Product WHERE Title = @proNam";
             using(SqlCommand cmd = new SqlCommand(delProCommand, connection)){
                 SqlParameter param = new SqlParameter("@proNam", _productname);
                 cmd.Parameters.Add(param);
