@@ -52,7 +52,7 @@ namespace storeWebAPI.Controllers
 
         // PUT api/<SOrderController>/5
         [HttpPut("{id}")]
-        public void PutIntoStoreOrder(int id, [FromBody] string value)
+        public void PutIntoStoreOrder(int id, [FromBody] int ohId)
         {
         }
 
