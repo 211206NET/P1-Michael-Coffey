@@ -54,6 +54,7 @@ namespace storeWebAPI.Controllers
         [HttpPut("{id}")]
         public void PutIntoStoreOrder(int id, [FromBody] int ohId)
         {
+            _bl.PutOHInSOrderHistory(ohId, id);
         }
 
         // DELETE api/<SOrderController>/5
