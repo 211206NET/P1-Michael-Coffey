@@ -477,6 +477,11 @@ public class DBRepo : IMRepo{
         return new Storefront();
     }
 
+    /// <summary>
+    /// Gets a product based on its id
+    /// </summary>
+    /// <param name="id">Product ID</param>
+    /// <returns>The selected Product</returns>
     public Product GetProductByID(int id){
         return new Product();
     }
