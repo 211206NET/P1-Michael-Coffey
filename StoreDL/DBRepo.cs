@@ -407,6 +407,11 @@ public class DBRepo : IMRepo{
         }
     }
 
+    /// <summary>
+    /// Puts an order ID in Customer Order History ID
+    /// </summary>
+    /// <param name="ohId">COrderHistoryID</param>
+    /// <param name="id">Order ID</param>
     public void PutOHInCOrderHistory(int ohId, int id){
         using(SqlConnection connection = new SqlConnection(_connectionString)){
             connection.Open();
@@ -422,6 +427,11 @@ public class DBRepo : IMRepo{
         }
     }
 
+    /// <summary>
+    /// Puts an order ID in Store Order History ID
+    /// </summary>
+    /// <param name="ohId">SOrderHistoryID</param>
+    /// <param name="id">Order ID</param>
     public void PutOHInSOrderHistory(int ohId, int id){
         using(SqlConnection connection = new SqlConnection(_connectionString)){
             connection.Open();
