@@ -486,6 +486,21 @@ public class DBRepo : IMRepo{
         return new Product();
     }
 
+    public bool Login(string username, string email, string password){
+        bool doesEx = false;
+        List<Customer> allCustomers = GetAllCustomers();
+        foreach(Customer cust in allCustomers){
+            if(cust.UserName == username){
+                if(cust.Email == email){
+                    if(cust.Password == password){
+                        doesEx = true;
+                    }
+                }
+            }
+        }
+        return doesEx;
+    }
+
 ///<summary>
 ///Adds a product to the database.
 ///</summary>

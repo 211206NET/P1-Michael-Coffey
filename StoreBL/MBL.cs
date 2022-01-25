@@ -68,6 +68,9 @@ public class MBL : IBL{
     public Product GetProductByID(int id){
         return _fdl.GetProductByID(id);
     }
+    public bool Login(string username, string email, string password){
+        return _fdl.Login(username, email, password);
+    }
     public void AddProduct(int _ID, string _name, decimal _price, int _year, int _director, int _rating){
         _fdl.AddProduct(_ID, _name, _price, _year, _director, _rating);
     }

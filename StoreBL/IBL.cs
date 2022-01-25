@@ -16,6 +16,7 @@ public interface IBL{
     Customer GetCustomerByID(int id);
     Storefront GetStorefrontByID(int id);
     Product GetProductByID(int id);
+    bool Login(string username, string email, string password);
     void AddProduct(int _ID, string _name, decimal _price, int _year, int _director, int _rating);
     void AddDirectorToProduct(int pid, string ndirector);
     void AddReleaseYearToProduct(int pid, int nyear);
