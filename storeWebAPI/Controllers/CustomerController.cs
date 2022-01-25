@@ -20,6 +20,10 @@ namespace storeWebAPI.Controllers
             _bl = bl;
             _memoryCache = memoryCache;
         }
+        /// <summary>
+        /// Gets all Customers in the database
+        /// </summary>
+        /// <returns>A list of all Customers</returns>
         // GET: api/<CustomerController>
         [HttpGet]
         public async Task<List<Customer>> GetCustomers()
@@ -33,6 +37,11 @@ namespace storeWebAPI.Controllers
             return allCus;
         }
 
+        /// <summary>
+        /// Gets a specific Customer based on its ID
+        /// </summary>
+        /// <param name="id">ID of the selected Customer</param>
+        /// <returns>The selected Customer</returns>
         // GET api/<CustomerController>/5
         [HttpGet("{id}")]
         public Customer GetCustomerByID(int id)
@@ -40,6 +49,13 @@ namespace storeWebAPI.Controllers
             return _bl.GetCustomerByID(id);
         }
 
+        /// <summary>
+        /// Adds a Customer to the database
+        /// </summary>
+        /// <param name="_username">UserName of the new Customer</param>
+        /// <param name="_email">Email Address of the new Customer</param>
+        /// <param name="_password">Password for the new account</param>
+        /// <returns>Action result showing the success or failure of the code</returns>
         // POST api/<CustomerController>
         [HttpPost]
         public ActionResult PostCustomer(string _username, string _email, string _password)
@@ -56,6 +72,11 @@ namespace storeWebAPI.Controllers
             }
         }
 
+        /// <summary>
+        /// Adds a COrderHistoryID to a Customer
+        /// </summary>
+        /// <param name="id">ID of the selected customer</param>
+        /// <param name="value">COrderHistoryID</param>
         // PUT api/<CustomerController>/5
         [HttpPut("{id}")]
         public void PutIntoCustomer(int id, int value)
@@ -63,6 +84,10 @@ namespace storeWebAPI.Controllers
             _bl.PutCOHIDIntoCustomer(id, value);
         }
 
+        /// <summary>
+        /// Deletes a customer from the database
+        /// </summary>
+        /// <param name="lostCustomer">Customer that will be deleted</param>
         // DELETE api/<CustomerController>/5
         [HttpDelete("{id}")]
         public void DeleteCustomer([FromBody] Customer lostCustomer)
