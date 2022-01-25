@@ -73,6 +73,26 @@ namespace storeWebAPI.Controllers
         }
 
         /// <summary>
+        /// Login for a customer
+        /// </summary>
+        /// <param name="username">username of the user</param>
+        /// <param name="email">email input</param>
+        /// <param name="password">password input</param>
+        /// <returns>Action result relating to the validity of the info</returns>
+        [HttpGet("{username} {email} {password}")]
+        public ActionResult CustomerLogin(string username, string email, string password)
+        {
+            if (_bl.Login(username, email, password))
+            {
+                return Ok("Welcome!");
+            }
+            else
+            {
+                return BadRequest("Who are you?");
+            }
+        }
+
+        /// <summary>
         /// Adds a COrderHistoryID to a Customer
         /// </summary>
         /// <param name="id">ID of the selected customer</param>

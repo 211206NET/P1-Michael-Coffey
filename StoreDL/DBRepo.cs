@@ -486,6 +486,13 @@ public class DBRepo : IMRepo{
         return new Product();
     }
 
+    /// <summary>
+    /// Logs a Customer into their account
+    /// </summary>
+    /// <param name="username">Username being used to sign in</param>
+    /// <param name="email">email address for the supposed account</param>
+    /// <param name="password">password of the supposed account</param>
+    /// <returns>Whether the account is in the database</returns>
     public bool Login(string username, string email, string password){
         bool doesEx = false;
         List<Customer> allCustomers = GetAllCustomers();
