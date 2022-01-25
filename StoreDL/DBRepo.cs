@@ -407,11 +407,6 @@ public class DBRepo : IMRepo{
         }
     }
 
-    /// <summary>
-    /// Puts a specific order id into the CustomerOrderHistory table.
-    /// </summary>
-    /// <param name="ohId">Customer Order History ID</param>
-    /// <param name="id">Order ID</param>
     public void PutOHInCOrderHistory(int ohId, int id){
         using(SqlConnection connection = new SqlConnection(_connectionString)){
             connection.Open();
@@ -427,11 +422,6 @@ public class DBRepo : IMRepo{
         }
     }
 
-    /// <summary>
-    /// Puts a specific order id into the StoreOrderHistory table
-    /// </summary>
-    /// <param name="ohId">Store Order History ID</param>
-    /// <param name="id">Order ID</param>
     public void PutOHInSOrderHistory(int ohId, int id){
         using(SqlConnection connection = new SqlConnection(_connectionString)){
             connection.Open();
@@ -453,14 +443,13 @@ public class DBRepo : IMRepo{
     /// <param name="id">ID of the selected customer</param>
     /// <returns>A particular customer</returns>
     public Customer GetCustomerByID(int id){
-        Customer selCus = new Customer();
         List<Customer> allCustomers = GetAllCustomers();
         foreach(Customer cus in allCustomers){
             if(cus.Id == id){
-                selCus = cus;
+                return cus;
             }
         }
-        return selCus;
+        return new Customer();
     }
 
     /// <summary>
@@ -469,24 +458,17 @@ public class DBRepo : IMRepo{
     /// <param name="id">ID of its selected storefront</param>
     /// <returns>A particular storefront</returns>
     public Storefront GetStorefrontByID(int id){
-        Storefront selSto = new Storefront();
         List<Storefront> allStorefronts = GetAllStorefronts();
         foreach(Storefront sto in allStorefronts){
             if(sto.ID == id){
-                selSto = sto;
+                return sto;
             }
         }
-        return selSto;
+        return new Storefront();
     }
 
-    /// <summary>
-    /// Gets a product by its id
-    /// </summary>
-    /// <param name="id">Selected product's id</param>
-    /// <returns></returns>
     public Product GetProductByID(int id){
-        Product selPro = new Product();
-        return selPro;
+        return new Product();
     }
 
 ///<summary>
