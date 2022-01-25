@@ -110,9 +110,9 @@ namespace storeWebAPI.Controllers
         /// <param name="lostCustomer">Customer that will be deleted</param>
         // DELETE api/<CustomerController>/5
         [HttpDelete("{id}")]
-        public void DeleteCustomer([FromBody] Customer lostCustomer)
+        public void DeleteCustomer(string lostCustomer)
         {
-            _bl.DeleteCustomer(lostCustomer.UserName);
+            _bl.DeleteCustomer(lostCustomer);
         }
     }
 }

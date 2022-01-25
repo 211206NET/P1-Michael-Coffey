@@ -94,9 +94,9 @@ namespace storeWebAPI.Controllers
         /// <param name="selectedProduct">Product that will be deleted</param>
         // DELETE api/<ProductController>/5
         [HttpDelete("{id}")]
-        public void DeleteProduct([FromBody] Product selectedProduct)
+        public void DeleteProduct(string selectedProduct)
         {
-            _bl.DeleteProduct(selectedProduct.ProductName);
+            _bl.DeleteProduct(selectedProduct);
         }
     }
 }
