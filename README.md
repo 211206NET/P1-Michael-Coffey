@@ -1,6 +1,18 @@
 # P1-Michael-Coffey
 ## Film Store App
 This app allows users to buy specific films from individual sellers in any quantity.
+## Tables
+* Product
+* Director
+* Year
+* MPARating
+* Invnetory
+* LineItem
+* Order
+* Cutomer
+* Storefront
+* Customer Order Hisotry
+* Storefront Order History
 ## User Stories
 * The user should be able to a film in any quantity.
 * The user should buy from specific stores.
